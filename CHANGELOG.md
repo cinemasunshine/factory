@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
+- ソースリポジトリを[motionpicture](https://github.com/motionpicture/sskts-factory)から[cinemasunshine](https://github.com/cinemasunshine/factory)へ移行
+
 ### Deprecated
 
 ### Removed
