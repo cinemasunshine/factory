@@ -18,6 +18,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v5.3.2 - 2019-01-16
+
+### Changed
+
+- ソースリポジトリを[motionpicture](https://github.com/motionpicture/sskts-factory)から[cinemasunshine](https://github.com/cinemasunshine/factory)へ移行
+
+### Fixed
+
+- 日をまたぐイベントの終了日時インポート処理を修正
+
 ## v5.3.1 - 2018-12-11
 
 ### Changed
