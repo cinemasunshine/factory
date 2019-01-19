@@ -1,9 +1,8 @@
+import { multilingualString } from '@cinerino/factory';
+
+type IMultilingualString = multilingualString;
+
 /**
  * 多言語文字列
  */
-interface IMultilingualString {
-    ja: string;
-    en: string;
-}
-
 export default IMultilingualString;

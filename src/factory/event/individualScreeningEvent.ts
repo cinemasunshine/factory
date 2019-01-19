@@ -12,7 +12,7 @@ import ArgumentError from '../error/argument';
 
 import * as EventFactory from '../event';
 import * as ScreeningEventFactory from '../event/screeningEvent';
-import EventStatusType from '../eventStatusType';
+import { EventStatusType } from '../eventStatusType';
 import EventType from '../eventType';
 import IMultilingualString from '../multilingualString';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';

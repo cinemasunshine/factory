@@ -1,12 +1,6 @@
+import * as cinerino from '@cinerino/factory';
+
 /**
  * イベントステータス
  */
-
-enum EventStatusType {
-    EventCancelled = 'EventCancelled',
-    EventPostponed = 'EventPostponed',
-    EventRescheduled = 'EventRescheduled',
-    EventScheduled = 'EventScheduled'
-}
-
-export default EventStatusType;
+export import EventStatusType = cinerino.chevre.eventStatusType;

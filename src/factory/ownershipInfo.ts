@@ -9,7 +9,7 @@ import { IOrganization } from './organization';
 import { IPerson } from './person';
 import { IProgramMembership, ProgramMembershipType } from './programMembership';
 import { IEventReservation } from './reservation/event';
-import ReservationType from './reservationType';
+import { ReservationType } from './reservationType';
 
 export interface IAccount {
     typeOf: pecorino.account.TypeOf;

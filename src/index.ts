@@ -40,7 +40,7 @@ import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import CreativeWorkType from './factory/creativeWorkType';
 import * as IndividualScreeningEventFactory from './factory/event/individualScreeningEvent';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
-import EventStatusType from './factory/eventStatusType';
+import { EventStatusType } from './factory/eventStatusType';
 import EventType from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
 import * as OfferFactory from './factory/offer';
@@ -65,7 +65,7 @@ import * as PropertyValueFactory from './factory/propertyValue';
 import * as QuantitativeValueFactory from './factory/quantitativeValue';
 import * as EventReservationFactory from './factory/reservation/event';
 import { ReservationStatusType } from './factory/reservationStatusType';
-import ReservationType from './factory/reservationType';
+import { ReservationType } from './factory/reservationType';
 import SortType from './factory/sortType';
 import { UnitCode } from './factory/unitCode';
 

@@ -1,12 +1,6 @@
+import { actionStatusType as ActionStatusType } from '@cinerino/factory';
+
 /**
  * アクションステータス
  */
-enum ActionStatusType {
-    ActiveActionStatus = 'ActiveActionStatus',
-    CompletedActionStatus = 'CompletedActionStatus',
-    FailedActionStatus = 'FailedActionStatus',
-    PotentialActionStatus = 'PotentialActionStatus',
-    CanceledActionStatus = 'CanceledActionStatus'
-}
-
 export default ActionStatusType;

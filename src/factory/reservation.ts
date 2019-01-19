@@ -5,7 +5,7 @@ import PersonType from './personType';
 import PlaceType from './placeType';
 import PriceCurrency from './priceCurrency';
 import { ReservationStatusType } from './reservationStatusType';
-import ReservationType from './reservationType';
+import { ReservationType } from './reservationType';
 import * as URLFactory from './url';
 
 /**

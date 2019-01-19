@@ -9,7 +9,7 @@ import * as moment from 'moment';
 
 import CreativeWorkType from '../creativeWorkType';
 import * as EventFactory from '../event';
-import EventStatusType from '../eventStatusType';
+import { EventStatusType } from '../eventStatusType';
 import EventType from '../eventType';
 import IMultilingualString from '../multilingualString';
 import OrganizationType from '../organizationType';

@@ -12,7 +12,7 @@ import PriceCurrency from './priceCurrency';
 import { IProgramMembership } from './programMembership';
 import { IPropertyValue } from './propertyValue';
 import * as EventReservationFactory from './reservation/event';
-import ReservationType from './reservationType';
+import { ReservationType } from './reservationType';
 import SortType from './sortType';
 
 export type TypeOf = cinerino.order.TypeOf;
