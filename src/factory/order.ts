@@ -6,11 +6,10 @@ import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
-import { IIdentifier, IPerson, IProfile } from './person';
+import { IIdentifier } from './person';
 import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
 import { IProgramMembership } from './programMembership';
-import { IPropertyValue } from './propertyValue';
 import * as EventReservationFactory from './reservation/event';
 import { ReservationType } from './reservationType';
 import SortType from './sortType';
@@ -20,28 +19,7 @@ export type TypeOf = cinerino.order.TypeOf;
 /**
  * 決済方法インターフェース
  */
-export interface IPaymentMethod<T extends PaymentMethodType> {
-    /**
-     * 決済方法名
-     */
-    name: string;
-    /**
-     * 決済方法タイプ
-     */
-    typeOf?: T;
-    /**
-     * 決済方法タイプ
-     */
-    paymentMethod: T;
-    /**
-     * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
-     */
-    paymentMethodId: string;
-    /**
-     * 追加特性
-     */
-    additionalProperty?: IPropertyValue<any>[];
-}
+export type IPaymentMethod<T extends PaymentMethodType> = cinerino.order.IPaymentMethod<T>;
 
 /**
  * 割引インターフェース
@@ -89,9 +67,7 @@ export type ISeller = cinerino.order.ISeller;
 /**
  * 購入者インターフェース
  */
-export type ICustomer = IPerson & IProfile & {
-    name: string;
-};
+export type ICustomer = cinerino.order.ICustomer;
 
 /**
  * 注文インターフェース
