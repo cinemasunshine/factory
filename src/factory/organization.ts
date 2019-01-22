@@ -2,7 +2,6 @@ import IMultilingualString from './multilingualString';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
 import { IPlace } from './place';
-import * as URLFactory from './url';
 
 /**
  * GMOショップ情報インターフェース
@@ -93,7 +92,7 @@ export interface IOrganization {
     typeOf: OrganizationType;
     location?: any;
     telephone?: string;
-    url?: URLFactory.IURL;
+    url?: string;
     image?: string;
     paymentAccepted?: IPaymentAccepted<PaymentMethodType>[];
     /**

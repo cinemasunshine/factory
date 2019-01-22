@@ -40,6 +40,7 @@ import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import CreativeWorkType from './factory/creativeWorkType';
 import * as IndividualScreeningEventFactory from './factory/event/individualScreeningEvent';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
+import * as ScreeningEventSeriesFactory from './factory/event/screeningEventSeries';
 import { EventStatusType } from './factory/eventStatusType';
 import { EventType } from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
@@ -100,7 +101,6 @@ import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrde
 import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
 import TransactionType from './factory/transactionType';
-import * as URLFactory from './factory/url';
 
 import ErrorCode from './factory/errorCode';
 import * as errors from './factory/errors';
@@ -234,6 +234,7 @@ export import creativeWorkType = CreativeWorkType;
 export namespace event {
     export import individualScreeningEvent = IndividualScreeningEventFactory;
     export import screeningEvent = ScreeningEventFactory;
+    export import screeningEventSeries = ScreeningEventSeriesFactory;
 }
 export import eventStatusType = EventStatusType;
 export import eventType = EventType;
@@ -398,4 +399,3 @@ export import transactionStatusType = TransactionStatusType;
 export import transactionTasksExportationStatus = TransactionTasksExportationStatus;
 export import transactionType = TransactionType;
 export import unitCode = UnitCode;
-export import url = URLFactory;

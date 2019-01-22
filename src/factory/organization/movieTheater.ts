@@ -5,7 +5,6 @@ import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
 import OrganizationType from '../organizationType';
 import PlaceType from '../placeType';
-import * as URLFactory from '../url';
 
 /**
  * 場所インターフェース
@@ -74,7 +73,7 @@ export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrgani
     /**
      * 劇場ポータルサイトURL
      */
-    url: URLFactory.IURL;
+    url: string;
     /**
      * COAのスケジュールXMK情報
      */

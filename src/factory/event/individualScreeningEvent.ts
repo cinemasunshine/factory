@@ -1,9 +1,3 @@
-/**
- * individual screening event factory
- * 個々の上映イベントファクトリー
- * @namespace event.individualScreeningEvent
- */
-
 import * as COA from '@motionpicture/coa-service';
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -11,7 +5,7 @@ import * as moment from 'moment';
 import ArgumentError from '../error/argument';
 
 import * as EventFactory from '../event';
-import * as ScreeningEventFactory from '../event/screeningEvent';
+import * as ScreeningEventSeriesFactory from '../event/screeningEventSeries';
 import { EventStatusType } from '../eventStatusType';
 import { EventType } from '../eventType';
 import IMultilingualString from '../multilingualString';
@@ -126,7 +120,7 @@ export interface IEvent extends EventFactory.IEvent {
     /**
      * 上映作品
      */
-    workPerformed: ScreeningEventFactory.IWorkPerformed;
+    workPerformed: ScreeningEventSeriesFactory.IWorkPerformed;
     /**
      * 上映場所
      */
@@ -165,7 +159,7 @@ export interface IEvent extends EventFactory.IEvent {
      * 親イベント
      * COAの劇場作品に相当します。
      */
-    superEvent: ScreeningEventFactory.IEvent;
+    superEvent: ScreeningEventSeriesFactory.IEvent;
     /**
      * その他COA情報
      */
@@ -226,14 +220,14 @@ export interface IEvent extends EventFactory.IEvent {
 export function createFromCOA(params: {
     performanceFromCOA: COA.services.master.IScheduleResult;
     screenRoom: MovieTheaterPlaceFactory.IScreeningRoom;
-    screeningEvent: ScreeningEventFactory.IEvent;
+    superEvent: ScreeningEventSeriesFactory.IEvent;
     serviceKubuns: COA.services.master.IKubunNameResult[];
     acousticKubuns: COA.services.master.IKubunNameResult[];
 }): IEvent {
     const identifier = createIdentifierFromCOA({
-        theaterCode: params.screeningEvent.location.branchCode,
-        titleCode: params.screeningEvent.workPerformed.identifier,
-        titleBranchNum: params.screeningEvent.coaInfo.titleBranchNum,
+        theaterCode: params.superEvent.location.branchCode,
+        titleCode: params.superEvent.workPerformed.identifier,
+        titleBranchNum: params.superEvent.coaInfo.titleBranchNum,
         dateJouei: params.performanceFromCOA.dateJouei,
         screenCode: params.performanceFromCOA.screenCode,
         timeBegin: params.performanceFromCOA.timeBegin
@@ -262,10 +256,10 @@ export function createFromCOA(params: {
             typeOf: EventType.IndividualScreeningEvent,
             id: identifier,
             identifier: identifier,
-            name: params.screeningEvent.name
+            name: params.superEvent.name
         }),
         ...{
-            workPerformed: params.screeningEvent.workPerformed,
+            workPerformed: params.superEvent.workPerformed,
             location: {
                 typeOf: params.screenRoom.typeOf,
                 branchCode: params.screenRoom.branchCode,
@@ -273,9 +267,9 @@ export function createFromCOA(params: {
             },
             endDate: endDate,
             startDate: startDate,
-            superEvent: params.screeningEvent,
+            superEvent: params.superEvent,
             coaInfo: {
-                theaterCode: params.screeningEvent.location.branchCode,
+                theaterCode: params.superEvent.location.branchCode,
                 dateJouei: params.performanceFromCOA.dateJouei,
                 titleCode: params.performanceFromCOA.titleCode,
                 titleBranchNum: params.performanceFromCOA.titleBranchNum,
@@ -309,7 +303,7 @@ export function createIdentifierFromCOA(params: {
     timeBegin: string;
 }): string {
     return [
-        ScreeningEventFactory.createIdentifier(params),
+        ScreeningEventSeriesFactory.createIdentifier(params),
         params.dateJouei,
         params.screenCode,
         params.timeBegin

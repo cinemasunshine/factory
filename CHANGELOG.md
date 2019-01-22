@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
+- 上映イベントシリーズインターフェースを追加
+
 ### Changed
 
 - 人物インターフェースを拡張
@@ -17,6 +19,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Deprecated
 
 ### Removed
+
+- URLインターフェースを削除
 
 ### Fixed
 
