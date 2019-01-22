@@ -64,7 +64,6 @@ export interface ICOATicketInfo {
 
 /**
  * COA券種情報
- * @export
  */
 export type ICOATicketInfoWithDetails = COA.services.reserve.IUpdReserveTicket & {
     /**
@@ -87,7 +86,6 @@ export type ICOATicketInfoWithDetails = COA.services.reserve.IUpdReserveTicket &
 
 /**
  * 座席予約供給情報インターフェース
- * @export
  */
 export interface IOffer {
     /**
@@ -106,7 +104,6 @@ export interface IOffer {
 
 /**
  * 座席予約供給情報(詳細つき)インターフェース
- * @export
  */
 export interface IOfferWithDetails extends OfferFactory.IOffer {
     /**

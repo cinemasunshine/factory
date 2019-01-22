@@ -1,10 +1,6 @@
+import * as cinerino from '@cinerino/factory';
+
 /**
  * イベントタイプ
  */
-
-enum EventType {
-    ScreeningEvent = 'ScreeningEvent',
-    IndividualScreeningEvent = 'IndividualScreeningEvent'
-}
-
-export default EventType;
+export import EventType = cinerino.chevre.eventType;

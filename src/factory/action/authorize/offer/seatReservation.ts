@@ -19,9 +19,7 @@ export enum ObjectType {
 }
 
 /**
- * authorize action result interface
  * 認可アクション結果
- * @export
  */
 export interface IResult {
     /**
@@ -41,9 +39,7 @@ export interface IResult {
 }
 
 /**
- * authorize action object
  * 認可アクション対象
- * @export
  */
 export interface IObject {
     typeOf: ObjectType;
@@ -55,14 +51,11 @@ export type IPurpose = ITransaction;
 
 /**
  * authorize action error interface
- * @export
  */
 export type IError = any;
 
 /**
- * seat reservation authorize action interface
  * 座席予約認可アクションインターフェース
- * @export
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     typeOf: ActionType.AuthorizeAction;

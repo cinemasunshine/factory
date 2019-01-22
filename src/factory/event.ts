@@ -3,7 +3,7 @@
  */
 import * as CreativeWorkFactory from './creativeWork';
 import { EventStatusType } from './eventStatusType';
-import EventType from './eventType';
+import { EventType } from './eventType';
 import IMultilingualString from './multilingualString';
 // import * as OfferFactory from './offer';
 import * as PlaceFactory from './place';

@@ -21,7 +21,6 @@ export interface IPurpose {
 
 /**
  * アクション属性
- * @export
  */
 export interface IAttributes<T extends ActionType, TObject, TResult> {
     /**

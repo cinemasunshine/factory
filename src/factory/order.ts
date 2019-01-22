@@ -1,7 +1,7 @@
 import * as cinerino from '@cinerino/factory';
 
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
-import EventType from './eventType';
+import { EventType } from './eventType';
 import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';

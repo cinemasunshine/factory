@@ -57,7 +57,6 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
 
 /**
  * place interface without screening room
- * @export
  */
 export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
     identifier: string;

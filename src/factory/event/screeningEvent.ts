@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import CreativeWorkType from '../creativeWorkType';
 import * as EventFactory from '../event';
 import { EventStatusType } from '../eventStatusType';
-import EventType from '../eventType';
+import { EventType } from '../eventType';
 import IMultilingualString from '../multilingualString';
 import OrganizationType from '../organizationType';
 import PersonType from '../personType';
@@ -18,9 +18,7 @@ import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
 
 /**
- * performed work interface
  * 上映作品インターフェース
- * @export
  */
 export interface IWorkPerformed {
     /**
@@ -53,9 +51,7 @@ export interface IOrganizer {
 }
 
 /**
- * screening event interface
  * 上映イベントインターフェース(COAの劇場作品に相当)
- * @export
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -140,7 +136,6 @@ export interface IEvent extends EventFactory.IEvent {
 
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
- * @export
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
@@ -211,7 +206,6 @@ export function createFromCOA(params: {
 
 /**
  * COA情報から上映イベント識別子を作成する
- * @export
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */

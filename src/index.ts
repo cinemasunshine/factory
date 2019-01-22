@@ -41,7 +41,7 @@ import CreativeWorkType from './factory/creativeWorkType';
 import * as IndividualScreeningEventFactory from './factory/event/individualScreeningEvent';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import { EventStatusType } from './factory/eventStatusType';
-import EventType from './factory/eventType';
+import { EventType } from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
 import * as OfferFactory from './factory/offer';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
@@ -63,6 +63,7 @@ import PriceCurrency from './factory/priceCurrency';
 import * as ProgramMembershipFactory from './factory/programMembership';
 import * as PropertyValueFactory from './factory/propertyValue';
 import * as QuantitativeValueFactory from './factory/quantitativeValue';
+import * as ReservationFactory from './factory/reservation';
 import * as EventReservationFactory from './factory/reservation/event';
 import { ReservationStatusType } from './factory/reservationStatusType';
 import { ReservationType } from './factory/reservationType';
@@ -267,6 +268,11 @@ export import programMembership = ProgramMembershipFactory;
 export import propertyValue = PropertyValueFactory;
 export import quantitativeValue = QuantitativeValueFactory;
 export namespace reservation {
+    export import IReservation = ReservationFactory.IReservation;
+    export import ISeat = ReservationFactory.ISeat;
+    export import ITicket = ReservationFactory.ITicket;
+    export import IUnderName = ReservationFactory.IUnderName;
+    export import TicketType = ReservationFactory.TicketType;
     // tslint:disable-next-line:no-shadowed-variable
     export import event = EventReservationFactory;
 }

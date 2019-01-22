@@ -11,7 +11,6 @@ import CreativeWorkType from '../creativeWorkType';
 
 /**
  * movie creativeWork interface
- * @export
  */
 export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
     identifier: string;
@@ -22,7 +21,6 @@ export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
 
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
- * @export
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
