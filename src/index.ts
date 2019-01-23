@@ -38,7 +38,6 @@ import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import CreativeWorkType from './factory/creativeWorkType';
-import * as IndividualScreeningEventFactory from './factory/event/individualScreeningEvent';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import * as ScreeningEventSeriesFactory from './factory/event/screeningEventSeries';
 import { EventStatusType } from './factory/eventStatusType';
@@ -232,7 +231,7 @@ export namespace creativeWork {
 }
 export import creativeWorkType = CreativeWorkType;
 export namespace event {
-    export import individualScreeningEvent = IndividualScreeningEventFactory;
+    export import individualScreeningEvent = ScreeningEventFactory;
     export import screeningEvent = ScreeningEventFactory;
     export import screeningEventSeries = ScreeningEventSeriesFactory;
 }

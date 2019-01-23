@@ -1,206 +1,288 @@
-/**
- * screen event factory
- * 劇場の上映イベントファクトリー
- * @namespace event.screeningEvent
- */
-
 import * as COA from '@motionpicture/coa-service';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 
-import CreativeWorkType from '../creativeWorkType';
+import ArgumentError from '../error/argument';
+
 import * as EventFactory from '../event';
+import * as ScreeningEventSeriesFactory from '../event/screeningEventSeries';
 import { EventStatusType } from '../eventStatusType';
 import { EventType } from '../eventType';
 import IMultilingualString from '../multilingualString';
-import OrganizationType from '../organizationType';
-import PersonType from '../personType';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
+import SortType from '../sortType';
 
 /**
- * 上映作品インターフェース
+ * ソート条件インターフェース
  */
-export interface IWorkPerformed {
-    /**
-     * 作品識別子
-     * COAタイトルコードに相当します。
-     */
-    identifier: string;
-    /**
-     * 作品原題
-     */
-    name: string;
-    /**
-     * 上映時間
-     */
-    duration: string;
-    /**
-     * 映倫区分(PG12,R15,R18)
-     */
-    contentRating?: COA.services.master.IKubunNameResult;
-    /**
-     * スキーマタイプ
-     */
-    typeOf: CreativeWorkType;
-}
-
-export interface IOrganizer {
-    typeOf: OrganizationType | PersonType;
-    identifier: string;
-    name: IMultilingualString;
+export interface ISortOrder {
+    doorTime?: SortType;
+    endDate?: SortType;
+    startDate?: SortType;
 }
 
 /**
- * 上映イベントインターフェース(COAの劇場作品に相当)
+ * 上映イベントの検索条件インターフェース
+ */
+export interface ISearchConditions {
+    limit?: number;
+    page?: number;
+    sort?: ISortOrder;
+    /**
+     * イベント名称
+     */
+    name?: string;
+    /**
+     * 開始日時(in ISO 8601 date format) from
+     */
+    startFrom?: Date;
+    /**
+     * 開始日時(in ISO 8601 date format) through
+     */
+    startThrough?: Date;
+    /**
+     * 終了日時(in ISO 8601 date format) from
+     */
+    endFrom?: Date;
+    /**
+     * 終了日時(in ISO 8601 date format) through
+     */
+    endThrough?: Date;
+    /**
+     * イベントステータス
+     * イベントがキャンセル、あるいは、延期された場合に主に使用されます。
+     */
+    eventStatuses?: EventStatusType[];
+    /**
+     * 親イベント(劇場の上映イベント)が実施される場所の識別子リスト
+     */
+    superEventLocationIdentifiers?: string[];
+    /**
+     * イベントで上演される作品識別子リスト
+     */
+    workPerformedIdentifiers?: string[];
+}
+
+/**
+ * 上映イベント空席状況表現インターフェース
+ * 表現を変更する場合、このインターフェースを変更して対応する
+ */
+export type IItemAvailability = number;
+
+/**
+ * 座席数から在庫状況表現を生成する
+ * @param numberOfAvailableSeats 空席数
+ * @param numberOfAllSeats 全座席数
+ */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
+export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
+    if (!_.isInteger(numberOfAvailableSeats)) {
+        throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
+    }
+    if (!_.isInteger(numberOfAllSeats)) {
+        throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats must be number.');
+    }
+
+    if (numberOfAllSeats === 0) {
+        return 0;
+    }
+
+    // 残席数より空席率を算出
+    // tslint:disable-next-line:no-magic-numbers
+    return Math.floor(numberOfAvailableSeats / numberOfAllSeats * 100);
+}
+
+/**
+ * event offer interface
+ */
+export interface IOffer {
+    typeOf: string;
+    availability: IItemAvailability | null;
+    url: string;
+}
+
+/**
+ * event with offer interface
+ */
+export type IEventWithOffer = IEvent & {
+    offer: IOffer;
+};
+
+/**
+ * 上映イベントインターフェース(COAのスケジュールに相当)
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
-     * 映像区分(２D、３D)
-     */
-    videoFormat?: COA.services.master.IKubunNameResult;
-    /**
      * 上映作品
      */
-    workPerformed: IWorkPerformed;
+    workPerformed: ScreeningEventSeriesFactory.IWorkPerformed;
     /**
      * 上映場所
      */
     location: {
         /**
-         * スキーマタイプ
+         * 場所タイプ
          */
         typeOf: PlaceType;
         /**
-         * 識別子
-         */
-        identifier: string;
-        /**
-         * 劇場コード
+         * 場所枝番号
+         * スクリーンコードに該当します。
          */
         branchCode: string;
         /**
          * 場所名称
          */
         name: IMultilingualString;
-        /**
-         * 場所名称(カナ)
-         */
-        kanaName: string;
     };
-    organizer: IOrganizer;
-    /**
-     * 作品タイトル名（カナ）
-     */
-    kanaName: string;
-    /**
-     * 作品タイトル名省略
-     */
-    alternativeHeadline: string;
     /**
      * イベント名称
      */
     name: IMultilingualString;
     /**
-     * 公演終了予定日(in ISO 8601 date format)
+     * 開場日時(in ISO 8601 date format)
      */
-    endDate?: Date;
+    doorTime?: Date;
     /**
-     * 公演開始予定日(in ISO 8601 date format)
+     * 終了日時(in ISO 8601 date format)
      */
-    startDate?: Date;
+    endDate: Date;
+    /**
+     * 開始日時(in ISO 8601 date format)
+     */
+    startDate: Date;
+    /**
+     * 親イベント
+     * COAの劇場作品に相当します。
+     */
+    superEvent: ScreeningEventSeriesFactory.IEvent;
     /**
      * その他COA情報
      */
     coaInfo: {
+        theaterCode: string;
+        dateJouei: string;
+        titleCode: string;
         titleBranchNum: string;
+        timeBegin: string;
+        timeEnd: string;
+        screenCode: string;
         /**
-         * 上映方式区分(ＩＭＡＸ，４ＤＸ等)
+         * トレーラー時間
+         * トレーラー含む本編以外の時間（分）
          */
-        kbnJoueihousiki?: COA.services.master.IKubunNameResult;
+        trailerTime: number;
         /**
-         * 字幕吹替区分(字幕、吹き替え)
+         * サービス区分
+         * 「通常興行」「レイトショー」など
          */
-        kbnJimakufukikae?: COA.services.master.IKubunNameResult;
+        kbnService?: COA.services.master.IKubunNameResult;
         /**
-         * ムビチケ使用フラグ
-         * 1：ムビチケ使用対象
+         * 音響区分
          */
-        flgMvtkUse: string;
+        kbnAcoustic?: COA.services.master.IKubunNameResult;
         /**
-         * ムビチケ利用開始日
-         * ※日付は西暦8桁 "YYYYMMDD"
+         * サービスデイ名称
+         * 「映画の日」「レディースデイ」など ※割引区分、割引コード、特定日等の組み合わせで登録するため名称で連携の方が容易
          */
-        dateMvtkBegin: string;
+        nameServiceDay: string;
+        /**
+         * 購入可能枚数
+         */
+        availableNum: number;
+        /**
+         * 予約開始日
+         * 予約可能になる日付(YYYYMMDD)
+         */
+        rsvStartDate: string;
+        /**
+         * 予約終了日
+         * 予約終了になる日付(YYYYMMDD)
+         */
+        rsvEndDate: string;
+        /**
+         * 先行予約フラグ
+         * 先行予約の場合は'1'、それ以外は'0'
+         */
+        flgEarlyBooking: string;
     };
 }
 
 /**
- * COAの作品抽出結果からFilmオブジェクトを作成する
+ * create individualScreeningEvent from COA performance
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
 export function createFromCOA(params: {
-    filmFromCOA: COA.services.master.ITitleResult;
-    movieTheater: MovieTheaterPlaceFactory.IPlace;
-    eirinKubuns: COA.services.master.IKubunNameResult[];
-    eizouKubuns: COA.services.master.IKubunNameResult[];
-    joueihousikiKubuns: COA.services.master.IKubunNameResult[];
-    jimakufukikaeKubuns: COA.services.master.IKubunNameResult[];
+    performanceFromCOA: COA.services.master.IScheduleResult;
+    screenRoom: MovieTheaterPlaceFactory.IScreeningRoom;
+    superEvent: ScreeningEventSeriesFactory.IEvent;
+    serviceKubuns: COA.services.master.IKubunNameResult[];
+    acousticKubuns: COA.services.master.IKubunNameResult[];
 }): IEvent {
-    const endDate = (moment(`${params.filmFromCOA.dateEnd} +09:00`, 'YYYYMMDD Z').isValid())
-        ? moment(`${params.filmFromCOA.dateEnd} +09:00`, 'YYYYMMDD Z').toDate()
-        : undefined;
-    const startDate = (moment(`${params.filmFromCOA.dateBegin} +09:00`, 'YYYYMMDD Z').isValid())
-        ? moment(`${params.filmFromCOA.dateBegin} +09:00`, 'YYYYMMDD Z').toDate()
-        : undefined;
-    // title_codeは劇場をまたいで共有、title_branch_numは劇場毎に管理
-    const identifier = createIdentifier({
-        theaterCode: params.movieTheater.branchCode,
-        titleCode: params.filmFromCOA.titleCode,
-        titleBranchNum: params.filmFromCOA.titleBranchNum
+    const identifier = createIdentifierFromCOA({
+        theaterCode: params.superEvent.location.branchCode,
+        titleCode: params.superEvent.workPerformed.identifier,
+        titleBranchNum: params.superEvent.coaInfo.titleBranchNum,
+        dateJouei: params.performanceFromCOA.dateJouei,
+        screenCode: params.performanceFromCOA.screenCode,
+        timeBegin: params.performanceFromCOA.timeBegin
     });
 
+    // COA情報を整形して開始日時と終了日時を作成('2500'のような日またぎの時刻入力に対応)
+    let timeEnd = params.performanceFromCOA.timeEnd;
+    let addDay = 0;
+    try {
+        const DAY = 2400;
+        addDay += Math.floor(Number(timeEnd) / DAY);
+        // tslint:disable-next-line:no-magic-numbers
+        timeEnd = `0000${Number(timeEnd) % DAY}`.slice(-4);
+    } catch (error) {
+        // no op
+    }
+
+    const endDate = moment(`${params.performanceFromCOA.dateJouei} ${timeEnd} +09:00`, 'YYYYMMDD HHmm Z').add(addDay, 'days')
+        .toDate();
+    const startDate = moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z')
+        .toDate();
+
     return {
-        id: identifier,
-        identifier: identifier,
-        name: {
-            ja: params.filmFromCOA.titleName,
-            en: params.filmFromCOA.titleNameEng
-        },
-        kanaName: params.filmFromCOA.titleNameKana,
-        alternativeHeadline: params.filmFromCOA.titleNameShort,
-        location: {
-            identifier: params.movieTheater.identifier,
-            branchCode: params.movieTheater.branchCode,
-            name: params.movieTheater.name,
-            kanaName: params.movieTheater.kanaName,
-            typeOf: params.movieTheater.typeOf
-        },
-        organizer: {
-            typeOf: OrganizationType.MovieTheater,
-            identifier: params.movieTheater.identifier,
-            name: params.movieTheater.name
-        },
-        videoFormat: params.eizouKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEizou)[0],
-        workPerformed: {
-            identifier: params.filmFromCOA.titleCode,
-            name: params.filmFromCOA.titleNameOrig,
-            duration: moment.duration(params.filmFromCOA.showTime, 'm').toISOString(),
-            contentRating: params.eirinKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEirin)[0],
-            typeOf: CreativeWorkType.Movie
-        },
-        duration: moment.duration(params.filmFromCOA.showTime, 'm').toISOString(),
-        endDate: endDate,
-        startDate: startDate,
-        coaInfo: {
-            titleBranchNum: params.filmFromCOA.titleBranchNum,
-            kbnJoueihousiki: params.joueihousikiKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnJoueihousiki)[0],
-            kbnJimakufukikae: params.jimakufukikaeKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnJimakufukikae)[0],
-            flgMvtkUse: params.filmFromCOA.flgMvtkUse,
-            dateMvtkBegin: params.filmFromCOA.dateMvtkBegin
-        },
-        eventStatus: EventStatusType.EventScheduled,
-        typeOf: EventType.ScreeningEvent
+        ...EventFactory.create({
+            eventStatus: EventStatusType.EventScheduled,
+            typeOf: EventType.ScreeningEvent,
+            id: identifier,
+            identifier: identifier,
+            name: params.superEvent.name
+        }),
+        ...{
+            workPerformed: params.superEvent.workPerformed,
+            location: {
+                typeOf: params.screenRoom.typeOf,
+                branchCode: params.screenRoom.branchCode,
+                name: params.screenRoom.name
+            },
+            endDate: endDate,
+            startDate: startDate,
+            superEvent: params.superEvent,
+            coaInfo: {
+                theaterCode: params.superEvent.location.branchCode,
+                dateJouei: params.performanceFromCOA.dateJouei,
+                titleCode: params.performanceFromCOA.titleCode,
+                titleBranchNum: params.performanceFromCOA.titleBranchNum,
+                timeBegin: params.performanceFromCOA.timeBegin,
+                timeEnd: params.performanceFromCOA.timeEnd,
+                screenCode: params.performanceFromCOA.screenCode,
+                trailerTime: params.performanceFromCOA.trailerTime,
+                kbnService: params.serviceKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService)[0],
+                kbnAcoustic: params.acousticKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic)[0],
+                nameServiceDay: params.performanceFromCOA.nameServiceDay,
+                availableNum: params.performanceFromCOA.availableNum,
+                rsvStartDate: params.performanceFromCOA.rsvStartDate,
+                rsvEndDate: params.performanceFromCOA.rsvEndDate,
+                flgEarlyBooking: params.performanceFromCOA.flgEarlyBooking
+            }
+        }
     };
 }
 
@@ -209,14 +291,18 @@ export function createFromCOA(params: {
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
-export function createIdentifier(params: {
+export function createIdentifierFromCOA(params: {
     theaterCode: string;
     titleCode: string;
     titleBranchNum: string;
-}) {
+    dateJouei: string;
+    screenCode: string;
+    timeBegin: string;
+}): string {
     return [
-        params.theaterCode,
-        params.titleCode,
-        params.titleBranchNum
+        ScreeningEventSeriesFactory.createIdentifier(params),
+        params.dateJouei,
+        params.screenCode,
+        params.timeBegin
     ].join('');
 }
