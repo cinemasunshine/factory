@@ -1,8 +1,6 @@
 /**
  * NotFoundエラーを作成する
- * @ignore
  */
-
 const assert = require('assert');
 const factory = require('../');
 

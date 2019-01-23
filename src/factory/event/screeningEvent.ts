@@ -2,7 +2,7 @@ import * as COA from '@motionpicture/coa-service';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
-import ArgumentError from '../error/argument';
+import { errors } from '../errors';
 
 import * as EventFactory from '../event';
 import * as ScreeningEventSeriesFactory from '../event/screeningEventSeries';
@@ -77,12 +77,14 @@ export type IItemAvailability = number;
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
-export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
+export function createItemAvailability(
+    numberOfAvailableSeats: number, numberOfAllSeats: number
+): IItemAvailability {
     if (!_.isInteger(numberOfAvailableSeats)) {
-        throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
+        throw new errors.Argument('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
     }
     if (!_.isInteger(numberOfAllSeats)) {
-        throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats must be number.');
+        throw new errors.Argument('numberOfAllSeats', 'numberOfAllSeats must be number.');
     }
 
     if (numberOfAllSeats === 0) {
@@ -289,8 +291,6 @@ export function createFromCOA(params: {
 /**
  * COA情報から上映イベント識別子を作成する
  */
-// tslint:disable-next-line:no-single-line-block-comment
-/* istanbul ignore next */
 export function createIdentifierFromCOA(params: {
     theaterCode: string;
     titleCode: string;
