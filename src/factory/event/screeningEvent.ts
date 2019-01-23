@@ -291,8 +291,6 @@ export function createFromCOA(params: {
 /**
  * COA情報から上映イベント識別子を作成する
  */
-// tslint:disable-next-line:no-single-line-block-comment
-/* istanbul ignore next */
 export function createIdentifierFromCOA(params: {
     theaterCode: string;
     titleCode: string;
