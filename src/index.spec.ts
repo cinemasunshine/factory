@@ -5,8 +5,8 @@ import * as assert from 'assert';
 
 import * as factory from './index';
 
-describe('import factory', () => {
-    it('factoryをオブジェクトとしてインポートできるはず', () => {
-        assert.equal(typeof factory, 'object');
+describe('factory.errors', () => {
+    it('errorsをオブジェクトとしてインポートできるはず', () => {
+        assert.equal(typeof factory.errors, 'object');
     });
 });
