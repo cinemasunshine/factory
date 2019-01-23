@@ -102,7 +102,7 @@ import TransactionTasksExportationStatus from './factory/transactionTasksExporta
 import TransactionType from './factory/transactionType';
 
 import ErrorCode from './factory/errorCode';
-import * as errors from './factory/errors';
+import { errors } from './factory/errors';
 
 export import cognito = cognito;
 export import pecorino = pecorino;
