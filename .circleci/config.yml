@@ -41,7 +41,11 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: run npm test
-          command: npm test
+          command: |
+            npm run mocha -- "src/**/*.spec.ts"
+            npm run nyc
+            npm run coverage
+            npm test
       # - run:
       #     name: Generate code coverage
       #     command: './node_modules/.bin/nyc report --reporter=text-lcov'
