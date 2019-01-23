@@ -77,7 +77,9 @@ export type IItemAvailability = number;
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
-export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
+export function createItemAvailability(
+    numberOfAvailableSeats: number, numberOfAllSeats: number
+): IItemAvailability {
     if (!_.isInteger(numberOfAvailableSeats)) {
         throw new errors.Argument('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
     }
