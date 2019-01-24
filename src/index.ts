@@ -55,6 +55,7 @@ import OrganizationType from './factory/organizationType';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
 import PaymentMethodType from './factory/paymentMethodType';
+import PaymentStatusType from './factory/paymentStatusType';
 import * as PersonFactory from './factory/person';
 import PersonType from './factory/personType';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
@@ -260,6 +261,7 @@ export namespace place {
     export import movieTheater = MovieTheaterPlaceFactory;
 }
 export import paymentMethodType = PaymentMethodType;
+export import paymentStatusType = PaymentStatusType;
 export import person = PersonFactory;
 export import personType = PersonType;
 export import placeType = PlaceType;
