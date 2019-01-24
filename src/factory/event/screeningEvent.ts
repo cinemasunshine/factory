@@ -212,7 +212,7 @@ export interface IEvent extends EventFactory.IEvent {
 }
 
 /**
- * create individualScreeningEvent from COA performance
+ * COAデータから上映イベントを作成する
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */

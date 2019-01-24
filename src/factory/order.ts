@@ -1,6 +1,6 @@
 import * as cinerino from '@cinerino/factory';
 
-import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
+import { IEvent as IScreeningEvent } from './event/screeningEvent';
 import { EventType } from './eventType';
 import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
@@ -29,7 +29,7 @@ export type IDiscount = cinerino.order.IDiscount;
 /**
  * 供給アイテムインターフェース
  */
-export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent> | IProgramMembership;
+export type IItemOffered = EventReservationFactory.IEventReservation<IScreeningEvent> | IProgramMembership;
 export type ItemOfferedType = ReservationType;
 
 /**

@@ -231,7 +231,6 @@ export namespace creativeWork {
 }
 export import creativeWorkType = CreativeWorkType;
 export namespace event {
-    export import individualScreeningEvent = ScreeningEventFactory;
     export import screeningEvent = ScreeningEventFactory;
     export import screeningEventSeries = ScreeningEventSeriesFactory;
 }

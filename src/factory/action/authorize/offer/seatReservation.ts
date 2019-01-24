@@ -5,7 +5,7 @@ import * as COA from '@motionpicture/coa-service';
 
 import * as ActionFactory from '../../../action';
 import ActionType from '../../../actionType';
-import * as IndividualScreeningEventFactory from '../../../event/individualScreeningEvent';
+import { IEvent as IScreeningEvent } from '../../../event/screeningEvent';
 import { IOfferWithDetails as ISeatReservationOffer } from '../../../offer/seatReservation';
 import PriceCurrency from '../../../priceCurrency';
 import { ITransaction } from '../../../transaction/placeOrder';
@@ -43,7 +43,7 @@ export interface IResult {
  */
 export interface IObject {
     typeOf: ObjectType;
-    individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
+    individualScreeningEvent: IScreeningEvent;
     offers: ISeatReservationOffer[];
 }
 
