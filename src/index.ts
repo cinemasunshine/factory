@@ -134,7 +134,7 @@ export namespace action {
             export import any = AuthorizeAnyPaymentActionFactory;
             export import creditCard = CreditCardAuthorizeActionFactory;
             /**
-             * @alias
+             * @alias account
              * @deprecated Use account
              */
             // tslint:disable-next-line:no-shadowed-variable

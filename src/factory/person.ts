@@ -8,7 +8,7 @@ import { IProgramMembership } from './programMembership';
 export type IProfile = cinerino.person.IProfile;
 
 /**
- * @alias
+ * @alias IProfile
  * @deprecated Use IProfile instead.
  */
 export type IContact = IProfile;
