@@ -39,7 +39,7 @@ export interface IResult<T extends PaymentMethodType> {
     /**
      * 金額
      */
-    price: number;
+    amount: number;
     /**
      * 決済方法
      */

@@ -1,3 +1,4 @@
+import AccountType from './accountType';
 import IMultilingualString from './multilingualString';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
@@ -43,11 +44,12 @@ export interface ICreditCardPaymentAccepted {
     gmoInfo: IGMOInfo;
 }
 
-export interface IPecorinoPaymentAccepted {
+export interface IAccountPaymentAccepted<T extends AccountType> {
+    paymentMethodType: PaymentMethodType.Account;
     /**
-     * 決済方法タイプ
+     * 口座タイプ
      */
-    paymentMethodType: PaymentMethodType.Pecorino;
+    accountType: T;
     /**
      * 口座番号
      */
@@ -58,7 +60,8 @@ export interface IPecorinoPaymentAccepted {
  * 利用可能決済インターフェース
  */
 export type IPaymentAccepted<T extends PaymentMethodType> =
-    T extends PaymentMethodType.Pecorino ? IPecorinoPaymentAccepted :
+    T extends PaymentMethodType.Pecorino ? IAccountPaymentAccepted<AccountType> :
+    T extends PaymentMethodType.Account ? IAccountPaymentAccepted<AccountType> :
     T extends PaymentMethodType.CreditCard ? ICreditCardPaymentAccepted :
     never;
 

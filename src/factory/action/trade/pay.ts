@@ -1,16 +1,17 @@
 import * as GMO from '@motionpicture/gmo-service';
 
+import AccountType from '../../accountType';
 import * as ActionFactory from '../../action';
-import { IPecorinoTransaction } from '../../action/authorize/paymentMethod/pecorino';
 import ActionType from '../../actionType';
 import { IOrder, IPaymentMethod } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';
 import PriceCurrency from '../../priceCurrency';
+import { IPendingTransaction } from '../authorize/paymentMethod/account';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 export type IPurpose = IOrder;
-export interface ICommonObject<T extends PaymentMethodType> {
+export interface ICommonPaymentMethod<T extends PaymentMethodType> {
     /**
      * 決済方法
      */
@@ -19,7 +20,7 @@ export interface ICommonObject<T extends PaymentMethodType> {
 /**
  * クレジットカード決済の場合のオブジェクトインターフェース
  */
-export interface IObject4creditCard extends ICommonObject<PaymentMethodType.CreditCard> {
+export interface IObject4creditCard extends ICommonPaymentMethod<PaymentMethodType.CreditCard> {
     /**
      * 金額
      */
@@ -30,16 +31,16 @@ export interface IObject4creditCard extends ICommonObject<PaymentMethodType.Cred
     priceCurrency: PriceCurrency;
 }
 /**
- * Pecorino決済の場合のオブジェクトインターフェース
+ * 口座決済の場合のオブジェクトインターフェース
  */
-export interface IObject4pecorino extends ICommonObject<PaymentMethodType.Pecorino> {
-    pecorinoTransaction: IPecorinoTransaction;
-    pecorinoEndpoint: string;
+export interface IAccountPaymentMethod<T extends AccountType> extends ICommonPaymentMethod<PaymentMethodType.Account> {
+    pendingTransaction: IPendingTransaction<T>;
 }
-export type IObject<T> =
+export type IPaymentMethodObject<T> =
+    T extends PaymentMethodType.Account ? IAccountPaymentMethod<AccountType> :
     T extends PaymentMethodType.CreditCard ? IObject4creditCard :
-    T extends PaymentMethodType.Pecorino ? IObject4pecorino :
     never;
+export type IObject<T extends PaymentMethodType> = IPaymentMethodObject<T>[];
 /**
  * クレジットカード決済の場合の結果インターフェース
  */
@@ -50,8 +51,8 @@ export interface IResult4creditCard {
     creditCardSales?: GMO.services.credit.IAlterTranResult;
 }
 export type IResult<T> =
+    T extends PaymentMethodType.Account ? any :
     T extends PaymentMethodType.CreditCard ? IResult4creditCard :
-    T extends PaymentMethodType.Pecorino ? any :
     never;
 export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.IAttributes<ActionType.PayAction, IObject<T>, IResult<T>> {
     purpose: IPurpose;

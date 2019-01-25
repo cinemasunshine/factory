@@ -21,9 +21,9 @@ export interface IPotentialActions {
      */
     payCreditCard?: IPayActionAttributes<PaymentMethodType.CreditCard>;
     /**
-     * Pecorino決済実行アクションリスト
+     * 口座決済実行アクションリスト
      */
-    payPecorino: IPayActionAttributes<PaymentMethodType.Pecorino>[];
+    payAccount: IPayActionAttributes<PaymentMethodType.Account>[];
     /**
      * ムビチケ使用アクション
      */

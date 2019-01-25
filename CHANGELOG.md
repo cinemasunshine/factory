@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 予約インターフェースを価格属性を除いてChevreに統一
 - 個々の上映イベントのイベントタイプを変更
 - エラークラスをCinerinoから継承
+- Pecorinoを利用した口座とのやりとりを実行するタスク名を再命名
 
 ### Deprecated
 
