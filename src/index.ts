@@ -12,6 +12,7 @@ import * as MvtkAuthorizeActionFactory from './factory/action/authorize/discount
 import * as ProgramMembershipOfferAuthorizeActionFactory from './factory/action/authorize/offer/programMembership';
 import * as SeatReservationOfferAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
 import * as AuthorizeAccountPaymentActionFactory from './factory/action/authorize/paymentMethod/account';
+import * as AuthorizeAnyPaymentActionFactory from './factory/action/authorize/paymentMethod/any';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as RegisterActionFactory from './factory/action/interact/register';
@@ -33,7 +34,6 @@ import ActionStatusType from './factory/actionStatusType';
 import ActionType from './factory/actionType';
 
 import AccountType from './factory/accountType';
-import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
@@ -131,14 +131,14 @@ export namespace action {
         // tslint:disable-next-line:no-shadowed-variable
         export namespace paymentMethod {
             export import account = AuthorizeAccountPaymentActionFactory;
+            export import any = AuthorizeAnyPaymentActionFactory;
             export import creditCard = CreditCardAuthorizeActionFactory;
             /**
              * @alias
              * @deprecated Use account
              */
             // tslint:disable-next-line:no-shadowed-variable
-            // export import pecorino = account;
-            // export import pecorino = PecorinoAuthorizeActionFactory;
+            export import pecorino = account;
         }
         export namespace discount {
             export import mvtk = MvtkAuthorizeActionFactory;
@@ -228,7 +228,6 @@ export namespace paymentMethod {
         export import creditCard = CreditCardFactory;
     }
 }
-export import clientEvent = ClientEventFactory;
 export import clientUser = ClientUserFactory;
 export namespace creativeWork {
     export namespace message {

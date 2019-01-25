@@ -60,7 +60,6 @@ export interface IAccountPaymentAccepted<T extends AccountType> {
  * 利用可能決済インターフェース
  */
 export type IPaymentAccepted<T extends PaymentMethodType> =
-    T extends PaymentMethodType.Pecorino ? IAccountPaymentAccepted<AccountType> :
     T extends PaymentMethodType.Account ? IAccountPaymentAccepted<AccountType> :
     T extends PaymentMethodType.CreditCard ? ICreditCardPaymentAccepted :
     never;
