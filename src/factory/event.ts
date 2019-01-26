@@ -52,7 +52,7 @@ export interface IEvent {
     /**
      * イベントが実行される場所
      */
-    location?: PlaceFactory.IPlace;
+    location?: PlaceFactory.IPlace<PlaceFactory.IAvailablePlaceType>;
     /**
      * 最大収容人数
      */
@@ -88,7 +88,7 @@ export function create(params: {
     duration?: string;
     endDate?: Date;
     eventStatus: EventStatusType;
-    location?: PlaceFactory.IPlace;
+    location?: PlaceFactory.IPlace<PlaceFactory.IAvailablePlaceType>;
     maximumAttendeeCapacity?: number;
     // offers?: OfferFactory.IOffer[];
     remainingAttendeeCapacity?: number;

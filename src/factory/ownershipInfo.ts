@@ -5,7 +5,8 @@ import * as pecorino from '@pecorino/factory';
 
 import AccountType from './accountType';
 import { IEvent } from './event';
-import { IOrganization } from './organization';
+import * as OrganizationFactory from './organization';
+import OrganizationType from './organizationType';
 import { IPerson } from './person';
 import { IProgramMembership, ProgramMembershipType } from './programMembership';
 import { IEventReservation } from './reservation/event';
@@ -46,7 +47,7 @@ export type IGood<T extends IGoodType> =
 /**
  * 所有者インターフェース
  */
-export type IOwner = IOrganization | IPerson;
+export type IOwner = OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>> | IPerson;
 export type OwnershipInfoType = 'OwnershipInfo';
 /**
  * 所有権インターフェース

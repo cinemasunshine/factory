@@ -1,9 +1,3 @@
-/**
- * screen event factory
- * 劇場の上映イベントファクトリー
- * @namespace event.screeningEvent
- */
-
 import * as COA from '@motionpicture/coa-service';
 import * as moment from 'moment';
 

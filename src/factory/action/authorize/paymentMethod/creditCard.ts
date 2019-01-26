@@ -1,49 +1,17 @@
-import * as GMO from '@motionpicture/gmo-service';
+import * as cinerino from '@cinerino/factory';
 
-import * as ActionFactory from '../../../action';
-import { IUnauthorizedCardOfMember, IUncheckedCardRaw, IUncheckedCardTokenized } from '../../../paymentMethod/paymentCard/creditCard';
-import PaymentMethodType from '../../../paymentMethodType';
-import * as AuthorizeAnyPaymentFactory from './any';
-
-/**
- * クレジットカード承認アクションに必要なクレジットカード情報インターフェース
- */
-export type ICreditCard = IUncheckedCardRaw | IUncheckedCardTokenized | IUnauthorizedCardOfMember;
-/**
- * オーソリ対象インターフェース
- */
-export interface IObject extends AuthorizeAnyPaymentFactory.IObject<PaymentMethodType.CreditCard> {
-    typeOf: PaymentMethodType.CreditCard;
+export type ICreditCard = cinerino.action.authorize.paymentMethod.creditCard.ICreditCard;
+export type IObject = cinerino.action.authorize.paymentMethod.creditCard.IObject;
+export type IResult = cinerino.action.authorize.paymentMethod.creditCard.IResult & {
     /**
-     * オーダーID
+     * @alias amount
+     * 現時点で取引成立条件を満たしているかどうか確認時に利用しているが、そのうち廃止予定
      */
-    orderId: string;
-    /**
-     * 支払い方法
-     */
-    method: GMO.utils.util.Method;
-    /**
-     * クレジットカード情報
-     */
-    creditCard: ICreditCard;
-}
-export interface IResult extends AuthorizeAnyPaymentFactory.IResult<PaymentMethodType.CreditCard> {
     price: number;
-    entryTranArgs: GMO.services.credit.IEntryTranArgs;
-    entryTranResult: GMO.services.credit.IEntryTranResult;
-    execTranArgs: GMO.services.credit.IExecTranArgs;
-    execTranResult: GMO.services.credit.IExecTranResult;
-}
-export type IError = any;
+};
+export type IError = cinerino.action.authorize.paymentMethod.creditCard.IError;
+export type IAttributes = cinerino.action.authorize.paymentMethod.creditCard.IAttributes;
 /**
- * クレジットカード承認アクション属性インターフェース
+ * クレジットカード決済方法承認アクションインターフェース
  */
-export interface IAttributes extends AuthorizeAnyPaymentFactory.IAttributes<PaymentMethodType.CreditCard> {
-    object: IObject;
-    result?: IResult;
-    error?: IError;
-}
-/**
- * クレジットカード承認アクションインターフェース
- */
-export type IAction = ActionFactory.IAction<IAttributes>;
+export type IAction = cinerino.action.authorize.paymentMethod.creditCard.IAction;

@@ -43,8 +43,9 @@ export interface IParentOrganization {
     name: IMultilingualString;
 }
 
-export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrganization {
-    typeOf: OrganizationType.MovieTheater;
+export type IAreaServed = OrganizationFactory.IAreaServed;
+
+export interface IAttributes extends OrganizationFactory.IAttributes<OrganizationType.MovieTheater> {
     /**
      * 組織識別子
      */
@@ -80,6 +81,8 @@ export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrgani
     xmlEndPoint?: { baseUrl: string; theaterCodeName: string };
 }
 
+export type IOrganizationWithoutGMOInfo = OrganizationFactory.IOrganization<IAttributes>;
+
 /**
  * ローカルビジネス組織としての劇場
  */
@@ -98,3 +101,5 @@ export type IPublicFields = IOrganizationWithoutGMOInfo & {
         shopId: string;
     };
 };
+
+export type ISearchConditions = OrganizationFactory.ISearchConditions<OrganizationType.MovieTheater>;
