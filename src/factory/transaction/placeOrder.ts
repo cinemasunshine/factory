@@ -12,7 +12,6 @@ import TransactionType from '../transactionType';
 
 export type ICustomerContact = cinerino.transaction.placeOrder.ICustomerContact;
 /**
- * seller interface
  * 販売者インターフェース
  */
 export type ISeller = OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>>;
@@ -21,8 +20,18 @@ export type ISeller = OrganizationFactory.IOrganization<OrganizationFactory.IAtt
  * 購入者インターフェース
  */
 export type IAgent = IPerson;
+export type IPassportBeforeStart = cinerino.transaction.placeOrder.IPassportBeforeStart;
+export type IStartParamsWithoutDetail = cinerino.transaction.placeOrder.IStartParamsWithoutDetail;
 /**
- * result interface
+ * 取引開始パラメーターインターフェース
+ */
+export interface IStartParams extends TransactionFactory.IStartParams<TransactionType.PlaceOrder, IAgent, undefined, IObject> {
+    /**
+     * 販売者
+     */
+    seller: ISeller;
+}
+/**
  * 取引結果インターフェース
  */
 export interface IResult {
@@ -42,37 +51,11 @@ export interface IPotentialActions {
     order: IOrderActionAttributes;
 }
 
-export type ITransaction = IExtendId<IAttributes>;
 /**
- * place order transaction interface
  * 注文取引インターフェース
  */
-export interface IAttributes extends TransactionFactory.IAttributes<TransactionType.PlaceOrder, IAgent, IObject, IResult> {
-    /**
-     * 購入者
-     */
-    agent: IAgent;
-    /**
-     * 販売者
-     */
-    seller: ISeller;
-    /**
-     * 取引の結果発生するもの
-     */
-    result?: IResult;
-    /**
-     * 取引に関するエラー
-     */
-    error?: IError;
-    /**
-     * 取引の対象物
-     * 座席仮予約、クレジットカードのオーソリなど、取引を構成する承認などが含まれます。
-     */
-    object: IObject;
-    /**
-     * 事後発生アクション
-     */
-    potentialActions?: IPotentialActions;
+export type ITransaction = IExtendId<IAttributes>;
+export interface IAttributes extends TransactionFactory.IAttributes<IStartParams, IResult, IError, IPotentialActions> {
 }
 
 export type ISearchConditions = cinerino.transaction.placeOrder.ISearchConditions;

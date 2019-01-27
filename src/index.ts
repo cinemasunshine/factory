@@ -96,6 +96,7 @@ import * as TaskFactory from './factory/task';
 import * as TaskExecutionResultFactory from './factory/taskExecutionResult';
 import TaskName from './factory/taskName';
 import TaskStatus from './factory/taskStatus';
+import * as TransactionFactory from './factory/transaction';
 import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
 import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
 import TransactionStatusType from './factory/transactionStatusType';
@@ -391,9 +392,14 @@ export import taskExecutionResult = TaskExecutionResultFactory;
 export import taskName = TaskName;
 export import taskStatus = TaskStatus;
 export namespace transaction {
+    export type ISortOrder = TransactionFactory.ISortOrder;
     export type ISearchConditions<T extends TransactionType> =
         T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.ISearchConditions :
         T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.ISearchConditions :
+        never;
+    export type IStartParams<T extends TransactionType> =
+        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.IStartParams :
+        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.IStartParams :
         never;
     export type IResult<T extends TransactionType> =
         T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.IResult :
