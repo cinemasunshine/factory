@@ -1,3 +1,5 @@
+import * as cinerino from '@cinerino/factory';
+
 import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import { IOrder } from '../../order';
@@ -7,10 +9,10 @@ import { IAttributes as IPayActionAttributes } from '../trade/pay';
 import { IAttributes as IGivePecorinoAwardActionAttributes } from '../transfer/give/pecorinoAward';
 import { IAttributes as ISendOrderActionAttributes } from '../transfer/send/order';
 
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = cinerino.action.trade.order.IAgent;
+export type IRecipient = cinerino.action.trade.order.IRecipient;
 export type IObject = IOrder;
-export type IResult = any;
+export type IResult = cinerino.action.trade.order.IResult;
 export interface IPotentialActions {
     /**
      * 注文配送アクション

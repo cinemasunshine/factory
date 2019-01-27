@@ -1,8 +1,5 @@
 import * as COA from '@motionpicture/coa-service';
-import * as _ from 'lodash';
 import * as moment from 'moment';
-
-import { errors } from '../errors';
 
 import * as EventFactory from '../event';
 import * as ScreeningEventSeriesFactory from '../event/screeningEventSeries';
@@ -69,32 +66,6 @@ export interface ISearchConditions {
  * 表現を変更する場合、このインターフェースを変更して対応する
  */
 export type IItemAvailability = number;
-
-/**
- * 座席数から在庫状況表現を生成する
- * @param numberOfAvailableSeats 空席数
- * @param numberOfAllSeats 全座席数
- */
-// tslint:disable-next-line:no-single-line-block-comment
-/* istanbul ignore next */
-export function createItemAvailability(
-    numberOfAvailableSeats: number, numberOfAllSeats: number
-): IItemAvailability {
-    if (!_.isInteger(numberOfAvailableSeats)) {
-        throw new errors.Argument('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
-    }
-    if (!_.isInteger(numberOfAllSeats)) {
-        throw new errors.Argument('numberOfAllSeats', 'numberOfAllSeats must be number.');
-    }
-
-    if (numberOfAllSeats === 0) {
-        return 0;
-    }
-
-    // 残席数より空席率を算出
-    // tslint:disable-next-line:no-magic-numbers
-    return Math.floor(numberOfAvailableSeats / numberOfAllSeats * 100);
-}
 
 /**
  * event offer interface

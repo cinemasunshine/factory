@@ -13,6 +13,6 @@ export interface IOffer extends cinerino.offer.IOffer {
     /**
      * オファー識別子
      */
-    identifier?: string;
+    // identifier?: string;
     price: number;
 }

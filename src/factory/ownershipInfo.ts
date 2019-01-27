@@ -1,7 +1,7 @@
 /**
  * 所有権ファクトリー
  */
-import * as pecorino from '@pecorino/factory';
+import { pecorino } from '@cinerino/factory';
 
 import AccountType from './accountType';
 import { IEvent } from './event';
