@@ -5,7 +5,6 @@ import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
 import OrganizationType from '../organizationType';
 import PlaceType from '../placeType';
-import * as URLFactory from '../url';
 
 /**
  * 場所インターフェース
@@ -44,8 +43,9 @@ export interface IParentOrganization {
     name: IMultilingualString;
 }
 
-export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrganization {
-    typeOf: OrganizationType.MovieTheater;
+export type IAreaServed = OrganizationFactory.IAreaServed;
+
+export interface IAttributes extends OrganizationFactory.IAttributes<OrganizationType.MovieTheater> {
     /**
      * 組織識別子
      */
@@ -74,12 +74,14 @@ export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrgani
     /**
      * 劇場ポータルサイトURL
      */
-    url: URLFactory.IURL;
+    url: string;
     /**
      * COAのスケジュールXMK情報
      */
     xmlEndPoint?: { baseUrl: string; theaterCodeName: string };
 }
+
+export type IOrganizationWithoutGMOInfo = OrganizationFactory.IOrganization<IAttributes>;
 
 /**
  * ローカルビジネス組織としての劇場
@@ -99,3 +101,5 @@ export type IPublicFields = IOrganizationWithoutGMOInfo & {
         shopId: string;
     };
 };
+
+export type ISearchConditions = OrganizationFactory.ISearchConditions<OrganizationType.MovieTheater>;

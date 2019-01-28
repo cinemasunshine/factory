@@ -4,12 +4,12 @@ import PaymentMethodType from '../paymentMethodType';
 import * as TaskFactory from '../task';
 import TaskName from '../taskName';
 
-export type IData = IPayActionAttributes<PaymentMethodType.Pecorino>;
+export type IData = IPayActionAttributes<PaymentMethodType.Account>;
 export interface IAttributes extends TaskFactory.IAttributes {
-    name: TaskName.PayPecorino;
+    name: TaskName.PayAccount;
     data: IData;
 }
 /**
- * Pecorino支払タスクインターフェース
+ * 口座支払タスクインターフェース
  */
 export type ITask = IExtendId<IAttributes>;

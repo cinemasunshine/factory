@@ -1,69 +1,10 @@
-import { IPaymentCard } from '../paymentCard';
-
 /**
- * 有効性確認済みカード
+ * クレジットカードインターフェース
  */
-export interface ICheckedCard extends IPaymentCard {
-    /**
-     * カード登録連番
-     */
-    cardSeq: string;
-    /**
-     * カード会社略称
-     */
-    cardName: string;
-    /**
-     * カード番号
-     */
-    cardNo: string;
-    /**
-     * 有効期限
-     */
-    expire: string;
-    /**
-     * 名義人
-     */
-    holderName: string;
-    /**
-     * delete flag
-     */
-    deleteFlag: string;
-}
+import * as cinerino from '@cinerino/factory';
 
-/**
- * 生の有効性確認前GMOカードインターフェース
- */
-export interface IUncheckedCardRaw {
-    /**
-     * カード番号
-     */
-    cardNo: string;
-    /**
-     * カードパスワード
-     */
-    cardPass?: string;
-    /**
-     * 有効期限
-     */
-    expire: string;
-    /**
-     * 名義人
-     */
-    holderName: string;
-}
-
-/**
- * トークン化有効性確認前GMOカードインターフェース
- */
-export interface IUncheckedCardTokenized {
-    token: string;
-}
-
-/**
- * オーソリ取得前の会員カードインターフェース
- */
-export interface IUnauthorizedCardOfMember {
-    memberId: string;
-    cardSeq: number;
-    cardPass?: string;
-}
+export type ICheckedCard = cinerino.paymentMethod.paymentCard.creditCard.ICheckedCard;
+export type IUncheckedCardRaw = cinerino.paymentMethod.paymentCard.creditCard.IUncheckedCardRaw;
+export type IUncheckedCardTokenized = cinerino.paymentMethod.paymentCard.creditCard.IUncheckedCardTokenized;
+export type IUnauthorizedCardOfMember = cinerino.paymentMethod.paymentCard.creditCard.IUnauthorizedCardOfMember;
+export type ISearchConditions = cinerino.paymentMethod.paymentCard.creditCard.ISearchConditions;

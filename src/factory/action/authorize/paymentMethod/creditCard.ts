@@ -1,49 +1,11 @@
+import * as cinerino from '@cinerino/factory';
+
+export type ICreditCard = cinerino.action.authorize.paymentMethod.creditCard.ICreditCard;
+export type IObject = cinerino.action.authorize.paymentMethod.creditCard.IObject;
+export type IResult = cinerino.action.authorize.paymentMethod.creditCard.IResult;
+export type IError = cinerino.action.authorize.paymentMethod.creditCard.IError;
+export type IAttributes = cinerino.action.authorize.paymentMethod.creditCard.IAttributes;
 /**
- * 決済方法としてのクレジットカードオーソリファクトリー
+ * クレジットカード決済方法承認アクションインターフェース
  */
-import * as GMO from '@motionpicture/gmo-service';
-
-import * as ActionFactory from '../../../action';
-import ActionType from '../../../actionType';
-import { ITransaction } from '../../../transaction/placeOrder';
-import * as AuthorizeActionFactory from '../../authorize';
-
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
-
-export enum ObjectType {
-    CreditCard = 'CreditCard'
-}
-
-/**
- * オーソリ対象インターフェース
- */
-export interface IObject {
-    typeOf: ObjectType;
-    orderId: string;
-    amount: number;
-    method: GMO.utils.util.Method;
-    payType: GMO.utils.util.PayType;
-}
-
-export interface IResult {
-    price: number;
-    entryTranArgs: GMO.services.credit.IEntryTranArgs;
-    execTranArgs: GMO.services.credit.IExecTranArgs;
-    execTranResult: GMO.services.credit.IExecTranResult;
-}
-
-export type IPurpose = ITransaction;
-
-/**
- * GMOオーソリインターフェース
- */
-export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: ActionType.AuthorizeAction;
-    object: IObject;
-    agent: IAgent;
-    recipient: IRecipient;
-    purpose: IPurpose;
-}
-
-export type IAction = ActionFactory.IAction<IAttributes>;
+export type IAction = cinerino.action.authorize.paymentMethod.creditCard.IAction;

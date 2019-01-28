@@ -1,8 +1,8 @@
-import IMultilingualString from './multilingualString';
+import * as cinerino from '@cinerino/factory';
+
+import { IOffer } from './offer';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
-import { IPlace } from './place';
-import * as URLFactory from './url';
 
 /**
  * GMOショップ情報インターフェース
@@ -22,90 +22,16 @@ export interface IGMOInfo {
     shopPass: string;
 }
 
-/**
- * ムビチケショップ情報インターフェース
- */
-export interface IMovieTicketInfo {
-    /**
-     * ムビチケ興行会社コード
-     */
-    kgygishCd: string;
-    /**
-     * ムビチケサイトコード
-     */
-    stCd: string;
-}
-
-export interface ICreditCardPaymentAccepted {
-    paymentMethodType: PaymentMethodType.CreditCard;
-    /**
-     * GMO情報
-     */
-    gmoInfo: IGMOInfo;
-}
-
-export interface IPecorinoPaymentAccepted {
-    /**
-     * 決済方法タイプ
-     */
-    paymentMethodType: PaymentMethodType.Pecorino;
-    /**
-     * 口座番号
-     */
-    accountNumber: string;
-}
-
-/**
- * 利用可能決済インターフェース
- */
-export type IPaymentAccepted<T extends PaymentMethodType> =
-    T extends PaymentMethodType.Pecorino ? IPecorinoPaymentAccepted :
-    T extends PaymentMethodType.CreditCard ? ICreditCardPaymentAccepted :
-    never;
-
-export type POSType = 'POS';
-
-/**
- * POSインターフェース
- */
-export interface IPOS {
-    typeOf: POSType;
+export type IPaymentAccepted<T extends PaymentMethodType> = cinerino.organization.IPaymentAccepted<T>;
+export type IPOS = cinerino.organization.IPOS;
+export type IMakesOffer = IOffer;
+export type IAreaServed = cinerino.organization.IAreaServed<cinerino.organizationType>;
+export type IAttributes<T extends OrganizationType> = cinerino.organization.IAttributes<T>;
+export type IOrganization<T extends IAttributes<OrganizationType>> = T & {
     id: string;
-    name: string;
-}
+};
 
 /**
- * サービス提供エリアインターフェース
+ * 組織検索条件インターフェース
  */
-export type IAreaServed = IPlace;
-
-/**
- * 組織インターフェース
- */
-export interface IOrganization {
-    id: string;
-    identifier?: string;
-    name: IMultilingualString;
-    legalName?: IMultilingualString;
-    /**
-     * 組織タイプ
-     */
-    typeOf: OrganizationType;
-    location?: any;
-    telephone?: string;
-    url?: URLFactory.IURL;
-    image?: string;
-    paymentAccepted?: IPaymentAccepted<PaymentMethodType>[];
-    /**
-     * GMO情報
-     */
-    gmoInfo?: IGMOInfo;
-    /**
-     * Points-of-Sales operated by the organization or person.
-     */
-    hasPOS?: IPOS[];
-    /**
-     * The geographic area where a service or offered item is provided.
-     */
-    areaServed?: IAreaServed[];
-}
+export type ISearchConditions<T extends OrganizationType> = cinerino.organization.ISearchConditions<T>;

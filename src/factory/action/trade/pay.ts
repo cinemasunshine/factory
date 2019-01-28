@@ -1,61 +1,48 @@
+import * as cinerino from '@cinerino/factory';
 import * as GMO from '@motionpicture/gmo-service';
 
+import AccountType from '../../accountType';
 import * as ActionFactory from '../../action';
-import { IPecorinoTransaction } from '../../action/authorize/paymentMethod/pecorino';
 import ActionType from '../../actionType';
-import { IOrder, IPaymentMethod } from '../../order';
+import { IOrder } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';
 import PriceCurrency from '../../priceCurrency';
 
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = cinerino.action.trade.pay.IAgent;
+export type IRecipient = cinerino.action.trade.pay.IRecipient;
 export type IPurpose = IOrder;
-export interface ICommonObject<T extends PaymentMethodType> {
-    /**
-     * 決済方法
-     */
-    paymentMethod: IPaymentMethod<T>;
-}
+export type TypeOfObject = cinerino.action.trade.pay.TypeOfObject;
+
+export type ICommonPaymentMethod<T extends PaymentMethodType> = cinerino.action.trade.pay.ICommonPaymentMethod<T>;
+export type IAccountPaymentMethod<T extends AccountType> = cinerino.action.trade.pay.IAccountPaymentMethod<T>;
+
 /**
  * クレジットカード決済の場合のオブジェクトインターフェース
  */
-export interface IObject4creditCard extends ICommonObject<PaymentMethodType.CreditCard> {
-    /**
-     * 金額
-     */
+export interface ICreditCardPaymentMethod extends ICommonPaymentMethod<PaymentMethodType.CreditCard> {
     price: number;
-    /**
-     * 通貨
-     */
     priceCurrency: PriceCurrency;
+    entryTranArgs?: GMO.services.credit.IEntryTranArgs;
+    execTranArgs?: GMO.services.credit.IExecTranArgs;
 }
+
 /**
- * Pecorino決済の場合のオブジェクトインターフェース
+ * 決済対象の決済方法インターフェース
  */
-export interface IObject4pecorino extends ICommonObject<PaymentMethodType.Pecorino> {
-    pecorinoTransaction: IPecorinoTransaction;
-    pecorinoEndpoint: string;
-}
-export type IObject<T> =
-    T extends PaymentMethodType.CreditCard ? IObject4creditCard :
-    T extends PaymentMethodType.Pecorino ? IObject4pecorino :
+export type IPaymentMethodObject<T> =
+    T extends PaymentMethodType.Account ? IAccountPaymentMethod<AccountType> :
+    T extends PaymentMethodType.CreditCard ? ICreditCardPaymentMethod :
     never;
-/**
- * クレジットカード決済の場合の結果インターフェース
- */
-export interface IResult4creditCard {
-    /**
-     * クレジットカード売上結果
-     */
-    creditCardSales?: GMO.services.credit.IAlterTranResult;
-}
-export type IResult<T> =
-    T extends PaymentMethodType.CreditCard ? IResult4creditCard :
-    T extends PaymentMethodType.Pecorino ? any :
-    never;
+
+export type IObject<T extends PaymentMethodType> = IPaymentMethodObject<T>[];
+
+export type ICreditCardResult = cinerino.action.trade.pay.ICreditCardResult;
+export type IResult<T> = cinerino.action.trade.pay.IResult<T>;
+
 export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.IAttributes<ActionType.PayAction, IObject<T>, IResult<T>> {
     purpose: IPurpose;
 }
+
 /**
  * 支払アクションインターフェース
  */

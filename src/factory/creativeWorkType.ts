@@ -1,10 +1,6 @@
+import { creativeWorkType as CreativeWorkType } from '@cinerino/factory';
+
 /**
  * 作品タイプ
  */
-
-enum CreativeWorkType {
-    EmailMessage = 'EmailMessage',
-    Movie = 'Movie'
-}
-
 export default CreativeWorkType;

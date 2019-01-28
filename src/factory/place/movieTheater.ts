@@ -13,7 +13,7 @@ import PlaceType from '../placeType';
 /**
  * 場所としての座席インターフェース
  */
-export interface ISeat extends PlaceFactory.IPlace {
+export interface ISeat extends PlaceFactory.IPlace<PlaceType.Seat> {
     /**
      * 枝番号
      * COAの座席コードにあたります。
@@ -24,7 +24,7 @@ export interface ISeat extends PlaceFactory.IPlace {
 /**
  * 上映セクションインターフェース
  */
-export interface IScreeningRoomSection extends PlaceFactory.IPlace {
+export interface IScreeningRoomSection extends PlaceFactory.IPlace<PlaceType.ScreeningRoomSection> {
     /**
      * 座席リスト
      */
@@ -39,7 +39,7 @@ export interface IScreeningRoomSection extends PlaceFactory.IPlace {
 /**
  * 場所としての上映室インターフェース
  */
-export interface IScreeningRoom extends PlaceFactory.IPlace {
+export interface IScreeningRoom extends PlaceFactory.IPlace<PlaceType.ScreeningRoom> {
     /**
      * 上映セクションリスト
      */
@@ -57,9 +57,8 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
 
 /**
  * place interface without screening room
- * @export
  */
-export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
+export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace<PlaceType.MovieTheater> {
     identifier: string;
     /**
      * スクリーン数

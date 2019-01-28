@@ -18,9 +18,9 @@ export interface IPotentialActions {
      */
     refundCreditCard?: IRefundActionAttributes<PaymentMethodType.CreditCard>;
     /**
-     * Pecorino返金アクション
+     * 口座返金アクション
      */
-    refundPecorino: IRefundActionAttributes<PaymentMethodType.Pecorino>[];
+    refundAccount: IRefundActionAttributes<PaymentMethodType.Account>[];
     /**
      * Pecorinoインセンティブ返却アクション
      */

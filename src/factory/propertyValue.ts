@@ -1,7 +1,6 @@
+import * as cinerino from '@cinerino/factory';
+
 /**
  * 属性値インターフェース
  */
-export interface IPropertyValue<T extends string> {
-    name: string;
-    value: T;
-}
+export type IPropertyValue<T extends any> = cinerino.propertyValue.IPropertyValue<T>;

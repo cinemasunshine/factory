@@ -1,9 +1,6 @@
+import { unitCode as UnitCode } from '@cinerino/factory';
+
 /**
  * 単位符号
  */
-export enum UnitCode {
-    /**
-     * 秒
-     */
-    Sec = 'SEC'
-}
+export import UnitCode = UnitCode;

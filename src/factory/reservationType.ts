@@ -1,8 +1,6 @@
+import * as cinerino from '@cinerino/factory';
+
 /**
  * 予約タイプ
  */
-enum ReservationType {
-    EventReservation = 'EventReservation'
-}
-
-export default ReservationType;
+export import ReservationType = cinerino.chevre.reservationType;

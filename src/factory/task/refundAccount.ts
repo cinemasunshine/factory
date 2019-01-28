@@ -4,12 +4,12 @@ import PaymentMethodType from '../paymentMethodType';
 import * as TaskFactory from '../task';
 import TaskName from '../taskName';
 
-export type IData = IRefundActionAttributes<PaymentMethodType.Pecorino>;
+export type IData = IRefundActionAttributes<PaymentMethodType.Account>;
 export interface IAttributes extends TaskFactory.IAttributes {
-    name: TaskName.RefundPecorino;
+    name: TaskName.RefundAccount;
     data: IData;
 }
 /**
- * Pecorino返金タスクインタエーフェース
+ * 口座返金タスクインターフェース
  */
 export type ITask = IExtendId<IAttributes>;

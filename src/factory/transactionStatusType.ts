@@ -1,12 +1,6 @@
+import { transactionStatusType as TransactionStatusType } from '@cinerino/factory';
+
 /**
  * 取引ステータス
  */
-
-enum TransactionStatusType {
-    InProgress = 'InProgress',
-    Canceled = 'Canceled',
-    Confirmed = 'Confirmed',
-    Expired = 'Expired'
-}
-
 export default TransactionStatusType;

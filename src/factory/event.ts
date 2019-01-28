@@ -2,8 +2,8 @@
  * イベントファクトリー
  */
 import * as CreativeWorkFactory from './creativeWork';
-import EventStatusType from './eventStatusType';
-import EventType from './eventType';
+import { EventStatusType } from './eventStatusType';
+import { EventType } from './eventType';
 import IMultilingualString from './multilingualString';
 // import * as OfferFactory from './offer';
 import * as PlaceFactory from './place';
@@ -52,7 +52,7 @@ export interface IEvent {
     /**
      * イベントが実行される場所
      */
-    location?: PlaceFactory.IPlace;
+    location?: PlaceFactory.IPlace<PlaceFactory.IAvailablePlaceType>;
     /**
      * 最大収容人数
      */
@@ -88,7 +88,7 @@ export function create(params: {
     duration?: string;
     endDate?: Date;
     eventStatus: EventStatusType;
-    location?: PlaceFactory.IPlace;
+    location?: PlaceFactory.IPlace<PlaceFactory.IAvailablePlaceType>;
     maximumAttendeeCapacity?: number;
     // offers?: OfferFactory.IOffer[];
     remainingAttendeeCapacity?: number;

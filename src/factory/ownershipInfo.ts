@@ -1,15 +1,16 @@
 /**
  * 所有権ファクトリー
  */
-import * as pecorino from '@pecorino/factory';
+import { pecorino } from '@cinerino/factory';
 
 import AccountType from './accountType';
 import { IEvent } from './event';
-import { IOrganization } from './organization';
+import * as OrganizationFactory from './organization';
+import OrganizationType from './organizationType';
 import { IPerson } from './person';
 import { IProgramMembership, ProgramMembershipType } from './programMembership';
 import { IEventReservation } from './reservation/event';
-import ReservationType from './reservationType';
+import { ReservationType } from './reservationType';
 
 export interface IAccount {
     typeOf: pecorino.account.TypeOf;
@@ -46,7 +47,7 @@ export type IGood<T extends IGoodType> =
 /**
  * 所有者インターフェース
  */
-export type IOwner = IOrganization | IPerson;
+export type IOwner = OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>> | IPerson;
 export type OwnershipInfoType = 'OwnershipInfo';
 /**
  * 所有権インターフェース

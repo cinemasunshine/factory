@@ -1,9 +1,6 @@
+import { personType as PersonType } from '@cinerino/factory';
+
 /**
  * 人物タイプ
  */
-
-enum PersonType {
-    Person = 'Person'
-}
-
 export default PersonType;
