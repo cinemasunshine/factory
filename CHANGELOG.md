@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - 上映イベントシリーズインターフェースを追加
 - 汎用決済方法承認アクションインターフェースを追加
+- エンコーディングフォーマットを追加
 
 ### Changed
 
