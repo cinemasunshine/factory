@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## v6.0.0 - 2019-01-28
+
+### Added
+
 - 上映イベントシリーズインターフェースを追加
 - 汎用決済方法承認アクションインターフェースを追加
 - エンコーディングフォーマットを追加
@@ -21,15 +35,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - エラークラスをCinerinoから継承
 - Pecorinoを利用した口座とのやりとりを実行するタスク名を再命名
 
-### Deprecated
-
 ### Removed
 
 - URLインターフェースを削除
-
-### Fixed
-
-### Security
 
 ## v5.3.2 - 2019-01-16
 
