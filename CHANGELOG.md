@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Removed
 
+- 劇場組織から枝番号とxmlEndPointを削除
+
 ### Fixed
 
 ### Security

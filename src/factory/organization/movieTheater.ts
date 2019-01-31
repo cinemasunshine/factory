@@ -55,11 +55,6 @@ export interface IAttributes extends OrganizationFactory.IAttributes<Organizatio
      */
     name: IMultilingualString;
     /**
-     * 枝番号
-     * COAの劇場コードにあたります。
-     */
-    branchCode: string; // 劇場コード
-    /**
      * 親組織
      */
     parentOrganization: IParentOrganization;
@@ -75,10 +70,6 @@ export interface IAttributes extends OrganizationFactory.IAttributes<Organizatio
      * 劇場ポータルサイトURL
      */
     url: string;
-    /**
-     * COAのスケジュールXMK情報
-     */
-    xmlEndPoint?: { baseUrl: string; theaterCodeName: string };
 }
 
 export type IOrganizationWithoutGMOInfo = OrganizationFactory.IOrganization<IAttributes>;
@@ -89,15 +80,16 @@ export type IOrganizationWithoutGMOInfo = OrganizationFactory.IOrganization<IAtt
 export type IOrganization = IOrganizationWithoutGMOInfo & {
     /**
      * GMO情報
+     * @deprecated Use paymentAccepted
      */
-    gmoInfo: OrganizationFactory.IGMOInfo;
+    gmoInfo?: OrganizationFactory.IGMOInfo;
 };
 
 /**
  * public fields interface
  */
 export type IPublicFields = IOrganizationWithoutGMOInfo & {
-    gmoInfo: {
+    gmoInfo?: {
         shopId: string;
     };
 };
