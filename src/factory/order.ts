@@ -47,5 +47,4 @@ export interface IOrderWithAnyItems extends cinerino.order.IOrder {
  */
 export interface IOrder extends IOrderWithAnyItems {
     acceptedOffers: IAcceptedOffer<IItemOffered>[];
-    orderInquiryKey: IOrderInquiryKey;
 }

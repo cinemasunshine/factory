@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - 劇場組織から枝番号とxmlEndPointを削除
 - 組織インターフェースを削除
+- 注文から注文照会キーを削除
 
 ### Fixed
 
