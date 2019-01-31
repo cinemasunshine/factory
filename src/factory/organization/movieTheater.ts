@@ -1,10 +1,25 @@
-/**
- * 劇場組織ファクトリー
- */
+import { chevre } from '@cinerino/factory';
+
 import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
 import OrganizationType from '../organizationType';
-import PlaceType from '../placeType';
+import SortType from '../sortType';
+
+/**
+ * 劇場のオファーインターフェース
+ */
+export interface IMakesOffer extends OrganizationFactory.IMakesOffer {
+    itemOffered: {
+        typeOf: chevre.reservationType.EventReservation;
+        reservationFor: {
+            typeOf: chevre.eventType;
+            location: {
+                typeOf: chevre.placeType.MovieTheater;
+                branchCode: string;
+            };
+        };
+    };
+}
 
 /**
  * 場所インターフェース
@@ -13,10 +28,9 @@ export interface ILocation {
     /**
      * スキーマタイプ
      */
-    typeOf: PlaceType;
+    typeOf: chevre.placeType;
     /**
      * 枝番号
-     * COAの劇場コードにあたります。
      */
     branchCode: string;
     /**
@@ -43,13 +57,12 @@ export interface IParentOrganization {
     name: IMultilingualString;
 }
 
+/**
+ * サービス提供店舗インターフェース
+ */
 export type IAreaServed = OrganizationFactory.IAreaServed;
 
 export interface IAttributes extends OrganizationFactory.IAttributes<OrganizationType.MovieTheater> {
-    /**
-     * 組織識別子
-     */
-    identifier: string;
     /**
      * 劇場名称
      */
@@ -62,36 +75,30 @@ export interface IAttributes extends OrganizationFactory.IAttributes<Organizatio
      * 場所
      */
     location: ILocation;
+    makesOffer: IMakesOffer[];
     /**
      * 電話番号
      */
     telephone: string;
     /**
-     * 劇場ポータルサイトURL
+     * 劇場サイトURL
      */
     url: string;
+    /**
+     * Points-of-Sales operated by the organization or person.
+     */
+    hasPOS: OrganizationFactory.IPOS[];
 }
 
-export type IOrganizationWithoutGMOInfo = OrganizationFactory.IOrganization<IAttributes>;
+export type IOrganization = OrganizationFactory.IOrganization<IAttributes>;
 
 /**
- * ローカルビジネス組織としての劇場
+ * ソート条件インターフェース
  */
-export type IOrganization = IOrganizationWithoutGMOInfo & {
-    /**
-     * GMO情報
-     * @deprecated Use paymentAccepted
-     */
-    gmoInfo?: OrganizationFactory.IGMOInfo;
-};
+export interface ISortOrder {
+    'location.branchCode'?: SortType;
+}
 
-/**
- * public fields interface
- */
-export type IPublicFields = IOrganizationWithoutGMOInfo & {
-    gmoInfo?: {
-        shopId: string;
-    };
-};
-
-export type ISearchConditions = OrganizationFactory.ISearchConditions<OrganizationType.MovieTheater>;
+export interface ISearchConditions extends OrganizationFactory.ISearchConditions {
+    sort?: ISortOrder;
+}

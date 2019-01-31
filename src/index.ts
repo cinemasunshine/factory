@@ -48,8 +48,6 @@ import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
 import * as OrderFactory from './factory/order';
 import OrderStatus from './factory/orderStatus';
 import * as OrganizationFactory from './factory/organization';
-import * as CorporationOrganizationFactory from './factory/organization/corporation';
-import * as MovieTheaterOrganizationFactory from './factory/organization/movieTheater';
 import CorporationOrganizationIdentifier from './factory/organizationIdentifier/corporation';
 import OrganizationType from './factory/organizationType';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
@@ -259,27 +257,27 @@ export namespace offer {
 }
 export import order = OrderFactory;
 export import orderStatus = OrderStatus;
-export namespace organization {
-    export type ISearchConditions<T extends OrganizationType> =
-        T extends OrganizationType.Corporation ? CorporationOrganizationFactory.ISearchConditions :
-        T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.ISearchConditions :
-        OrganizationFactory.ISearchConditions<T>;
-    export type IAttributes<T extends OrganizationType> =
-        T extends OrganizationType.Corporation ? CorporationOrganizationFactory.IAttributes :
-        T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IAttributes :
-        OrganizationFactory.IAttributes<T>;
-    export type IOrganization<T extends OrganizationType> =
-        T extends OrganizationType.Corporation ? CorporationOrganizationFactory.IOrganization :
-        T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IOrganization :
-        OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<T>>;
-    export type IAreaServed<T extends OrganizationType> =
-        T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IAreaServed :
-        OrganizationFactory.IAreaServed;
-    export import IPaymentAccepted = OrganizationFactory.IPaymentAccepted;
-    export import IPOS = OrganizationFactory.IPOS;
-    export import corporation = CorporationOrganizationFactory;
-    export import movieTheater = MovieTheaterOrganizationFactory;
-}
+// export namespace organization {
+//     export type ISearchConditions<T extends OrganizationType> =
+//         T extends OrganizationType.Corporation ? CorporationOrganizationFactory.ISearchConditions :
+//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.ISearchConditions :
+//         OrganizationFactory.ISearchConditions<T>;
+//     export type IAttributes<T extends OrganizationType> =
+//         T extends OrganizationType.Corporation ? CorporationOrganizationFactory.IAttributes :
+//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IAttributes :
+//         OrganizationFactory.IAttributes<T>;
+//     export type IOrganization<T extends OrganizationType> =
+//         T extends OrganizationType.Corporation ? CorporationOrganizationFactory.IOrganization :
+//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IOrganization :
+//         OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<T>>;
+//     export type IAreaServed<T extends OrganizationType> =
+//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IAreaServed :
+//         OrganizationFactory.IAreaServed;
+//     export import IPaymentAccepted = OrganizationFactory.IPaymentAccepted;
+//     export import IPOS = OrganizationFactory.IPOS;
+//     export import corporation = CorporationOrganizationFactory;
+//     export import movieTheater = MovieTheaterOrganizationFactory;
+// }
 export namespace organizationIdentifier {
     export import corporation = CorporationOrganizationIdentifier;
 }
@@ -308,6 +306,7 @@ export namespace reservation {
 }
 export import reservationStatusType = ReservationStatusType;
 export import reservationType = ReservationType;
+export import seller = OrganizationFactory;
 export namespace task {
     export type IData<T extends TaskName> =
         T extends TaskName.CancelAccount ? CancelAccountTaskFactory.IData :
