@@ -374,6 +374,7 @@ export namespace task {
         T extends TaskName.UseMvtk ? UseMvtkTaskFactory.ITask :
         TaskFactory.ITask;
     export type ISearchConditions<T extends TaskName> = TaskFactory.ISearchConditions<T>;
+    export type IExecutionResult = TaskFactory.IExecutionResult;
     export import cancelCreditCard = CancelCreditCardTaskFactory;
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelPecorinoAward = CancelPecorinoAwardTaskFactory;
