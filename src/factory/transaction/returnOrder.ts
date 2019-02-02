@@ -54,7 +54,7 @@ export interface IObject {
      * user object of the client where a transaction is processing.
      */
     clientUser: IClientUser;
-    order?: IOrder;
+    order: IOrder;
     transaction: IPlaceOrderTransactionFactory.ITransaction;
     cancellationFee: number;
     reason: Reason;

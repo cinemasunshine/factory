@@ -15,6 +15,7 @@ import * as AuthorizeAccountPaymentActionFactory from './factory/action/authoriz
 import * as AuthorizeAnyPaymentActionFactory from './factory/action/authorize/paymentMethod/any';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
+import * as ConfirmReservationActionFactory from './factory/action/interact/confirm/reservation';
 import * as RegisterActionFactory from './factory/action/interact/register';
 import * as RegisterProgramMembershipActionFactory from './factory/action/interact/register/programMembership';
 import * as UnRegisterActionFactory from './factory/action/interact/unRegister';
@@ -66,6 +67,7 @@ import * as ReservationFactory from './factory/reservation';
 import * as EventReservationFactory from './factory/reservation/event';
 import { ReservationStatusType } from './factory/reservationStatusType';
 import { ReservationType } from './factory/reservationType';
+import * as WebAPIServiceFactory from './factory/service/webAPI';
 import SortType from './factory/sortType';
 import { UnitCode } from './factory/unitCode';
 
@@ -153,6 +155,10 @@ export namespace action {
     }
 
     export namespace interact {
+        export namespace confirm {
+            // tslint:disable-next-line:no-shadowed-variable
+            export import reservation = ConfirmReservationActionFactory;
+        }
         export namespace register {
             // tslint:disable-next-line:no-shadowed-variable
             export import IAction = RegisterActionFactory.IAction;
@@ -306,6 +312,9 @@ export namespace reservation {
 }
 export import reservationStatusType = ReservationStatusType;
 export import reservationType = ReservationType;
+export namespace service {
+    export import webAPI = WebAPIServiceFactory;
+}
 export import seller = OrganizationFactory;
 export namespace task {
     export type IData<T extends TaskName | string> =

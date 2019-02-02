@@ -16,11 +16,15 @@ export interface IPotentialActions {
     /**
      * クレジットカード返金アクション
      */
-    refundCreditCard?: IRefundActionAttributes<PaymentMethodType.CreditCard>;
+    refundCreditCard: IRefundActionAttributes<PaymentMethodType.CreditCard>[];
     /**
      * 口座返金アクション
      */
     refundAccount: IRefundActionAttributes<PaymentMethodType.Account>[];
+    /**
+     * ムビチケ着券取消アクション
+     */
+    refundMovieTicket: IRefundActionAttributes<PaymentMethodType.MovieTicket>[];
     /**
      * ポイントインセンティブ返却アクション
      */
