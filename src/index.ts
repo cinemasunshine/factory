@@ -91,7 +91,6 @@ import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegist
 import * as UseMvtkTaskFactory from './factory/task/useMvtk';
 
 import * as TaskFactory from './factory/task';
-import * as TaskExecutionResultFactory from './factory/taskExecutionResult';
 import TaskName from './factory/taskName';
 import TaskStatus from './factory/taskStatus';
 import * as TransactionFactory from './factory/transaction';
@@ -393,7 +392,6 @@ export namespace task {
     export import useMvtk = UseMvtkTaskFactory;
 }
 export import sortType = SortType;
-export import taskExecutionResult = TaskExecutionResultFactory;
 export import taskName = TaskName;
 export import taskStatus = TaskStatus;
 export namespace transaction {
