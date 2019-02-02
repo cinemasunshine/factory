@@ -8,7 +8,7 @@ export type ProgramMembershipType = 'ProgramMembership';
  */
 export enum Award {
     /**
-     * 口座決済
+     * ポイント口座決済
      */
     PecorinoPayment = 'PecorinoPayment'
 }

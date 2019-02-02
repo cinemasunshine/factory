@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
+- タスク名をCinerinoに統一
+
 ### Deprecated
 
 ### Removed

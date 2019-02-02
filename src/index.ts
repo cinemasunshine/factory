@@ -7,7 +7,7 @@ import * as cognito from './cognito';
 
 import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
-import * as PecorinoAwardAuthorizeActionFactory from './factory/action/authorize/award/pecorino';
+import * as AuthorizePointAwardActionFactory from './factory/action/authorize/award/point';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/discount/mvtk';
 import * as ProgramMembershipOfferAuthorizeActionFactory from './factory/action/authorize/offer/programMembership';
 import * as SeatReservationOfferAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
@@ -23,11 +23,11 @@ import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
 import * as RefundActionFactory from './factory/action/trade/refund';
 import * as GiveActionFactory from './factory/action/transfer/give';
-import * as GivePecorinoAwardActionFactory from './factory/action/transfer/give/pecorinoAward';
+import * as GivePointAwardActionFactory from './factory/action/transfer/give/pointAward';
 import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
-import * as ReturnPecorinoAwardActionFactory from './factory/action/transfer/return/pecorinoAward';
+import * as ReturnPointAwardActionFactory from './factory/action/transfer/return/pointAward';
 import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 import ActionStatusType from './factory/actionStatusType';
@@ -71,24 +71,25 @@ import { UnitCode } from './factory/unitCode';
 
 import * as CancelAccountTaskFactory from './factory/task/cancelAccount';
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
-import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
-import * as CancelPecorinoAwardTaskFactory from './factory/task/cancelPecorinoAward';
+import * as CancelPointAwardTaskFactory from './factory/task/cancelPointAward';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
-import * as GivePecorinoAwardTaskFactory from './factory/task/givePecorinoAward';
+import * as ConfirmReservationTaskFactory from './factory/task/confirmReservation';
+import * as GivePointAwardTaskFactory from './factory/task/givePointAward';
 import * as ImportScreeningEventsTaskFactory from './factory/task/importScreeningEvents';
 import * as PayAccountTaskFactory from './factory/task/payAccount';
 import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
+import * as PayMovieTicketTaskFactory from './factory/task/payMovieTicket';
 import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
 import * as RefundAccountTaskFactory from './factory/task/refundAccount';
 import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
+import * as RefundMovieTicketTaskFactory from './factory/task/refundMovieTicket';
 import * as RegisterProgramMembershipTaskFactory from './factory/task/registerProgramMembership';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
-import * as ReturnPecorinoAwardTaskFactory from './factory/task/returnPecorinoAward';
+import * as ReturnPointAwardTaskFactory from './factory/task/returnPointAward';
 import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
 import * as TriggerWebhookTaskFactory from './factory/task/triggerWebhook';
 import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegisterProgramMembership';
-import * as UseMvtkTaskFactory from './factory/task/useMvtk';
 
 import * as TaskFactory from './factory/task';
 import TaskName from './factory/taskName';
@@ -126,7 +127,7 @@ export namespace action {
         export import IAttributes = AuthorizeActionFactory.IAttributes;
         export namespace award {
             // tslint:disable-next-line:no-shadowed-variable
-            export import pecorino = PecorinoAwardAuthorizeActionFactory;
+            export import point = AuthorizePointAwardActionFactory;
         }
         // tslint:disable-next-line:no-shadowed-variable
         export namespace paymentMethod {
@@ -184,7 +185,7 @@ export namespace action {
             // tslint:disable-next-line:no-shadowed-variable
             export import IAttributes = GiveActionFactory.IAttributes;
             // tslint:disable-next-line:no-shadowed-variable
-            export import pecorinoAward = GivePecorinoAwardActionFactory;
+            export import pointAward = GivePointAwardActionFactory;
         }
 
         export namespace print {
@@ -203,7 +204,7 @@ export namespace action {
         export namespace returnAction {
             // tslint:disable-next-line:no-shadowed-variable
             export import order = ReturnOrderActionFactory;
-            export import pecorinoAward = ReturnPecorinoAwardActionFactory;
+            export import pointAward = ReturnPointAwardActionFactory;
         }
 
         export namespace send {
@@ -307,90 +308,77 @@ export import reservationStatusType = ReservationStatusType;
 export import reservationType = ReservationType;
 export import seller = OrganizationFactory;
 export namespace task {
-    export type IData<T extends TaskName> =
+    export type IData<T extends TaskName | string> =
         T extends TaskName.CancelAccount ? CancelAccountTaskFactory.IData :
         T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.IData :
-        T extends TaskName.CancelMvtk ? CancelMvtkTaskFactory.IData :
-        T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.IData :
+        T extends TaskName.CancelPointAward ? CancelPointAwardTaskFactory.IData :
         T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IData :
-        T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.IData :
+        T extends TaskName.ConfirmReservation ? ConfirmReservationTaskFactory.IData :
+        T extends TaskName.GivePointAward ? GivePointAwardTaskFactory.IData :
         T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IData :
         T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IData :
         T extends TaskName.RefundAccount ? RefundAccountTaskFactory.IData :
         T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IData :
+        T extends TaskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IData :
         T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IData :
         T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.IData :
-        T extends TaskName.ReturnPecorinoAward ? ReturnPecorinoAwardTaskFactory.IData :
+        T extends TaskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IData :
         T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.IData :
         T extends TaskName.SendOrder ? SendOrderTaskFactory.IData :
         T extends TaskName.PayAccount ? PayAccountTaskFactory.IData :
         T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.IData :
+        T extends TaskName.PayMovieTicket ? PayMovieTicketTaskFactory.IData :
         T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.IData :
         T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IData :
-        T extends TaskName.UseMvtk ? UseMvtkTaskFactory.IData :
         TaskFactory.IData;
-    export type IAttributes<T extends TaskName> =
+    export type IAttributes<T extends TaskName | string> =
         T extends TaskName.CancelAccount ? CancelAccountTaskFactory.IAttributes :
         T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.IAttributes :
-        T extends TaskName.CancelMvtk ? CancelMvtkTaskFactory.IAttributes :
-        T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.CancelPointAward ? CancelPointAwardTaskFactory.IAttributes :
         T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IAttributes :
-        T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.ConfirmReservation ? ConfirmReservationTaskFactory.IAttributes :
+        T extends TaskName.GivePointAward ? GivePointAwardTaskFactory.IAttributes :
         T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IAttributes :
         T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IAttributes :
         T extends TaskName.RefundAccount ? RefundAccountTaskFactory.IAttributes :
         T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IAttributes :
+        T extends TaskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IAttributes :
         T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IAttributes :
         T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.IAttributes :
-        T extends TaskName.ReturnPecorinoAward ? ReturnPecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IAttributes :
         T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.IAttributes :
         T extends TaskName.SendOrder ? SendOrderTaskFactory.IAttributes :
         T extends TaskName.PayAccount ? PayAccountTaskFactory.IAttributes :
         T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.IAttributes :
+        T extends TaskName.PayMovieTicket ? PayMovieTicketTaskFactory.IAttributes :
         T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.IAttributes :
         T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IAttributes :
-        T extends TaskName.UseMvtk ? UseMvtkTaskFactory.IAttributes :
         TaskFactory.IAttributes;
-    export type ITask<T extends TaskName> =
+    export type ITask<T extends TaskName | string> =
         T extends TaskName.CancelAccount ? CancelAccountTaskFactory.ITask :
         T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.ITask :
-        T extends TaskName.CancelMvtk ? CancelMvtkTaskFactory.ITask :
-        T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.ITask :
+        T extends TaskName.CancelPointAward ? CancelPointAwardTaskFactory.ITask :
         T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.ITask :
-        T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.ITask :
+        T extends TaskName.ConfirmReservation ? ConfirmReservationTaskFactory.ITask :
+        T extends TaskName.GivePointAward ? GivePointAwardTaskFactory.ITask :
         T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.ITask :
         T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.ITask :
         T extends TaskName.RefundAccount ? RefundAccountTaskFactory.ITask :
         T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.ITask :
+        T extends TaskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.ITask :
         T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.ITask :
         T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.ITask :
-        T extends TaskName.ReturnPecorinoAward ? ReturnPecorinoAwardTaskFactory.ITask :
+        T extends TaskName.ReturnPointAward ? ReturnPointAwardTaskFactory.ITask :
         T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.ITask :
         T extends TaskName.SendOrder ? SendOrderTaskFactory.ITask :
         T extends TaskName.PayAccount ? PayAccountTaskFactory.ITask :
         T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.ITask :
+        T extends TaskName.PayMovieTicket ? PayMovieTicketTaskFactory.ITask :
         T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.ITask :
         T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.ITask :
-        T extends TaskName.UseMvtk ? UseMvtkTaskFactory.ITask :
         TaskFactory.ITask;
-    export type ISearchConditions<T extends TaskName> = TaskFactory.ISearchConditions<T>;
+    export type ISearchConditions<T extends TaskName | string> = TaskFactory.ISearchConditions<T>;
     export type IExecutionResult = TaskFactory.IExecutionResult;
-    export import cancelCreditCard = CancelCreditCardTaskFactory;
-    export import cancelMvtk = CancelMvtkTaskFactory;
-    export import cancelPecorinoAward = CancelPecorinoAwardTaskFactory;
-    export import cancelSeatReservation = CancelSeatReservationTaskFactory;
-    export import givePecorinoAward = GivePecorinoAwardTaskFactory;
-    export import placeOrder = PlaceOrderTaskFactory;
-    export import refundCreditCard = RefundCreditCardTaskFactory;
-    export import registerProgramMembership = RegisterProgramMembershipTaskFactory;
-    export import returnOrder = ReturnOrderTaskFactory;
-    export import returnPecorinoAward = ReturnPecorinoAwardTaskFactory;
-    export import sendEmailMessage = SendEmailMessageTaskFactory;
-    export import sendOrder = SendOrderTaskFactory;
-    export import payCreditCard = PayCreditCardTaskFactory;
-    export import triggerWebhook = TriggerWebhookTaskFactory;
-    export import unRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
-    export import useMvtk = UseMvtkTaskFactory;
 }
 export import sortType = SortType;
 export import taskName = TaskName;

@@ -4,9 +4,8 @@ import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import { IOrder } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';
-import { IAttributes as IUseMvtkActionAttributes } from '../consume/use/mvtk';
 import { IAttributes as IPayActionAttributes } from '../trade/pay';
-import { IAttributes as IGivePecorinoAwardActionAttributes } from '../transfer/give/pecorinoAward';
+import { IAttributes as IGivePointAwardActionAttributes } from '../transfer/give/pointAward';
 import { IAttributes as ISendOrderActionAttributes } from '../transfer/send/order';
 
 export type IAgent = cinerino.action.trade.order.IAgent;
@@ -27,14 +26,10 @@ export interface IPotentialActions {
      */
     payAccount: IPayActionAttributes<PaymentMethodType.Account>[];
     /**
-     * ムビチケ使用アクション
-     */
-    useMvtk?: IUseMvtkActionAttributes;
-    /**
-     * Pecorino付与アクション
+     * ポイント付与アクション
      * 現時点で複数口座にポイントを付与することはないが、可能性もこめてリストで持っておく
      */
-    givePecorinoAward: IGivePecorinoAwardActionAttributes[];
+    givePointAward: IGivePointAwardActionAttributes[];
 }
 export interface IAttributes extends ActionFactory.IAttributes<ActionType.OrderAction, IObject, IResult> {
     potentialActions?: IPotentialActions;

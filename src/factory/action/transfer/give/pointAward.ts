@@ -1,28 +1,28 @@
-import { IPecorinoTransaction, ObjectType as PecorinoAwardAuthorizeActionObjectType } from '../../../action/authorize/award/pecorino';
+import { IPecorinoTransaction, ObjectType as AuthorizePointAwardActionObjectType } from '../../../action/authorize/award/point';
 import { IOrder } from '../../../order';
 import * as GiveActionFactory from '../give';
 
-export import ObjectType = PecorinoAwardAuthorizeActionObjectType;
+export import ObjectType = AuthorizePointAwardActionObjectType;
 
 /**
- * Pecorino付与対象インターフェース
+ * ポイント付与対象インターフェース
  */
 export interface IObject {
     typeOf: ObjectType;
     /**
-     * 付与対象のPecorino取引
+     * 付与対象のポイント取引
      * 基本的には、この取引を確定することで付与処理が実行される、という考え方です。
      */
     pecorinoTransaction: IPecorinoTransaction;
     /**
-     * Pecorinoサービスエンドポイント
+     * ポイントサービスエンドポイント
      */
     pecorinoEndpoint: string;
 }
 export type IResult = any;
 /**
  * 目的は注文
- * 注文に対するインセンティブとしてPecorinoが付与される仕組み
+ * 注文に対するインセンティブとしてポイントが付与される仕組み
  */
 export type IPurpose = IOrder;
 export type IPotentialActions = any;
@@ -32,6 +32,6 @@ export interface IAttributes extends GiveActionFactory.IAttributes<IObject, IRes
 }
 
 /**
- * Pecorino付与アクションインターフェース
+ * ポイント付与アクションインターフェース
  */
 export type IAction = GiveActionFactory.IAction<IAttributes>;

@@ -10,7 +10,7 @@ export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
 export enum ObjectType {
-    PecorinoAward = 'PecorinoAward'
+    PointAward = 'PointAward'
 }
 
 /**
@@ -36,7 +36,7 @@ export type IPurpose = ITransaction;
 export type IError = any;
 
 /**
- * Pecorinoインセンティブ承認アクション属性インターフェース
+ * ポイントインセンティブ承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     typeOf: ActionType.AuthorizeAction;
@@ -47,7 +47,7 @@ export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject,
 }
 
 /**
- * Pecorinoインセンティブ承認アクションインターフェース
+ * ポイントインセンティブ承認アクションインターフェース
  * 注文取引のインセンティブとしてポイントを付与する場合に使用されます。
  */
 export type IAction = ActionFactory.IAction<IAttributes>;
