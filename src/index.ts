@@ -1,7 +1,7 @@
 /**
  * factory
  */
-import { chevre, encodingFormat, pecorino, waiter } from '@cinerino/factory';
+import { chevre, encodingFormat, invoice, monetaryAmount, pecorino, waiter } from '@cinerino/factory';
 
 import * as cognito from './cognito';
 
@@ -255,6 +255,8 @@ export namespace event {
 }
 export import eventStatusType = EventStatusType;
 export import eventType = EventType;
+export import invoice = invoice;
+export import monetaryAmount = monetaryAmount;
 export type multilingualString = IMultilingualString;
 export namespace offer {
     export import OfferType = OfferFactory.OfferType;
