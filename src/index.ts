@@ -1,7 +1,7 @@
 /**
  * factory
  */
-import { chevre, encodingFormat, invoice, monetaryAmount, pecorino, waiter } from '@cinerino/factory';
+import { chevre, encodingFormat, errorCode, errors, invoice, monetaryAmount, pecorino, waiter } from '@cinerino/factory';
 
 import * as cognito from './cognito';
 
@@ -103,15 +103,12 @@ import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
 import TransactionType from './factory/transactionType';
 
-import ErrorCode from './factory/errorCode';
-import { errors } from './factory/errors';
-
 export import chevre = chevre;
 export import cognito = cognito;
 export import pecorino = pecorino;
 export import waiter = waiter;
 export import errors = errors;
-export import errorCode = ErrorCode;
+export import errorCode = errorCode;
 
 export import actionStatusType = ActionStatusType;
 export import actionType = ActionType;

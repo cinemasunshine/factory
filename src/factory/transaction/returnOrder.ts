@@ -6,7 +6,6 @@ import { IClientUser } from '../clientUser';
 import { IOrder } from '../order';
 import { IPerson } from '../person';
 import * as TransactionFactory from '../transaction';
-import * as IPlaceOrderTransactionFactory from '../transaction/placeOrder';
 import TransactionType from '../transactionType';
 
 /**
@@ -41,22 +40,17 @@ export enum Reason {
 export type IReturnableOrder = cinerino.transaction.returnOrder.IReturnableOrder;
 export type IStartParamsWithoutDetail = cinerino.transaction.returnOrder.IStartParamsWithoutDetail;
 
-/**
- * 取引開始パラメーターインターフェース
- */
 export type IStartParams = TransactionFactory.IStartParams<TransactionType.ReturnOrder, IAgent, undefined, IObject>;
-
-/**
- * 取引対象物インターフェース
- */
 export interface IObject {
-    /**
-     * user object of the client where a transaction is processing.
-     */
-    clientUser: IClientUser;
+    clientUser?: IClientUser;
     order: IOrder;
-    transaction: IPlaceOrderTransactionFactory.ITransaction;
+    /**
+     * キャンセル手数料
+     */
     cancellationFee: number;
+    /**
+     * 返品理由
+     */
     reason: Reason;
 }
 
