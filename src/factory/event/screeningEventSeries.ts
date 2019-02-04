@@ -9,7 +9,6 @@ import IMultilingualString from '../multilingualString';
 import OrganizationType from '../organizationType';
 import PersonType from '../personType';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
-import PlaceType from '../placeType';
 
 /**
  * 上映作品インターフェース
@@ -47,53 +46,15 @@ export interface IOrganizer {
 /**
  * 上映イベントインターフェース(COAの劇場作品に相当)
  */
-export interface IEvent extends EventFactory.IEvent {
+export interface IEvent extends EventFactory.IEvent<EventType.ScreeningEventSeries> {
     /**
      * 映像区分(２D、３D)
      */
-    videoFormat?: COA.services.master.IKubunNameResult;
+    videoFormat: COA.services.master.IKubunNameResult;
     /**
      * 上映作品
      */
     workPerformed: IWorkPerformed;
-    /**
-     * 上映場所
-     */
-    location: {
-        /**
-         * スキーマタイプ
-         */
-        typeOf: PlaceType;
-        /**
-         * 識別子
-         */
-        identifier: string;
-        /**
-         * 劇場コード
-         */
-        branchCode: string;
-        /**
-         * 場所名称
-         */
-        name: IMultilingualString;
-        /**
-         * 場所名称(カナ)
-         */
-        kanaName: string;
-    };
-    organizer: IOrganizer;
-    /**
-     * 作品タイトル名（カナ）
-     */
-    kanaName: string;
-    /**
-     * 作品タイトル名省略
-     */
-    alternativeHeadline: string;
-    /**
-     * イベント名称
-     */
-    name: IMultilingualString;
     /**
      * 公演終了予定日(in ISO 8601 date format)
      */
@@ -164,7 +125,7 @@ export function createFromCOA(params: {
         kanaName: params.filmFromCOA.titleNameKana,
         alternativeHeadline: params.filmFromCOA.titleNameShort,
         location: {
-            identifier: params.movieTheater.identifier,
+            id: (params.movieTheater.id !== undefined) ? params.movieTheater.id : '',
             branchCode: params.movieTheater.branchCode,
             name: params.movieTheater.name,
             kanaName: params.movieTheater.kanaName,
@@ -176,6 +137,7 @@ export function createFromCOA(params: {
             name: params.movieTheater.name
         },
         videoFormat: params.eizouKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEizou)[0],
+        soundFormat: [],
         workPerformed: {
             identifier: params.filmFromCOA.titleCode,
             name: params.filmFromCOA.titleNameOrig,

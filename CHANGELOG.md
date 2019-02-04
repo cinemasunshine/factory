@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - タスク名をCinerinoに統一
 - クレジットカード決済インターフェースをCinerinoに統一
 - クレジットカード返金インターフェースをCinerinoに統一
+- 注文タスクインターフェースをCinerinoに統一
+- 注文配送タスクインターフェースをCinerinoに統一
 
 ### Deprecated
 

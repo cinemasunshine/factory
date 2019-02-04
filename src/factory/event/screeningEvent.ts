@@ -7,7 +7,6 @@ import { EventStatusType } from '../eventStatusType';
 import { EventType } from '../eventType';
 import IMultilingualString from '../multilingualString';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
-import PlaceType from '../placeType';
 import SortType from '../sortType';
 
 /**
@@ -86,29 +85,11 @@ export type IEventWithOffer = IEvent & {
 /**
  * 上映イベントインターフェース(COAのスケジュールに相当)
  */
-export interface IEvent extends EventFactory.IEvent {
+export interface IEvent extends EventFactory.IEvent<EventType.ScreeningEvent> {
     /**
      * 上映作品
      */
     workPerformed: ScreeningEventSeriesFactory.IWorkPerformed;
-    /**
-     * 上映場所
-     */
-    location: {
-        /**
-         * 場所タイプ
-         */
-        typeOf: PlaceType;
-        /**
-         * 場所枝番号
-         * スクリーンコードに該当します。
-         */
-        branchCode: string;
-        /**
-         * 場所名称
-         */
-        name: IMultilingualString;
-    };
     /**
      * イベント名称
      */
@@ -221,41 +202,40 @@ export function createFromCOA(params: {
         .toDate();
 
     return {
-        ...EventFactory.create({
-            eventStatus: EventStatusType.EventScheduled,
-            typeOf: EventType.ScreeningEvent,
-            id: identifier,
-            identifier: identifier,
-            name: params.superEvent.name
-        }),
-        ...{
-            workPerformed: params.superEvent.workPerformed,
-            location: {
-                typeOf: params.screenRoom.typeOf,
-                branchCode: params.screenRoom.branchCode,
-                name: params.screenRoom.name
-            },
-            endDate: endDate,
-            startDate: startDate,
-            superEvent: params.superEvent,
-            coaInfo: {
-                theaterCode: params.superEvent.location.branchCode,
-                dateJouei: params.performanceFromCOA.dateJouei,
-                titleCode: params.performanceFromCOA.titleCode,
-                titleBranchNum: params.performanceFromCOA.titleBranchNum,
-                timeBegin: params.performanceFromCOA.timeBegin,
-                timeEnd: params.performanceFromCOA.timeEnd,
-                screenCode: params.performanceFromCOA.screenCode,
-                trailerTime: params.performanceFromCOA.trailerTime,
-                kbnService: params.serviceKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService)[0],
-                kbnAcoustic: params.acousticKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic)[0],
-                nameServiceDay: params.performanceFromCOA.nameServiceDay,
-                availableNum: params.performanceFromCOA.availableNum,
-                rsvStartDate: params.performanceFromCOA.rsvStartDate,
-                rsvEndDate: params.performanceFromCOA.rsvEndDate,
-                flgEarlyBooking: params.performanceFromCOA.flgEarlyBooking
-            }
-        }
+        typeOf: EventType.ScreeningEvent,
+        id: identifier,
+        identifier: identifier,
+        name: params.superEvent.name,
+        eventStatus: EventStatusType.EventScheduled,
+        workPerformed: params.superEvent.workPerformed,
+        location: {
+            typeOf: params.screenRoom.typeOf,
+            branchCode: params.screenRoom.branchCode,
+            name: params.screenRoom.name
+        },
+        endDate: endDate,
+        startDate: startDate,
+        superEvent: params.superEvent,
+        coaInfo: {
+            theaterCode: params.superEvent.location.branchCode,
+            dateJouei: params.performanceFromCOA.dateJouei,
+            titleCode: params.performanceFromCOA.titleCode,
+            titleBranchNum: params.performanceFromCOA.titleBranchNum,
+            timeBegin: params.performanceFromCOA.timeBegin,
+            timeEnd: params.performanceFromCOA.timeEnd,
+            screenCode: params.performanceFromCOA.screenCode,
+            trailerTime: params.performanceFromCOA.trailerTime,
+            kbnService: params.serviceKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService)[0],
+            kbnAcoustic: params.acousticKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic)[0],
+            nameServiceDay: params.performanceFromCOA.nameServiceDay,
+            availableNum: params.performanceFromCOA.availableNum,
+            rsvStartDate: params.performanceFromCOA.rsvStartDate,
+            rsvEndDate: params.performanceFromCOA.rsvEndDate,
+            flgEarlyBooking: params.performanceFromCOA.flgEarlyBooking
+        },
+        offers: <any>{},
+        checkInCount: 0,
+        attendeeCount: 0
     };
 }
 

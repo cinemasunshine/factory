@@ -5,6 +5,7 @@ import { pecorino } from '@cinerino/factory';
 
 import AccountType from './accountType';
 import { IEvent } from './event';
+import { EventType } from './eventType';
 import * as OrganizationFactory from './organization';
 import OrganizationType from './organizationType';
 import { IPerson } from './person';
@@ -34,7 +35,7 @@ export type IGood<T extends IGoodType> =
     /**
      * 予約タイプの場合
      */
-    T extends ReservationType ? IEventReservation<IEvent> :
+    T extends ReservationType ? IEventReservation<IEvent<EventType>> :
     /**
      * 会員プログラムタイプの場合
      */
