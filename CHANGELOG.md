@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## v7.0.0 - 2019-02-05
+
+### Added
+
 - 販売者インターフェースを追加
 - 請求書インターフェースを追加
 
@@ -23,18 +37,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 予約インターフェースをCinerinoに統一
 - 注文インターフェースをCinerinoに統一
 
-### Deprecated
-
 ### Removed
 
 - 劇場組織から枝番号とxmlEndPointを削除
 - 組織インターフェースを削除
 - 注文から注文照会キーを削除
 - タスクインターフェース調整
-
-### Fixed
-
-### Security
 
 ## v6.0.0 - 2019-01-28
 
