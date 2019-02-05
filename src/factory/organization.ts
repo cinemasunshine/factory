@@ -22,11 +22,11 @@ export interface IGMOInfo {
     shopPass: string;
 }
 
-export type IPaymentAccepted<T extends PaymentMethodType> = cinerino.organization.IPaymentAccepted<T>;
-export type IPOS = cinerino.organization.IPOS;
+export type IPaymentAccepted<T extends PaymentMethodType> = cinerino.seller.IPaymentAccepted<T>;
+export type IPOS = cinerino.seller.IPOS;
 export type IMakesOffer = IOffer;
-export type IAreaServed = cinerino.organization.IAreaServed<cinerino.organizationType>;
-export type IAttributes<T extends OrganizationType> = cinerino.organization.IAttributes<T>;
+export type IAreaServed = cinerino.seller.IAreaServed;
+export type IAttributes<T extends OrganizationType> = cinerino.seller.IAttributes<T>;
 export type IOrganization<T extends IAttributes<OrganizationType>> = T & {
     id: string;
 };
@@ -34,4 +34,4 @@ export type IOrganization<T extends IAttributes<OrganizationType>> = T & {
 /**
  * 組織検索条件インターフェース
  */
-export type ISearchConditions<T extends OrganizationType> = cinerino.organization.ISearchConditions<T>;
+export type ISearchConditions = cinerino.seller.ISearchConditions;

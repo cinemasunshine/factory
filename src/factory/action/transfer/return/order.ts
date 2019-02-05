@@ -3,7 +3,7 @@ import { IOrder } from '../../../order';
 import PaymentMethodType from '../../../paymentMethodType';
 import { IAttributes as IRefundActionAttributes } from '../../trade/refund';
 import * as ReturnActionFactory from '../return';
-import * as PecorinoAwardReturnActionFactory from './pecorinoAward';
+import * as ReturnPointAwardActionFactory from './pointAward';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
@@ -16,15 +16,19 @@ export interface IPotentialActions {
     /**
      * クレジットカード返金アクション
      */
-    refundCreditCard?: IRefundActionAttributes<PaymentMethodType.CreditCard>;
+    refundCreditCard: IRefundActionAttributes<PaymentMethodType.CreditCard>[];
     /**
      * 口座返金アクション
      */
     refundAccount: IRefundActionAttributes<PaymentMethodType.Account>[];
     /**
-     * Pecorinoインセンティブ返却アクション
+     * ムビチケ着券取消アクション
      */
-    returnPecorinoAward: PecorinoAwardReturnActionFactory.IAttributes[];
+    refundMovieTicket: IRefundActionAttributes<PaymentMethodType.MovieTicket>[];
+    /**
+     * ポイントインセンティブ返却アクション
+     */
+    returnPointAward: ReturnPointAwardActionFactory.IAttributes[];
 }
 export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IResult> {
     recipient: IRecipient;

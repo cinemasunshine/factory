@@ -18,6 +18,32 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v7.0.0 - 2019-02-05
+
+### Added
+
+- 販売者インターフェースを追加
+- 請求書インターフェースを追加
+
+### Changed
+
+- タスク名をCinerinoに統一
+- クレジットカード決済インターフェースをCinerinoに統一
+- クレジットカード返金インターフェースをCinerinoに統一
+- 注文タスクインターフェースをCinerinoに統一
+- 注文配送タスクインターフェースをCinerinoに統一
+- 返品タスクインターフェースをCinerinoに統一
+- イベントインターフェースをCinerinoに統一
+- 予約インターフェースをCinerinoに統一
+- 注文インターフェースをCinerinoに統一
+
+### Removed
+
+- 劇場組織から枝番号とxmlEndPointを削除
+- 組織インターフェースを削除
+- 注文から注文照会キーを削除
+- タスクインターフェース調整
+
 ## v6.0.0 - 2019-01-28
 
 ### Added

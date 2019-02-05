@@ -1,9 +1,3 @@
-/**
- * 劇場ファクトリー
- *
- * @namespace place.movieTheater
- */
-
 import * as COA from '@motionpicture/coa-service';
 
 import IMultilingualString from '../multilingualString';

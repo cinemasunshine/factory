@@ -1,131 +1,33 @@
+import * as cinerino from '@cinerino/factory';
+
 import * as COA from '@motionpicture/coa-service';
 import * as moment from 'moment';
 
 import CreativeWorkType from '../creativeWorkType';
-import * as EventFactory from '../event';
 import { EventStatusType } from '../eventStatusType';
 import { EventType } from '../eventType';
-import IMultilingualString from '../multilingualString';
 import OrganizationType from '../organizationType';
-import PersonType from '../personType';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
-import PlaceType from '../placeType';
 
 /**
  * 上映作品インターフェース
  */
-export interface IWorkPerformed {
-    /**
-     * 作品識別子
-     * COAタイトルコードに相当します。
-     */
-    identifier: string;
-    /**
-     * 作品原題
-     */
-    name: string;
-    /**
-     * 上映時間
-     */
-    duration: string;
-    /**
-     * 映倫区分(PG12,R15,R18)
-     */
-    contentRating?: COA.services.master.IKubunNameResult;
-    /**
-     * スキーマタイプ
-     */
-    typeOf: CreativeWorkType;
+// tslint:disable-next-line:no-empty-interface
+export interface IWorkPerformed extends cinerino.chevre.event.screeningEventSeries.IWorkPerformed {
 }
 
-export interface IOrganizer {
-    typeOf: OrganizationType | PersonType;
-    identifier: string;
-    name: IMultilingualString;
+// tslint:disable-next-line:no-empty-interface
+export interface IOrganizer extends cinerino.chevre.event.screeningEventSeries.IOrganizer {
+    // typeOf: OrganizationType | PersonType;
 }
+
+export type ICOAInfo = cinerino.chevre.event.screeningEventSeries.ICOAInfo;
 
 /**
  * 上映イベントインターフェース(COAの劇場作品に相当)
  */
-export interface IEvent extends EventFactory.IEvent {
-    /**
-     * 映像区分(２D、３D)
-     */
-    videoFormat?: COA.services.master.IKubunNameResult;
-    /**
-     * 上映作品
-     */
-    workPerformed: IWorkPerformed;
-    /**
-     * 上映場所
-     */
-    location: {
-        /**
-         * スキーマタイプ
-         */
-        typeOf: PlaceType;
-        /**
-         * 識別子
-         */
-        identifier: string;
-        /**
-         * 劇場コード
-         */
-        branchCode: string;
-        /**
-         * 場所名称
-         */
-        name: IMultilingualString;
-        /**
-         * 場所名称(カナ)
-         */
-        kanaName: string;
-    };
-    organizer: IOrganizer;
-    /**
-     * 作品タイトル名（カナ）
-     */
-    kanaName: string;
-    /**
-     * 作品タイトル名省略
-     */
-    alternativeHeadline: string;
-    /**
-     * イベント名称
-     */
-    name: IMultilingualString;
-    /**
-     * 公演終了予定日(in ISO 8601 date format)
-     */
-    endDate?: Date;
-    /**
-     * 公演開始予定日(in ISO 8601 date format)
-     */
-    startDate?: Date;
-    /**
-     * その他COA情報
-     */
-    coaInfo: {
-        titleBranchNum: string;
-        /**
-         * 上映方式区分(ＩＭＡＸ，４ＤＸ等)
-         */
-        kbnJoueihousiki?: COA.services.master.IKubunNameResult;
-        /**
-         * 字幕吹替区分(字幕、吹き替え)
-         */
-        kbnJimakufukikae?: COA.services.master.IKubunNameResult;
-        /**
-         * ムビチケ使用フラグ
-         * 1：ムビチケ使用対象
-         */
-        flgMvtkUse: string;
-        /**
-         * ムビチケ利用開始日
-         * ※日付は西暦8桁 "YYYYMMDD"
-         */
-        dateMvtkBegin: string;
-    };
+// tslint:disable-next-line:no-empty-interface
+export interface IEvent extends cinerino.chevre.event.screeningEventSeries.IEvent {
 }
 
 /**
@@ -164,7 +66,7 @@ export function createFromCOA(params: {
         kanaName: params.filmFromCOA.titleNameKana,
         alternativeHeadline: params.filmFromCOA.titleNameShort,
         location: {
-            identifier: params.movieTheater.identifier,
+            id: (params.movieTheater.id !== undefined) ? params.movieTheater.id : '',
             branchCode: params.movieTheater.branchCode,
             name: params.movieTheater.name,
             kanaName: params.movieTheater.kanaName,
@@ -176,6 +78,7 @@ export function createFromCOA(params: {
             name: params.movieTheater.name
         },
         videoFormat: params.eizouKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEizou)[0],
+        soundFormat: [],
         workPerformed: {
             identifier: params.filmFromCOA.titleCode,
             name: params.filmFromCOA.titleNameOrig,

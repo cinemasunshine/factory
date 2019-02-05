@@ -3,16 +3,15 @@ import { pecorino } from '@cinerino/factory';
 import AccountType from '../../../accountType';
 import * as ActionFactory from '../../../action';
 import ActionType from '../../../actionType';
-import { ITransaction } from '../../../transaction/placeOrder';
+import TransactionType from '../../../transactionType';
 import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
 export enum ObjectType {
-    PecorinoAward = 'PecorinoAward'
+    PointAward = 'PointAward'
 }
-
 /**
  * オーソリ対象インターフェース
  */
@@ -21,22 +20,20 @@ export interface IObject {
     transactionId: string;
     amount: number;
 }
-
-export type IPecorinoTransaction = pecorino.transaction.deposit.ITransaction<AccountType.Point>;
-
+export type IPointTransaction = pecorino.transaction.deposit.ITransaction<AccountType.Point>;
 export interface IResult {
     price: number;
     amount: number;
-    pecorinoTransaction: IPecorinoTransaction;
-    pecorinoEndpoint: string;
+    pointTransaction: IPointTransaction;
+    pointAPIEndpoint: string;
 }
-
-export type IPurpose = ITransaction;
-
+export interface IPurpose {
+    typeOf: TransactionType.PlaceOrder;
+    id: string;
+}
 export type IError = any;
-
 /**
- * Pecorinoインセンティブ承認アクション属性インターフェース
+ * ポイントインセンティブ承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     typeOf: ActionType.AuthorizeAction;
@@ -45,9 +42,8 @@ export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject,
     recipient: IRecipient;
     purpose: IPurpose;
 }
-
 /**
- * Pecorinoインセンティブ承認アクションインターフェース
+ * ポイントインセンティブ承認アクションインターフェース
  * 注文取引のインセンティブとしてポイントを付与する場合に使用されます。
  */
 export type IAction = ActionFactory.IAction<IAttributes>;

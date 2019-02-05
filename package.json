@@ -1,6 +1,6 @@
 {
   "name": "@motionpicture/sskts-factory",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "SSKTS Factory Library for Javascript",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -57,12 +57,11 @@
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
     "tslint-microsoft-contrib": "^5.2.1",
-    "typescript": "^3.2.4"
+    "typescript": "^3.3.1"
   },
   "dependencies": {
-    "@cinerino/factory": "^1.0.0-alpha.92",
+    "@cinerino/factory": "^1.0.0-alpha.98",
     "@motionpicture/coa-service": "^5.0.2",
-    "@motionpicture/gmo-service": "^4.3.0",
     "moment": "^2.24.0"
   },
   "repository": {

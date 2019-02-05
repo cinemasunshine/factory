@@ -9,4 +9,4 @@ export interface IAttributes extends OrganizationFactory.IAttributes<Organizatio
 export type IOrganization = OrganizationFactory.IOrganization<IAttributes>;
 
 // tslint:disable-next-line:no-empty-interface
-export type ISearchConditions = OrganizationFactory.ISearchConditions<OrganizationType.Corporation>;
+export type ISearchConditions = OrganizationFactory.ISearchConditions;

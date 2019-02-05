@@ -1,7 +1,8 @@
 import IMultilingualString from './multilingualString';
 import PlaceType from './placeType';
 
-export type IAvailablePlaceType = PlaceType | string;
+// export type IAvailablePlaceType = PlaceType | string;
+export type IAvailablePlaceType = PlaceType;
 
 /**
  * 場所インターフェース
