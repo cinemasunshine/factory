@@ -10,7 +10,7 @@ import * as OrganizationFactory from './organization';
 import OrganizationType from './organizationType';
 import { IPerson } from './person';
 import { IProgramMembership, ProgramMembershipType } from './programMembership';
-import { IEventReservation } from './reservation/event';
+import { IReservation } from './reservation/event';
 import { ReservationType } from './reservationType';
 
 export interface IAccount {
@@ -35,7 +35,7 @@ export type IGood<T extends IGoodType> =
     /**
      * 予約タイプの場合
      */
-    T extends ReservationType ? IEventReservation<IEvent<EventType>> :
+    T extends ReservationType ? IReservation<IEvent<EventType>> :
     /**
      * 会員プログラムタイプの場合
      */

@@ -60,7 +60,7 @@
     "typescript": "^3.3.1"
   },
   "dependencies": {
-    "@cinerino/factory": "^1.0.0-alpha.97",
+    "@cinerino/factory": "^1.0.0-alpha.98",
     "@motionpicture/coa-service": "^5.0.2",
     "moment": "^2.24.0"
   },

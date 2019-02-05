@@ -1,5 +1,6 @@
 import { IOffer } from './offer';
 import * as OrganizationFactory from './organization';
+import OrganizationType from './organizationType';
 
 export type ProgramMembershipType = 'ProgramMembership';
 
@@ -22,7 +23,7 @@ export interface IProgramMembership {
     /**
      * プログラムのホスト組織
      */
-    hostingOrganization?: OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<any>>;
+    hostingOrganization?: OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>>;
     typeOf: ProgramMembershipType;
     /**
      * 会員番号
