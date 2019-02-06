@@ -10,9 +10,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- 各タスクインターフェースをCinerinoに統一
-- @cinerino/factoryのバージョンを固定化
-
 ### Deprecated
 
 ### Removed
@@ -20,6 +17,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+
+## v7.0.1 - 2019-02-06
+
+### Changed
+
+- 各タスクインターフェースをCinerinoに統一
+- @cinerino/factoryのバージョンを固定化
 
 ## v7.0.0 - 2019-02-05
 
