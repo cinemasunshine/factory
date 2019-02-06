@@ -18,6 +18,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v7.0.1 - 2019-02-06
+
+### Changed
+
+- 各タスクインターフェースをCinerinoに統一
+- @cinerino/factoryのバージョンを固定化
+
 ## v7.0.0 - 2019-02-05
 
 ### Added
