@@ -1,19 +1,9 @@
-import * as CreativeWorkFactory from '../../creativeWork';
-import CreativeWorkType from '../../creativeWorkType';
+import * as cinerino from '@cinerino/factory';
 
-export interface IParticipant {
-    typeOf?: string;
-    name: string;
-    email: string;
-}
-export interface IAttributes {
-    typeOf: CreativeWorkType.EmailMessage;
-    sender: IParticipant;
-    toRecipient: IParticipant;
-    about: string;
-    text: string;
-}
+export type IParticipant = cinerino.creativeWork.message.email.IParticipant;
+export type IAttributes = cinerino.creativeWork.message.email.IAttributes;
+
 /**
  * Eメールメッセージインタエーフェース
  */
-export type ICreativeWork = IAttributes & CreativeWorkFactory.ICreativeWork;
+export type ICreativeWork = cinerino.creativeWork.message.email.ICreativeWork;

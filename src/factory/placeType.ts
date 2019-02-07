@@ -1,12 +1,6 @@
+import { chevre } from '@cinerino/factory';
+
 /**
  * 場所タイプ
  */
-
-enum PlaceType {
-    MovieTheater = 'MovieTheater',
-    ScreeningRoom = 'ScreeningRoom',
-    ScreeningRoomSection = 'ScreeningRoomSection',
-    Seat = 'Seat'
-}
-
-export default PlaceType;
+export import PlaceType = chevre.placeType;

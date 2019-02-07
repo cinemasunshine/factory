@@ -10,9 +10,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
+- 劇場インターフェースをChevreに統一
+- 映画作品インターフェースをChevreに統一
+
 ### Deprecated
 
 ### Removed
+
+- 組織識別子を削除
+- イベント作成ファンクションを削除
 
 ### Fixed
 

@@ -61,8 +61,7 @@
   },
   "dependencies": {
     "@cinerino/factory": "1.0.0-alpha.98",
-    "@motionpicture/coa-service": "^5.0.2",
-    "moment": "^2.24.0"
+    "@motionpicture/coa-service": "^5.0.2"
   },
   "repository": {
     "type": "git",
