@@ -18,6 +18,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v8.0.1 - 2019-02-07
+
+### Changed
+
+- install @cinerino/factory@1.0.0-alpha.99
+
 ## v8.0.0 - 2019-02-07
 
 ### Changed
