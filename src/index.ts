@@ -49,7 +49,6 @@ import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
 import * as OrderFactory from './factory/order';
 import OrderStatus from './factory/orderStatus';
 import * as OrganizationFactory from './factory/organization';
-import CorporationOrganizationIdentifier from './factory/organizationIdentifier/corporation';
 import OrganizationType from './factory/organizationType';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
@@ -58,7 +57,7 @@ import PaymentStatusType from './factory/paymentStatusType';
 import * as PersonFactory from './factory/person';
 import PersonType from './factory/personType';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
-import PlaceType from './factory/placeType';
+import { PlaceType } from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
 import * as ProgramMembershipFactory from './factory/programMembership';
 import * as PropertyValueFactory from './factory/propertyValue';
@@ -262,30 +261,6 @@ export namespace offer {
 }
 export import order = OrderFactory;
 export import orderStatus = OrderStatus;
-// export namespace organization {
-//     export type ISearchConditions<T extends OrganizationType> =
-//         T extends OrganizationType.Corporation ? CorporationOrganizationFactory.ISearchConditions :
-//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.ISearchConditions :
-//         OrganizationFactory.ISearchConditions<T>;
-//     export type IAttributes<T extends OrganizationType> =
-//         T extends OrganizationType.Corporation ? CorporationOrganizationFactory.IAttributes :
-//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IAttributes :
-//         OrganizationFactory.IAttributes<T>;
-//     export type IOrganization<T extends OrganizationType> =
-//         T extends OrganizationType.Corporation ? CorporationOrganizationFactory.IOrganization :
-//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IOrganization :
-//         OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<T>>;
-//     export type IAreaServed<T extends OrganizationType> =
-//         T extends OrganizationType.MovieTheater ? MovieTheaterOrganizationFactory.IAreaServed :
-//         OrganizationFactory.IAreaServed;
-//     export import IPaymentAccepted = OrganizationFactory.IPaymentAccepted;
-//     export import IPOS = OrganizationFactory.IPOS;
-//     export import corporation = CorporationOrganizationFactory;
-//     export import movieTheater = MovieTheaterOrganizationFactory;
-// }
-export namespace organizationIdentifier {
-    export import corporation = CorporationOrganizationIdentifier;
-}
 export import organizationType = OrganizationType;
 export import ownershipInfo = OwnershipInfoFactory;
 export import priceCurrency = PriceCurrency;

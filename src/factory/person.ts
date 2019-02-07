@@ -2,20 +2,7 @@ import * as cinerino from '@cinerino/factory';
 
 import { IProgramMembership } from './programMembership';
 
-/**
- * プロフィールインターフェース
- */
 export type IProfile = cinerino.person.IProfile;
-
-/**
- * @alias IProfile
- * @deprecated Use IProfile instead.
- */
-export type IContact = IProfile;
-
-/**
- * 識別子インターフェース
- */
 export type IIdentifier = cinerino.person.IIdentifier;
 
 /**

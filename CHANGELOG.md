@@ -18,6 +18,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v8.0.0 - 2019-02-07
+
+### Changed
+
+- 劇場インターフェースをChevreに統一
+- 映画作品インターフェースをChevreに統一
+
+### Removed
+
+- 組織識別子を削除
+- イベント作成ファンクションを削除
+
 ## v7.0.1 - 2019-02-06
 
 ### Changed
