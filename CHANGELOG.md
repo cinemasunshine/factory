@@ -10,8 +10,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- install @cinerino/factory@1.0.0-alpha.99
-
 ### Deprecated
 
 ### Removed
@@ -19,6 +17,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+
+## v8.0.1 - 2019-02-07
+
+### Changed
+
+- install @cinerino/factory@1.0.0-alpha.99
 
 ## v8.0.0 - 2019-02-07
 
