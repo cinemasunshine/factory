@@ -1,92 +1,25 @@
-/**
- * 所有権ファクトリー
- */
-import { pecorino } from '@cinerino/factory';
+import * as cinerino from '@cinerino/factory';
 
 import AccountType from './accountType';
-import { IEvent } from './event';
-import { EventType } from './eventType';
 import * as OrganizationFactory from './organization';
 import OrganizationType from './organizationType';
 import { IPerson } from './person';
-import { IProgramMembership, ProgramMembershipType } from './programMembership';
-import { IReservation } from './reservation/event';
-import { ReservationType } from './reservationType';
 
-export interface IAccount {
-    typeOf: pecorino.account.TypeOf;
-    /**
-     * 口座タイプ
-     */
-    accountType: AccountType;
-    /**
-     * 口座番号
-     */
-    accountNumber: string;
-}
-/**
- * 所有対象物のタイプ
- */
-export type IGoodType = ReservationType | ProgramMembershipType | pecorino.account.TypeOf;
-/**
- * 所有対象物インタエーフェース (Product or Service)
- */
-export type IGood<T extends IGoodType> =
-    /**
-     * 予約タイプの場合
-     */
-    T extends ReservationType ? IReservation<IEvent<EventType>> :
-    /**
-     * 会員プログラムタイプの場合
-     */
-    T extends ProgramMembershipType ? IProgramMembership :
-    /**
-     * 口座タイプの場合
-     */
-    T extends pecorino.account.TypeOf ? IAccount :
-    never;
+export import AccountGoodType = cinerino.ownershipInfo.AccountGoodType;
+export type IAccount<T extends AccountType> = cinerino.ownershipInfo.IAccount<T>;
+export type IGoodType = cinerino.ownershipInfo.IGoodType;
+export type IGood<T extends IGoodType> = cinerino.ownershipInfo.IGood<T>;
+
 /**
  * 所有者インターフェース
  */
 export type IOwner = OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>> | IPerson;
-export type OwnershipInfoType = 'OwnershipInfo';
-/**
- * 所有権インターフェース
- */
-export interface IOwnershipInfo<T extends IGoodType> {
-    /**
-     * object type
-     */
-    typeOf: OwnershipInfoType;
-    /**
-     * identifier
-     */
-    identifier: string;
-    /**
-     * owned by whom
-     */
-    ownedBy: IOwner;
-    /**
-     * The organization or person from which the product was acquired.
-     */
-    acquiredFrom?: IOwner;
-    /**
-     * The date and time of obtaining the product.
-     */
-    ownedFrom: Date;
-    /**
-     * The date and time of giving up ownership on the product.
-     */
-    ownedThrough?: Date;
-    /**
-     * 所有対象物
-     */
-    typeOfGood: IGood<T>;
-}
-/**
- * 所有権検索条件インターフェース
- */
-export interface ISearchConditions<T extends IGoodType> {
+export type OwnershipInfoType = cinerino.ownershipInfo.OwnershipInfoType;
+export type IOwnershipInfo<T extends cinerino.ownershipInfo.IGood<cinerino.ownershipInfo.IGoodType>>
+    = cinerino.ownershipInfo.IOwnershipInfo<T>;
+export type ISearchConditions<T extends cinerino.ownershipInfo.IGoodType> = cinerino.ownershipInfo.ISearchConditions<T>;
+
+export interface ISearchConditions4cinemasunshine<T extends IGoodType> {
     /**
      * 所有権識別子
      */
@@ -95,21 +28,6 @@ export interface ISearchConditions<T extends IGoodType> {
      * 所有対象物のタイプ
      */
     goodType: T;
-    /**
-     * 所有対象物
-     */
-    // typeOfGood?: {
-    //     /**
-    //      * どのイベント予約か
-    //      */
-    //     eventReservationFor?: {
-    //         /**
-    //          * イベントタイプ
-    //          */
-    //         typeOf: EventType;
-    //         identifier: string;
-    //     };
-    // };
     /**
      * 所有者ID
      */

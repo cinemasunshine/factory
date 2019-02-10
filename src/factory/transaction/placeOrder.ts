@@ -42,7 +42,7 @@ export interface IResult {
     /**
      * 購入者に与えられる所有権リスト
      */
-    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo<OwnershipInfoFactory.IGoodType>[];
+    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo<OwnershipInfoFactory.IGood<OwnershipInfoFactory.IGoodType>>[];
 }
 export type IError = cinerino.transaction.placeOrder.IError;
 export type IObject = cinerino.transaction.placeOrder.IObject;
