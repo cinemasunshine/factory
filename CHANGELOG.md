@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 
 - 所有権インターフェースをCinerinoに統一
+- Cinerino化に際して冗長なファイルを削除
 
 ### Deprecated
 

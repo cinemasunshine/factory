@@ -1,6 +1,6 @@
 import * as cinerino from '@cinerino/factory';
 
-export type OfferType = cinerino.offer.OfferType;
+export import OfferType = cinerino.offer.OfferType;
 
 /**
  * offer interface
@@ -8,4 +8,4 @@ export type OfferType = cinerino.offer.OfferType;
  * — for example, an offer to sell tickets to an event, to rent the DVD of a movie,
  * to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
  */
-export type IOffer = cinerino.offer.IOffer;
+export import IOffer = cinerino.offer.IOffer;

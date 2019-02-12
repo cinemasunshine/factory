@@ -1,10 +1,10 @@
 /**
  * 会員プログラムオファー承認アクションファクトリー
  */
+import { actionType, priceCurrency } from '@cinerino/factory';
+
 import * as ActionFactory from '../../../action';
-import ActionType from '../../../actionType';
 import { IAcceptedOffer } from '../../../order';
-import PriceCurrency from '../../../priceCurrency';
 import { IProgramMembership } from '../../../programMembership';
 import { ITransaction } from '../../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../../authorize';
@@ -19,7 +19,7 @@ export interface IResult {
      * オファー分の金額
      */
     price: number;
-    priceCurrency: PriceCurrency;
+    priceCurrency: priceCurrency;
 }
 /**
  * 承認アクション対象
@@ -34,7 +34,7 @@ export type IError = any;
  * 会員プログラムオファー承認アクションインターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: ActionType.AuthorizeAction;
+    typeOf: actionType.AuthorizeAction;
     agent: IAgent;
     recipient: IRecipient;
     object: IObject;

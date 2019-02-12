@@ -1,6 +1,7 @@
+import * as cinerino from '@cinerino/factory';
+
 import { IOffer } from './offer';
 import * as OrganizationFactory from './organization';
-import OrganizationType from './organizationType';
 
 export type ProgramMembershipType = 'ProgramMembership';
 
@@ -23,7 +24,7 @@ export interface IProgramMembership {
     /**
      * プログラムのホスト組織
      */
-    hostingOrganization?: OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>>;
+    hostingOrganization?: OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<cinerino.organizationType>>;
     typeOf: ProgramMembershipType;
     /**
      * 会員番号

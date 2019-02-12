@@ -1,17 +1,21 @@
 import * as cinerino from '@cinerino/factory';
 
-import PaymentMethodType from './paymentMethodType';
+export import TypeOf = cinerino.order.TypeOf;
+export import IPaymentMethod = cinerino.order.IPaymentMethod;
+export import IDiscount = cinerino.order.IDiscount;
+export import ISeller = cinerino.order.ISeller;
+export import ICustomer = cinerino.order.ICustomer;
+export import ISortOrder = cinerino.order.ISortOrder;
+export import ISearchConditions = cinerino.order.ISearchConditions;
+export import IItemOffered = cinerino.order.IItemOffered;
+export import ItemOfferedType = cinerino.order.ItemOfferedType;
+export import IAcceptedOffer = cinerino.order.IAcceptedOffer;
 
-export type TypeOf = cinerino.order.TypeOf;
-export type IPaymentMethod<T extends PaymentMethodType> = cinerino.order.IPaymentMethod<T>;
-export type IDiscount = cinerino.order.IDiscount;
-export type ISeller = cinerino.order.ISeller;
-export type ICustomer = cinerino.order.ICustomer;
-export type ISortOrder = cinerino.order.ISortOrder;
-export type ISearchConditions = cinerino.order.ISearchConditions;
-export type IItemOffered = cinerino.order.IItemOffered;
-export type ItemOfferedType = cinerino.order.ItemOfferedType;
-export type IAcceptedOffer<T extends IItemOffered> = cinerino.order.IAcceptedOffer<T>;
+/**
+ * 注文インターフェース
+ * @see https://schema.org/Order
+ */
+export import IOrder = cinerino.order.IOrder;
 
 /**
  * 注文照会キーインターフェース
@@ -21,9 +25,3 @@ export interface IOrderInquiryKey {
     confirmationNumber: number;
     telephone: string;
 }
-
-/**
- * 注文インターフェース
- * @see https://schema.org/Order
- */
-export type IOrder = cinerino.order.IOrder;

@@ -2,8 +2,9 @@
  * mvtk authorization factory
  * ムビチケ着券情報ファクトリー
  */
+import { actionType } from '@cinerino/factory';
+
 import * as ActionFactory from '../../../action';
-import ActionType from '../../../actionType';
 import { ITransaction } from '../../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../../authorize';
 
@@ -109,7 +110,7 @@ export type IPurpose = ITransaction;
  * ムビチケ着券情報
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: ActionType.AuthorizeAction;
+    typeOf: actionType.AuthorizeAction;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;

@@ -1,7 +1,6 @@
 import * as cinerino from '@cinerino/factory';
 
 import * as ActionFactory from '../../action';
-import ActionType from '../../actionType';
 import { IOrder } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';
 import { Identifier as WebAPIIdentifier } from '../../service/webAPI';
@@ -41,7 +40,7 @@ export interface IPotentialActions {
      */
     givePointAward?: IGivePointAwardActionAttributes[];
 }
-export interface IAttributes extends ActionFactory.IAttributes<ActionType.OrderAction, IObject, IResult> {
+export interface IAttributes extends ActionFactory.IAttributes<cinerino.actionType.OrderAction, IObject, IResult> {
     potentialActions?: IPotentialActions;
 }
 /**

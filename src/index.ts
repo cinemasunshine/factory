@@ -1,7 +1,30 @@
 /**
  * factory
  */
-import { chevre, encodingFormat, errorCode, errors, invoice, monetaryAmount, pecorino, waiter } from '@cinerino/factory';
+import {
+    accountType,
+    actionStatusType,
+    actionType,
+    chevre,
+    creativeWorkType,
+    encodingFormat,
+    errorCode,
+    errors,
+    invoice,
+    monetaryAmount,
+    orderStatus,
+    organizationType,
+    paymentStatusType,
+    pecorino,
+    personType,
+    priceCurrency,
+    taskName,
+    taskStatus,
+    transactionStatusType,
+    transactionTasksExportationStatus,
+    transactionType,
+    waiter
+} from '@cinerino/factory';
 
 import * as cognito from './cognito';
 
@@ -31,41 +54,25 @@ import * as ReturnOrderActionFactory from './factory/action/transfer/return/orde
 import * as ReturnPointAwardActionFactory from './factory/action/transfer/return/pointAward';
 import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
-import ActionStatusType from './factory/actionStatusType';
-import ActionType from './factory/actionType';
 
-import AccountType from './factory/accountType';
 import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
-import CreativeWorkType from './factory/creativeWorkType';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import * as ScreeningEventSeriesFactory from './factory/event/screeningEventSeries';
-import { EventStatusType } from './factory/eventStatusType';
-import { EventType } from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
 import * as OfferFactory from './factory/offer';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
 import * as OrderFactory from './factory/order';
-import OrderStatus from './factory/orderStatus';
 import * as OrganizationFactory from './factory/organization';
-import OrganizationType from './factory/organizationType';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
 import PaymentMethodType from './factory/paymentMethodType';
-import PaymentStatusType from './factory/paymentStatusType';
 import * as PersonFactory from './factory/person';
-import PersonType from './factory/personType';
-import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
-import { PlaceType } from './factory/placeType';
-import PriceCurrency from './factory/priceCurrency';
 import * as ProgramMembershipFactory from './factory/programMembership';
 import * as PropertyValueFactory from './factory/propertyValue';
 import * as QuantitativeValueFactory from './factory/quantitativeValue';
-import * as ReservationFactory from './factory/reservation';
 import * as EventReservationFactory from './factory/reservation/event';
-import { ReservationStatusType } from './factory/reservationStatusType';
-import { ReservationType } from './factory/reservationType';
 import * as WebAPIServiceFactory from './factory/service/webAPI';
 import SortType from './factory/sortType';
 import { UnitCode } from './factory/unitCode';
@@ -93,14 +100,9 @@ import * as TriggerWebhookTaskFactory from './factory/task/triggerWebhook';
 import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegisterProgramMembership';
 
 import * as TaskFactory from './factory/task';
-import TaskName from './factory/taskName';
-import TaskStatus from './factory/taskStatus';
 import * as TransactionFactory from './factory/transaction';
 import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
 import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
-import TransactionStatusType from './factory/transactionStatusType';
-import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
-import TransactionType from './factory/transactionType';
 
 export import chevre = chevre;
 export import cognito = cognito;
@@ -109,8 +111,8 @@ export import waiter = waiter;
 export import errors = errors;
 export import errorCode = errorCode;
 
-export import actionStatusType = ActionStatusType;
-export import actionType = ActionType;
+export import actionStatusType = actionStatusType;
+export import actionType = actionType;
 export namespace action {
     export import ISortOrder = ActionFactory.ISortOrder;
     export import IAction = ActionFactory.IAction;
@@ -225,7 +227,7 @@ export namespace action {
     }
 }
 
-export import accountType = AccountType;
+export import accountType = accountType;
 export import encodingFormat = encodingFormat;
 export namespace paymentMethod {
     export type ISearchConditions<T extends PaymentMethodType> =
@@ -244,13 +246,13 @@ export namespace creativeWork {
     }
     export import movie = MovieCreativeWorkFactory;
 }
-export import creativeWorkType = CreativeWorkType;
+export import creativeWorkType = creativeWorkType;
 export namespace event {
     export import screeningEvent = ScreeningEventFactory;
     export import screeningEventSeries = ScreeningEventSeriesFactory;
 }
-export import eventStatusType = EventStatusType;
-export import eventType = EventType;
+export import eventStatusType = chevre.eventStatusType;
+export import eventType = chevre.eventType;
 export import invoice = invoice;
 export import monetaryAmount = monetaryAmount;
 export type multilingualString = IMultilingualString;
@@ -260,142 +262,142 @@ export namespace offer {
     export import seatReservation = SeatReservationOfferFactory;
 }
 export import order = OrderFactory;
-export import orderStatus = OrderStatus;
-export import organizationType = OrganizationType;
+export import orderStatus = orderStatus;
+export import organizationType = organizationType;
 export import ownershipInfo = OwnershipInfoFactory;
-export import priceCurrency = PriceCurrency;
+export import priceCurrency = priceCurrency;
 export namespace place {
-    export import movieTheater = MovieTheaterPlaceFactory;
+    export import movieTheater = chevre.place.movieTheater;
 }
 export import paymentMethodType = PaymentMethodType;
-export import paymentStatusType = PaymentStatusType;
+export import paymentStatusType = paymentStatusType;
 export import person = PersonFactory;
-export import personType = PersonType;
-export import placeType = PlaceType;
+export import personType = personType;
+export import placeType = chevre.placeType;
 export import programMembership = ProgramMembershipFactory;
 export import propertyValue = PropertyValueFactory;
 export import quantitativeValue = QuantitativeValueFactory;
 export namespace reservation {
-    export import IReservation = ReservationFactory.IReservation;
-    export import ISeat = ReservationFactory.ISeat;
-    export import ITicket = ReservationFactory.ITicket;
-    export import IUnderName = ReservationFactory.IUnderName;
-    export import TicketType = ReservationFactory.TicketType;
+    export import IReservation = chevre.reservation.IReservation;
+    export import ISeat = chevre.reservation.ISeat;
+    export import ITicket = chevre.reservation.ITicket;
+    export import IUnderName = chevre.reservation.IUnderName;
+    export import TicketType = chevre.reservation.TicketType;
     // tslint:disable-next-line:no-shadowed-variable
     export import event = EventReservationFactory;
 }
-export import reservationStatusType = ReservationStatusType;
-export import reservationType = ReservationType;
+export import reservationStatusType = chevre.reservationStatusType;
+export import reservationType = chevre.reservationType;
 export namespace service {
     export import webAPI = WebAPIServiceFactory;
 }
 export import seller = OrganizationFactory;
 export namespace task {
-    export type IData<T extends TaskName | string> =
-        T extends TaskName.CancelAccount ? CancelAccountTaskFactory.IData :
-        T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.IData :
-        T extends TaskName.CancelPointAward ? CancelPointAwardTaskFactory.IData :
-        T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IData :
-        T extends TaskName.ConfirmReservation ? ConfirmReservationTaskFactory.IData :
-        T extends TaskName.GivePointAward ? GivePointAwardTaskFactory.IData :
-        T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IData :
-        T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IData :
-        T extends TaskName.RefundAccount ? RefundAccountTaskFactory.IData :
-        T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IData :
-        T extends TaskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IData :
-        T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IData :
-        T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.IData :
-        T extends TaskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IData :
-        T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.IData :
-        T extends TaskName.SendOrder ? SendOrderTaskFactory.IData :
-        T extends TaskName.PayAccount ? PayAccountTaskFactory.IData :
-        T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.IData :
-        T extends TaskName.PayMovieTicket ? PayMovieTicketTaskFactory.IData :
-        T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.IData :
-        T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IData :
+    export type IData<T extends taskName | string> =
+        T extends taskName.CancelAccount ? CancelAccountTaskFactory.IData :
+        T extends taskName.CancelCreditCard ? CancelCreditCardTaskFactory.IData :
+        T extends taskName.CancelPointAward ? CancelPointAwardTaskFactory.IData :
+        T extends taskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IData :
+        T extends taskName.ConfirmReservation ? ConfirmReservationTaskFactory.IData :
+        T extends taskName.GivePointAward ? GivePointAwardTaskFactory.IData :
+        T extends taskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IData :
+        T extends taskName.PlaceOrder ? PlaceOrderTaskFactory.IData :
+        T extends taskName.RefundAccount ? RefundAccountTaskFactory.IData :
+        T extends taskName.RefundCreditCard ? RefundCreditCardTaskFactory.IData :
+        T extends taskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IData :
+        T extends taskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IData :
+        T extends taskName.ReturnOrder ? ReturnOrderTaskFactory.IData :
+        T extends taskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IData :
+        T extends taskName.SendEmailMessage ? SendEmailMessageTaskFactory.IData :
+        T extends taskName.SendOrder ? SendOrderTaskFactory.IData :
+        T extends taskName.PayAccount ? PayAccountTaskFactory.IData :
+        T extends taskName.PayCreditCard ? PayCreditCardTaskFactory.IData :
+        T extends taskName.PayMovieTicket ? PayMovieTicketTaskFactory.IData :
+        T extends taskName.TriggerWebhook ? TriggerWebhookTaskFactory.IData :
+        T extends taskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IData :
         TaskFactory.IData;
-    export type IAttributes<T extends TaskName | string> =
-        T extends TaskName.CancelAccount ? CancelAccountTaskFactory.IAttributes :
-        T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.IAttributes :
-        T extends TaskName.CancelPointAward ? CancelPointAwardTaskFactory.IAttributes :
-        T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IAttributes :
-        T extends TaskName.ConfirmReservation ? ConfirmReservationTaskFactory.IAttributes :
-        T extends TaskName.GivePointAward ? GivePointAwardTaskFactory.IAttributes :
-        T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IAttributes :
-        T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IAttributes :
-        T extends TaskName.RefundAccount ? RefundAccountTaskFactory.IAttributes :
-        T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IAttributes :
-        T extends TaskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IAttributes :
-        T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IAttributes :
-        T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.IAttributes :
-        T extends TaskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IAttributes :
-        T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.IAttributes :
-        T extends TaskName.SendOrder ? SendOrderTaskFactory.IAttributes :
-        T extends TaskName.PayAccount ? PayAccountTaskFactory.IAttributes :
-        T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.IAttributes :
-        T extends TaskName.PayMovieTicket ? PayMovieTicketTaskFactory.IAttributes :
-        T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.IAttributes :
-        T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IAttributes :
+    export type IAttributes<T extends taskName | string> =
+        T extends taskName.CancelAccount ? CancelAccountTaskFactory.IAttributes :
+        T extends taskName.CancelCreditCard ? CancelCreditCardTaskFactory.IAttributes :
+        T extends taskName.CancelPointAward ? CancelPointAwardTaskFactory.IAttributes :
+        T extends taskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IAttributes :
+        T extends taskName.ConfirmReservation ? ConfirmReservationTaskFactory.IAttributes :
+        T extends taskName.GivePointAward ? GivePointAwardTaskFactory.IAttributes :
+        T extends taskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IAttributes :
+        T extends taskName.PlaceOrder ? PlaceOrderTaskFactory.IAttributes :
+        T extends taskName.RefundAccount ? RefundAccountTaskFactory.IAttributes :
+        T extends taskName.RefundCreditCard ? RefundCreditCardTaskFactory.IAttributes :
+        T extends taskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IAttributes :
+        T extends taskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IAttributes :
+        T extends taskName.ReturnOrder ? ReturnOrderTaskFactory.IAttributes :
+        T extends taskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IAttributes :
+        T extends taskName.SendEmailMessage ? SendEmailMessageTaskFactory.IAttributes :
+        T extends taskName.SendOrder ? SendOrderTaskFactory.IAttributes :
+        T extends taskName.PayAccount ? PayAccountTaskFactory.IAttributes :
+        T extends taskName.PayCreditCard ? PayCreditCardTaskFactory.IAttributes :
+        T extends taskName.PayMovieTicket ? PayMovieTicketTaskFactory.IAttributes :
+        T extends taskName.TriggerWebhook ? TriggerWebhookTaskFactory.IAttributes :
+        T extends taskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IAttributes :
         TaskFactory.IAttributes;
-    export type ITask<T extends TaskName | string> =
-        T extends TaskName.CancelAccount ? CancelAccountTaskFactory.ITask :
-        T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.ITask :
-        T extends TaskName.CancelPointAward ? CancelPointAwardTaskFactory.ITask :
-        T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.ITask :
-        T extends TaskName.ConfirmReservation ? ConfirmReservationTaskFactory.ITask :
-        T extends TaskName.GivePointAward ? GivePointAwardTaskFactory.ITask :
-        T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.ITask :
-        T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.ITask :
-        T extends TaskName.RefundAccount ? RefundAccountTaskFactory.ITask :
-        T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.ITask :
-        T extends TaskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.ITask :
-        T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.ITask :
-        T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.ITask :
-        T extends TaskName.ReturnPointAward ? ReturnPointAwardTaskFactory.ITask :
-        T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.ITask :
-        T extends TaskName.SendOrder ? SendOrderTaskFactory.ITask :
-        T extends TaskName.PayAccount ? PayAccountTaskFactory.ITask :
-        T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.ITask :
-        T extends TaskName.PayMovieTicket ? PayMovieTicketTaskFactory.ITask :
-        T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.ITask :
-        T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.ITask :
+    export type ITask<T extends taskName | string> =
+        T extends taskName.CancelAccount ? CancelAccountTaskFactory.ITask :
+        T extends taskName.CancelCreditCard ? CancelCreditCardTaskFactory.ITask :
+        T extends taskName.CancelPointAward ? CancelPointAwardTaskFactory.ITask :
+        T extends taskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.ITask :
+        T extends taskName.ConfirmReservation ? ConfirmReservationTaskFactory.ITask :
+        T extends taskName.GivePointAward ? GivePointAwardTaskFactory.ITask :
+        T extends taskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.ITask :
+        T extends taskName.PlaceOrder ? PlaceOrderTaskFactory.ITask :
+        T extends taskName.RefundAccount ? RefundAccountTaskFactory.ITask :
+        T extends taskName.RefundCreditCard ? RefundCreditCardTaskFactory.ITask :
+        T extends taskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.ITask :
+        T extends taskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.ITask :
+        T extends taskName.ReturnOrder ? ReturnOrderTaskFactory.ITask :
+        T extends taskName.ReturnPointAward ? ReturnPointAwardTaskFactory.ITask :
+        T extends taskName.SendEmailMessage ? SendEmailMessageTaskFactory.ITask :
+        T extends taskName.SendOrder ? SendOrderTaskFactory.ITask :
+        T extends taskName.PayAccount ? PayAccountTaskFactory.ITask :
+        T extends taskName.PayCreditCard ? PayCreditCardTaskFactory.ITask :
+        T extends taskName.PayMovieTicket ? PayMovieTicketTaskFactory.ITask :
+        T extends taskName.TriggerWebhook ? TriggerWebhookTaskFactory.ITask :
+        T extends taskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.ITask :
         TaskFactory.ITask;
-    export type ISearchConditions<T extends TaskName | string> = TaskFactory.ISearchConditions<T>;
+    export type ISearchConditions<T extends taskName | string> = TaskFactory.ISearchConditions<T>;
     export type IExecutionResult = TaskFactory.IExecutionResult;
 }
 export import sortType = SortType;
-export import taskName = TaskName;
-export import taskStatus = TaskStatus;
+export import taskName = taskName;
+export import taskStatus = taskStatus;
 export namespace transaction {
     export type ISortOrder = TransactionFactory.ISortOrder;
-    export type ISearchConditions<T extends TransactionType> =
-        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.ISearchConditions :
-        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.ISearchConditions :
+    export type ISearchConditions<T extends transactionType> =
+        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.ISearchConditions :
+        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.ISearchConditions :
         never;
-    export type IStartParams<T extends TransactionType> =
-        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.IStartParams :
-        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.IStartParams :
+    export type IStartParams<T extends transactionType> =
+        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IStartParams :
+        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IStartParams :
         never;
-    export type IResult<T extends TransactionType> =
-        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.IResult :
-        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.IResult :
+    export type IResult<T extends transactionType> =
+        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IResult :
+        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IResult :
         never;
-    export type IPotentialActions<T extends TransactionType> =
-        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.IPotentialActions :
-        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.IPotentialActions :
+    export type IPotentialActions<T extends transactionType> =
+        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IPotentialActions :
+        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IPotentialActions :
         never;
-    export type IAttributes<T extends TransactionType> =
-        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.IAttributes :
-        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.IAttributes :
+    export type IAttributes<T extends transactionType> =
+        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IAttributes :
+        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IAttributes :
         never;
-    export type ITransaction<T extends TransactionType> =
-        T extends TransactionType.PlaceOrder ? PlaceOrderTransactionFactory.ITransaction :
-        T extends TransactionType.ReturnOrder ? ReturnOrderTransactionFactory.ITransaction :
+    export type ITransaction<T extends transactionType> =
+        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.ITransaction :
+        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.ITransaction :
         never;
     export import placeOrder = PlaceOrderTransactionFactory;
     export import returnOrder = ReturnOrderTransactionFactory;
 }
-export import transactionStatusType = TransactionStatusType;
-export import transactionTasksExportationStatus = TransactionTasksExportationStatus;
-export import transactionType = TransactionType;
+export import transactionStatusType = transactionStatusType;
+export import transactionTasksExportationStatus = transactionTasksExportationStatus;
+export import transactionType = transactionType;
 export import unitCode = UnitCode;

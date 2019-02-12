@@ -1,19 +1,17 @@
 import * as cinerino from '@cinerino/factory';
 
-import AccountType from './accountType';
 import * as OrganizationFactory from './organization';
-import OrganizationType from './organizationType';
 import { IPerson } from './person';
 
 export import AccountGoodType = cinerino.ownershipInfo.AccountGoodType;
-export type IAccount<T extends AccountType> = cinerino.ownershipInfo.IAccount<T>;
+export type IAccount<T extends cinerino.accountType> = cinerino.ownershipInfo.IAccount<T>;
 export type IGoodType = cinerino.ownershipInfo.IGoodType;
 export type IGood<T extends IGoodType> = cinerino.ownershipInfo.IGood<T>;
 
 /**
  * 所有者インターフェース
  */
-export type IOwner = OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>> | IPerson;
+export type IOwner = OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<cinerino.organizationType>> | IPerson;
 export type OwnershipInfoType = cinerino.ownershipInfo.OwnershipInfoType;
 export type IOwnershipInfo<T extends cinerino.ownershipInfo.IGood<cinerino.ownershipInfo.IGoodType>>
     = cinerino.ownershipInfo.IOwnershipInfo<T>;
