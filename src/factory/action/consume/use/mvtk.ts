@@ -1,5 +1,6 @@
+import { order } from '@cinerino/factory';
+
 import * as ActionFactory from '../../../action';
-import { IOrder } from '../../../order';
 import { ISeatInfoSyncIn } from '../../authorize/discount/mvtk';
 import * as UseActionFactory from '../use';
 
@@ -13,7 +14,7 @@ export interface IObject {
     seatInfoSyncIn: ISeatInfoSyncIn;
 }
 export type IResult = any;
-export type IPurpose = IOrder;
+export type IPurpose = order.IOrder;
 export interface IAttributes extends UseActionFactory.IAttributes<IObject, IResult> {
     purpose: IPurpose;
 }

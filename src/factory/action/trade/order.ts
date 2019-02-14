@@ -1,7 +1,6 @@
 import * as cinerino from '@cinerino/factory';
 
 import * as ActionFactory from '../../action';
-import { IOrder } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';
 import { Identifier as WebAPIIdentifier } from '../../service/webAPI';
 import { IAttributes as IConfirmReservationActionAttributes } from '../interact/confirm/reservation';
@@ -11,7 +10,7 @@ import { IAttributes as IPayActionAttributes } from './pay';
 
 export type IAgent = cinerino.action.trade.order.IAgent;
 export type IRecipient = cinerino.action.trade.order.IRecipient;
-export type IObject = IOrder;
+export type IObject = cinerino.order.IOrder;
 export type IResult = cinerino.action.trade.order.IResult;
 export interface IPotentialActions {
     /**

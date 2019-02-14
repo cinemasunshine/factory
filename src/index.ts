@@ -1,32 +1,7 @@
 /**
  * factory
  */
-import {
-    accountType,
-    actionStatusType,
-    actionType,
-    chevre,
-    creativeWorkType,
-    encodingFormat,
-    errorCode,
-    errors,
-    invoice,
-    monetaryAmount,
-    orderStatus,
-    organizationType,
-    paymentStatusType,
-    pecorino,
-    personType,
-    priceCurrency,
-    taskName,
-    taskStatus,
-    transactionStatusType,
-    transactionTasksExportationStatus,
-    transactionType,
-    waiter
-} from '@cinerino/factory';
-
-import * as cognito from './cognito';
+import * as cinerino from '@cinerino/factory';
 
 import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
@@ -61,9 +36,7 @@ import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import * as ScreeningEventSeriesFactory from './factory/event/screeningEventSeries';
 import IMultilingualString from './factory/multilingualString';
-import * as OfferFactory from './factory/offer';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
-import * as OrderFactory from './factory/order';
 import * as OrganizationFactory from './factory/organization';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
@@ -104,15 +77,15 @@ import * as TransactionFactory from './factory/transaction';
 import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
 import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
 
-export import chevre = chevre;
-export import cognito = cognito;
-export import pecorino = pecorino;
-export import waiter = waiter;
-export import errors = errors;
-export import errorCode = errorCode;
+export import chevre = cinerino.chevre;
+export import cognito = cinerino.cognito;
+export import pecorino = cinerino.pecorino;
+export import waiter = cinerino.waiter;
+export import errors = cinerino.errors;
+export import errorCode = cinerino.errorCode;
 
-export import actionStatusType = actionStatusType;
-export import actionType = actionType;
+export import actionStatusType = cinerino.actionStatusType;
+export import actionType = cinerino.actionType;
 export namespace action {
     export import ISortOrder = ActionFactory.ISortOrder;
     export import IAction = ActionFactory.IAction;
@@ -227,8 +200,8 @@ export namespace action {
     }
 }
 
-export import accountType = accountType;
-export import encodingFormat = encodingFormat;
+export import accountType = cinerino.accountType;
+export import encodingFormat = cinerino.encodingFormat;
 export namespace paymentMethod {
     export type ISearchConditions<T extends PaymentMethodType> =
         T extends PaymentMethodType.CreditCard ? CreditCardFactory.ISearchConditions :
@@ -246,33 +219,33 @@ export namespace creativeWork {
     }
     export import movie = MovieCreativeWorkFactory;
 }
-export import creativeWorkType = creativeWorkType;
+export import creativeWorkType = cinerino.creativeWorkType;
 export namespace event {
     export import screeningEvent = ScreeningEventFactory;
     export import screeningEventSeries = ScreeningEventSeriesFactory;
 }
 export import eventStatusType = chevre.eventStatusType;
 export import eventType = chevre.eventType;
-export import invoice = invoice;
-export import monetaryAmount = monetaryAmount;
+export import invoice = cinerino.invoice;
+export import monetaryAmount = cinerino.monetaryAmount;
 export type multilingualString = IMultilingualString;
 export namespace offer {
-    export import OfferType = OfferFactory.OfferType;
-    export import IOffer = OfferFactory.IOffer;
+    export import OfferType = cinerino.offer.OfferType;
+    export import IOffer = cinerino.offer.IOffer;
     export import seatReservation = SeatReservationOfferFactory;
 }
-export import order = OrderFactory;
-export import orderStatus = orderStatus;
-export import organizationType = organizationType;
+export import order = cinerino.order;
+export import orderStatus = cinerino.orderStatus;
+export import organizationType = cinerino.organizationType;
 export import ownershipInfo = OwnershipInfoFactory;
-export import priceCurrency = priceCurrency;
+export import priceCurrency = cinerino.priceCurrency;
 export namespace place {
     export import movieTheater = chevre.place.movieTheater;
 }
 export import paymentMethodType = PaymentMethodType;
-export import paymentStatusType = paymentStatusType;
+export import paymentStatusType = cinerino.paymentStatusType;
 export import person = PersonFactory;
-export import personType = personType;
+export import personType = cinerino.personType;
 export import placeType = chevre.placeType;
 export import programMembership = ProgramMembershipFactory;
 export import propertyValue = PropertyValueFactory;
@@ -366,8 +339,8 @@ export namespace task {
     export type IExecutionResult = TaskFactory.IExecutionResult;
 }
 export import sortType = SortType;
-export import taskName = taskName;
-export import taskStatus = taskStatus;
+export import taskName = cinerino.taskName;
+export import taskStatus = cinerino.taskStatus;
 export namespace transaction {
     export type ISortOrder = TransactionFactory.ISortOrder;
     export type ISearchConditions<T extends transactionType> =
@@ -397,7 +370,7 @@ export namespace transaction {
     export import placeOrder = PlaceOrderTransactionFactory;
     export import returnOrder = ReturnOrderTransactionFactory;
 }
-export import transactionStatusType = transactionStatusType;
-export import transactionTasksExportationStatus = transactionTasksExportationStatus;
-export import transactionType = transactionType;
+export import transactionStatusType = cinerino.transactionStatusType;
+export import transactionTasksExportationStatus = cinerino.transactionTasksExportationStatus;
+export import transactionType = cinerino.transactionType;
 export import unitCode = UnitCode;
