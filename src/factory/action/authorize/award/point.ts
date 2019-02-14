@@ -1,9 +1,6 @@
-import { pecorino } from '@cinerino/factory';
+import { accountType, actionType, pecorino, transactionType } from '@cinerino/factory';
 
-import AccountType from '../../../accountType';
 import * as ActionFactory from '../../../action';
-import ActionType from '../../../actionType';
-import TransactionType from '../../../transactionType';
 import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -20,7 +17,7 @@ export interface IObject {
     transactionId: string;
     amount: number;
 }
-export type IPointTransaction = pecorino.transaction.deposit.ITransaction<AccountType.Point>;
+export type IPointTransaction = pecorino.transaction.deposit.ITransaction<accountType.Point>;
 export interface IResult {
     price: number;
     amount: number;
@@ -28,7 +25,7 @@ export interface IResult {
     pointAPIEndpoint: string;
 }
 export interface IPurpose {
-    typeOf: TransactionType.PlaceOrder;
+    typeOf: transactionType.PlaceOrder;
     id: string;
 }
 export type IError = any;
@@ -36,7 +33,7 @@ export type IError = any;
  * ポイントインセンティブ承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: ActionType.AuthorizeAction;
+    typeOf: actionType.AuthorizeAction;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;

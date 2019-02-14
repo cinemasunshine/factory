@@ -1,6 +1,6 @@
-import { IOffer } from './offer';
+import * as cinerino from '@cinerino/factory';
+
 import * as OrganizationFactory from './organization';
-import OrganizationType from './organizationType';
 
 export type ProgramMembershipType = 'ProgramMembership';
 
@@ -23,7 +23,7 @@ export interface IProgramMembership {
     /**
      * プログラムのホスト組織
      */
-    hostingOrganization?: OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<OrganizationType>>;
+    hostingOrganization?: OrganizationFactory.IOrganization<OrganizationFactory.IAttributes<cinerino.organizationType>>;
     typeOf: ProgramMembershipType;
     /**
      * 会員番号
@@ -42,6 +42,6 @@ export interface IProgramMembership {
      * 会員プログラムに対するオファー
      * このオファーに対して注文取引を成立させると、ユーザーに会員プログラムが所有権として付与されます。
      */
-    offers?: IOffer[];
+    offers?: cinerino.offer.IOffer[];
     url?: string;
 }

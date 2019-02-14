@@ -1,17 +1,14 @@
 import * as cinerino from '@cinerino/factory';
 
-import OrganizationType from './organizationType';
-import PaymentMethodType from './paymentMethodType';
-
-export type IGMOInfo = cinerino.seller.IGMOInfo;
-export type IPaymentAccepted<T extends PaymentMethodType> = cinerino.seller.IPaymentAccepted<T>;
-export type IPOS = cinerino.seller.IPOS;
-export type IMakesOffer = cinerino.seller.IMakesOffer;
-export type IAreaServed = cinerino.seller.IAreaServed;
-export type IAttributes<T extends OrganizationType> = cinerino.seller.IAttributes<T>;
-export type IOrganization<T extends IAttributes<OrganizationType>> = cinerino.seller.IOrganization<T>;
+export import IGMOInfo = cinerino.seller.IGMOInfo;
+export import IPaymentAccepted = cinerino.seller.IPaymentAccepted;
+export import IPOS = cinerino.seller.IPOS;
+export import IMakesOffer = cinerino.seller.IMakesOffer;
+export import IAreaServed = cinerino.seller.IAreaServed;
+export import IAttributes = cinerino.seller.IAttributes;
+export import IOrganization = cinerino.seller.IOrganization;
 
 /**
  * 組織検索条件インターフェース
  */
-export type ISearchConditions = cinerino.seller.ISearchConditions;
+export import ISearchConditions = cinerino.seller.ISearchConditions;

@@ -2,8 +2,8 @@ import * as cinerino from '@cinerino/factory';
 
 import { IProgramMembership } from './programMembership';
 
-export type IProfile = cinerino.person.IProfile;
-export type IIdentifier = cinerino.person.IIdentifier;
+export import IProfile = cinerino.person.IProfile;
+export import IIdentifier = cinerino.person.IIdentifier;
 
 /**
  * 人物インターフェース

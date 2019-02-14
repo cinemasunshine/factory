@@ -1,11 +1,5 @@
-/**
- * 座席予約供給情報ファクトリー
- * @namespace offer.seatReservation
- */
-
+import { offer } from '@cinerino/factory';
 import * as COA from '@motionpicture/coa-service';
-
-import * as OfferFactory from '../offer';
 
 export interface ICOATicketInfo {
     /**
@@ -105,7 +99,7 @@ export interface IOffer {
 /**
  * 座席予約供給情報(詳細つき)インターフェース
  */
-export interface IOfferWithDetails extends OfferFactory.IOffer {
+export interface IOfferWithDetails extends offer.IOffer {
     /**
      * seat section
      */
