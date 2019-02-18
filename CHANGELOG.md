@@ -10,9 +10,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- 所有権インターフェースをCinerinoに統一
-- Cinerino化に際して冗長なファイルを削除
-
 ### Deprecated
 
 ### Removed
@@ -20,6 +17,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+
+## v9.0.0 - 2019-02-18
+
+### Changed
+
+- 所有権インターフェースをCinerinoに統一
+- Cinerino化に際して冗長なファイルを削除
 
 ## v8.1.0 - 2019-02-14
 
