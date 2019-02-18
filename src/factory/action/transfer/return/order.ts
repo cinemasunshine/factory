@@ -1,7 +1,6 @@
-import { order } from '@cinerino/factory';
+import { order, paymentMethodType } from '@cinerino/factory';
 
 import * as ActionFactory from '../../../action';
-import PaymentMethodType from '../../../paymentMethodType';
 import { IAttributes as IRefundActionAttributes } from '../../trade/refund';
 import * as ReturnActionFactory from '../return';
 import * as ReturnPointAwardActionFactory from './pointAward';
@@ -17,15 +16,15 @@ export interface IPotentialActions {
     /**
      * クレジットカード返金アクション
      */
-    refundCreditCard: IRefundActionAttributes<PaymentMethodType.CreditCard>[];
+    refundCreditCard: IRefundActionAttributes<paymentMethodType.CreditCard>[];
     /**
      * 口座返金アクション
      */
-    refundAccount: IRefundActionAttributes<PaymentMethodType.Account>[];
+    refundAccount: IRefundActionAttributes<paymentMethodType.Account>[];
     /**
      * ムビチケ着券取消アクション
      */
-    refundMovieTicket: IRefundActionAttributes<PaymentMethodType.MovieTicket>[];
+    refundMovieTicket: IRefundActionAttributes<paymentMethodType.MovieTicket>[];
     /**
      * ポイントインセンティブ返却アクション
      */

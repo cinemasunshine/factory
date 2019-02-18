@@ -30,25 +30,14 @@ import * as ReturnPointAwardActionFactory from './factory/action/transfer/return
 import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 
-import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import * as ScreeningEventSeriesFactory from './factory/event/screeningEventSeries';
-import IMultilingualString from './factory/multilingualString';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
-import * as OrganizationFactory from './factory/organization';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
-import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
-import PaymentMethodType from './factory/paymentMethodType';
 import * as PersonFactory from './factory/person';
 import * as ProgramMembershipFactory from './factory/programMembership';
-import * as PropertyValueFactory from './factory/propertyValue';
-import * as QuantitativeValueFactory from './factory/quantitativeValue';
-import * as EventReservationFactory from './factory/reservation/event';
-import * as WebAPIServiceFactory from './factory/service/webAPI';
-import SortType from './factory/sortType';
-import { UnitCode } from './factory/unitCode';
 
 import * as CancelAccountTaskFactory from './factory/task/cancelAccount';
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
@@ -202,17 +191,8 @@ export namespace action {
 
 export import accountType = cinerino.accountType;
 export import encodingFormat = cinerino.encodingFormat;
-export namespace paymentMethod {
-    export type ISearchConditions<T extends PaymentMethodType> =
-        T extends PaymentMethodType.CreditCard ? CreditCardFactory.ISearchConditions :
-        // T extends PaymentMethodType.MovieTicket ? MovieTicketFactory.ISearchConditions :
-        never;
-    export namespace paymentCard {
-        export import creditCard = CreditCardFactory;
-        // export import movieTicket = MovieTicketFactory;
-    }
-}
-export import clientUser = ClientUserFactory;
+export import paymentMethod = cinerino.paymentMethod;
+export import clientUser = cinerino.clientUser;
 export namespace creativeWork {
     export namespace message {
         export import email = EmailMessageFactory;
@@ -228,7 +208,7 @@ export import eventStatusType = chevre.eventStatusType;
 export import eventType = chevre.eventType;
 export import invoice = cinerino.invoice;
 export import monetaryAmount = cinerino.monetaryAmount;
-export type multilingualString = IMultilingualString;
+export type multilingualString = cinerino.multilingualString;
 export namespace offer {
     export import OfferType = cinerino.offer.OfferType;
     export import IOffer = cinerino.offer.IOffer;
@@ -242,14 +222,14 @@ export import priceCurrency = cinerino.priceCurrency;
 export namespace place {
     export import movieTheater = chevre.place.movieTheater;
 }
-export import paymentMethodType = PaymentMethodType;
+export import paymentMethodType = cinerino.paymentMethodType;
 export import paymentStatusType = cinerino.paymentStatusType;
 export import person = PersonFactory;
 export import personType = cinerino.personType;
 export import placeType = chevre.placeType;
 export import programMembership = ProgramMembershipFactory;
-export import propertyValue = PropertyValueFactory;
-export import quantitativeValue = QuantitativeValueFactory;
+export import propertyValue = cinerino.propertyValue;
+export import quantitativeValue = cinerino.quantitativeValue;
 export namespace reservation {
     export import IReservation = chevre.reservation.IReservation;
     export import ISeat = chevre.reservation.ISeat;
@@ -257,14 +237,12 @@ export namespace reservation {
     export import IUnderName = chevre.reservation.IUnderName;
     export import TicketType = chevre.reservation.TicketType;
     // tslint:disable-next-line:no-shadowed-variable
-    export import event = EventReservationFactory;
+    export import event = cinerino.chevre.reservation.event;
 }
 export import reservationStatusType = chevre.reservationStatusType;
 export import reservationType = chevre.reservationType;
-export namespace service {
-    export import webAPI = WebAPIServiceFactory;
-}
-export import seller = OrganizationFactory;
+export import service = cinerino.service;
+export import seller = cinerino.seller;
 export namespace task {
     export type IData<T extends taskName | string> =
         T extends taskName.CancelAccount ? CancelAccountTaskFactory.IData :
@@ -338,7 +316,7 @@ export namespace task {
     export type ISearchConditions<T extends taskName | string> = TaskFactory.ISearchConditions<T>;
     export type IExecutionResult = TaskFactory.IExecutionResult;
 }
-export import sortType = SortType;
+export import sortType = cinerino.sortType;
 export import taskName = cinerino.taskName;
 export import taskStatus = cinerino.taskStatus;
 export namespace transaction {
@@ -373,4 +351,4 @@ export namespace transaction {
 export import transactionStatusType = cinerino.transactionStatusType;
 export import transactionTasksExportationStatus = cinerino.transactionTasksExportationStatus;
 export import transactionType = cinerino.transactionType;
-export import unitCode = UnitCode;
+export import unitCode = cinerino.unitCode;

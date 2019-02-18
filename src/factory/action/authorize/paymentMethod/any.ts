@@ -1,16 +1,14 @@
 import * as cinerino from '@cinerino/factory';
 
-import PaymentMethodType from '../../../paymentMethodType';
+export import IAgent = cinerino.action.IParticipant;
+export import IRecipient = cinerino.action.IParticipant;
+export import IAnyPaymentMethod = cinerino.action.authorize.paymentMethod.any.IAnyPaymentMethod;
+export import IObject = cinerino.action.authorize.paymentMethod.any.IObject;
+export import IResult = cinerino.action.authorize.paymentMethod.any.IResult;
+export import IPurpose = cinerino.action.authorize.paymentMethod.any.IPurpose;
+export import IAttributes = cinerino.action.authorize.paymentMethod.any.IAttributes;
 
-export type IAgent = cinerino.action.IParticipant;
-export type IRecipient = cinerino.action.IParticipant;
-
-export type IAnyPaymentMethod<T extends PaymentMethodType> = cinerino.action.authorize.paymentMethod.any.IAnyPaymentMethod<T>;
-export type IObject<T extends PaymentMethodType> = cinerino.action.authorize.paymentMethod.any.IObject<T>;
-export type IResult<T extends PaymentMethodType> = cinerino.action.authorize.paymentMethod.any.IResult<T>;
-export type IPurpose = cinerino.action.authorize.paymentMethod.any.IPurpose;
-export type IAttributes<T extends PaymentMethodType> = cinerino.action.authorize.paymentMethod.any.IAttributes<T>;
 /**
  * 汎用決済方法承認アクションインターフェース
  */
-export type IAction<T extends PaymentMethodType> = cinerino.action.authorize.paymentMethod.any.IAction<T>;
+export import IAction = cinerino.action.authorize.paymentMethod.any.IAction;
