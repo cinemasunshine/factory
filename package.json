@@ -54,7 +54,7 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
-    "@cinerino/factory": "1.0.0-alpha.101",
+    "@cinerino/factory": "1.0.0-alpha.102",
     "@motionpicture/coa-service": "^5.0.2"
   },
   "repository": {
