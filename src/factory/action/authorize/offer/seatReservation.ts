@@ -1,40 +1,69 @@
-/**
- * 座席予約承認アクションファクトリー
- */
-import { actionType, priceCurrency } from '@cinerino/factory';
+import * as cinerino from '@cinerino/factory';
 import * as COA from '@motionpicture/coa-service';
 
 import * as ActionFactory from '../../../action';
 import { IEvent as IScreeningEvent } from '../../../event/screeningEvent';
-import { IOfferWithDetails as ISeatReservationOffer } from '../../../offer/seatReservation';
-import { ITransaction } from '../../../transaction/placeOrder';
+import * as SeatReservationOfferFactory from '../../../offer/seatReservation';
 import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
-
 export enum ObjectType {
     SeatReservation = 'SeatReservation'
 }
 
+export type IInstrument<T extends cinerino.service.webAPI.Identifier> = cinerino.service.webAPI.IService<T>;
+
+export type IRequestBody = COA.services.reserve.IUpdTmpReserveSeatArgs;
+export type IResponseBody<T extends cinerino.service.webAPI.Identifier> =
+    T extends cinerino.service.webAPI.Identifier.COA ? COA.services.reserve.IUpdTmpReserveSeatResult :
+    T extends cinerino.service.webAPI.Identifier.Chevre ? cinerino.chevre.transaction.reserve.ITransaction :
+    cinerino.chevre.transaction.reserve.ITransaction;
+
 /**
  * 認可アクション結果
  */
-export interface IResult {
+export interface IResult<T extends cinerino.service.webAPI.Identifier> {
     /**
      * オファー分の金額
      */
     price: number;
-    priceCurrency: priceCurrency;
+    priceCurrency: cinerino.priceCurrency;
     /**
      * オファーに対して必要な消費ポイント
      */
-    pecorinoAmount: number;
+    point: number;
     /**
-     * COAの仮予約パラメーター
+     * 外部リクエストエンドポイント
      */
-    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
-    updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
+    requestEndpoint?: string;
+    /**
+     * 外部サービスへのリクエスト
+     */
+    requestBody?: IRequestBody;
+    /**
+     * 外部サービスからのレスポンス
+     */
+    responseBody: IResponseBody<T>;
+}
+
+export type IAcceptedPaymentMethod = cinerino.paymentMethod.paymentCard.movieTicket.IMovieTicket;
+
+export type IAcceptedOffer = {
+    paymentMethod?: IAcceptedPaymentMethod;
+    additionalProperty: cinerino.propertyValue.IPropertyValue<string>[];
+} & SeatReservationOfferFactory.IOfferWithDetails;
+
+export type IAcceptedOfferWithoutDetail = {
+    paymentMethod?: IAcceptedPaymentMethod;
+    additionalProperty: cinerino.propertyValue.IPropertyValue<string>[];
+} & SeatReservationOfferFactory.IOffer;
+
+export interface IObjectWithoutDetail {
+    acceptedOffer: IAcceptedOfferWithoutDetail[];
+    event: {
+        id: string;
+    };
 }
 
 /**
@@ -42,11 +71,14 @@ export interface IResult {
  */
 export interface IObject {
     typeOf: ObjectType;
-    individualScreeningEvent: IScreeningEvent;
-    offers: ISeatReservationOffer[];
+    event?: IScreeningEvent;
+    acceptedOffer: IAcceptedOffer[];
 }
 
-export type IPurpose = ITransaction;
+export interface IPurpose {
+    typeOf: cinerino.transactionType.PlaceOrder;
+    id: string;
+}
 
 /**
  * authorize action error interface
@@ -56,12 +88,13 @@ export type IError = any;
 /**
  * 座席予約認可アクションインターフェース
  */
-export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: actionType.AuthorizeAction;
+export interface IAttributes<T extends cinerino.service.webAPI.Identifier> extends AuthorizeActionFactory.IAttributes<IObject, IResult<T>> {
+    typeOf: cinerino.actionType.AuthorizeAction;
     agent: IAgent;
     recipient: IRecipient;
     object: IObject;
     purpose: IPurpose;
+    instrument?: IInstrument<T>;
 }
 
-export type IAction = ActionFactory.IAction<IAttributes>;
+export type IAction<T extends cinerino.service.webAPI.Identifier> = ActionFactory.IAction<IAttributes<T>>;
