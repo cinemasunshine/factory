@@ -1,11 +1,9 @@
 /**
- * mvtk authorization factory
- * ムビチケ着券情報ファクトリー
+ * @deprecated ムビチケは決済方法として解釈するように設計変更したので、こちらはもう拡張すべきでない
  */
-import { actionType } from '@cinerino/factory';
+import { actionType, transactionType } from '@cinerino/factory';
 
 import * as ActionFactory from '../../../action';
-import { ITransaction } from '../../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -104,7 +102,10 @@ export interface IZskInfo {
     zskCd: string;
 }
 
-export type IPurpose = ITransaction;
+export interface IPurpose {
+    typeOf: transactionType.PlaceOrder;
+    id: string;
+}
 
 /**
  * ムビチケ着券情報

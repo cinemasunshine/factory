@@ -1,11 +1,7 @@
-/**
- * 会員プログラムオファー承認アクションファクトリー
- */
-import { actionType, order, priceCurrency } from '@cinerino/factory';
+import { actionType, order, priceCurrency, transactionType } from '@cinerino/factory';
 
 import * as ActionFactory from '../../../action';
 import { IProgramMembership } from '../../../programMembership';
-import { ITransaction } from '../../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -24,7 +20,12 @@ export interface IResult {
  * 承認アクション対象
  */
 export type IObject = order.IAcceptedOffer<IProgramMembership>;
-export type IPurpose = ITransaction;
+
+export interface IPurpose {
+    typeOf: transactionType.PlaceOrder;
+    id: string;
+}
+
 /**
  * authorize action error interface
  */
