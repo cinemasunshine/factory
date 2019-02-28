@@ -62,9 +62,9 @@ import * as TriggerWebhookTaskFactory from './factory/task/triggerWebhook';
 import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegisterProgramMembership';
 
 import * as TaskFactory from './factory/task';
-import * as TransactionFactory from './factory/transaction';
-import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
-import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
+// import * as TransactionFactory from './factory/transaction';
+// import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
+// import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
 
 export import chevre = cinerino.chevre;
 export import cognito = cinerino.cognito;
@@ -319,35 +319,7 @@ export namespace task {
 export import sortType = cinerino.sortType;
 export import taskName = cinerino.taskName;
 export import taskStatus = cinerino.taskStatus;
-export namespace transaction {
-    export type ISortOrder = TransactionFactory.ISortOrder;
-    export type ISearchConditions<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.ISearchConditions :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.ISearchConditions :
-        never;
-    export type IStartParams<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IStartParams :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IStartParams :
-        never;
-    export type IResult<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IResult :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IResult :
-        never;
-    export type IPotentialActions<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IPotentialActions :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IPotentialActions :
-        never;
-    export type IAttributes<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IAttributes :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IAttributes :
-        never;
-    export type ITransaction<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.ITransaction :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.ITransaction :
-        never;
-    export import placeOrder = PlaceOrderTransactionFactory;
-    export import returnOrder = ReturnOrderTransactionFactory;
-}
+export import transaction = cinerino.transaction;
 export import transactionStatusType = cinerino.transactionStatusType;
 export import transactionTasksExportationStatus = cinerino.transactionTasksExportationStatus;
 export import transactionType = cinerino.transactionType;

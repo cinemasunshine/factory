@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - 座席予約承認アクションインターフェースをCinerino化
 - 承認アクションの目的インターフェースを最小化
+- 注文取引の結果から所有権を削除
+- 取引インターフェースをCinerino化
 
 ### Deprecated
 
