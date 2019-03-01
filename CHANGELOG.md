@@ -10,11 +10,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- 座席予約承認アクションインターフェースをCinerino化
-- 承認アクションの目的インターフェースを最小化
-- 注文取引の結果から所有権を削除
-- 取引インターフェースをCinerino化
-
 ### Deprecated
 
 ### Removed
@@ -22,6 +17,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+
+## v10.0.0 - 2019-03-01
+
+### Changed
+
+- 座席予約承認アクションインターフェースをCinerino化
+- 承認アクションの目的インターフェースを最小化
+- 注文取引の結果から所有権を削除
+- 取引インターフェースをCinerino化
 
 ## v9.0.1 - 2019-02-19
 
