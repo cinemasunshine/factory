@@ -1,11 +1,9 @@
-import { actionType, order, priceCurrency, transactionType } from '@cinerino/factory';
+import * as cinerino from '@cinerino/factory';
 
-import * as ActionFactory from '../../../action';
 import { IProgramMembership } from '../../../programMembership';
-import * as AuthorizeActionFactory from '../../authorize';
 
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = cinerino.action.IParticipant;
+export type IRecipient = cinerino.action.IParticipant;
 /**
  * 承認アクション結果
  */
@@ -14,15 +12,15 @@ export interface IResult {
      * オファー分の金額
      */
     price: number;
-    priceCurrency: priceCurrency;
+    priceCurrency: cinerino.priceCurrency;
 }
 /**
  * 承認アクション対象
  */
-export type IObject = order.IAcceptedOffer<IProgramMembership>;
+export type IObject = cinerino.order.IAcceptedOffer<IProgramMembership>;
 
 export interface IPurpose {
-    typeOf: transactionType.PlaceOrder;
+    typeOf: cinerino.transactionType.PlaceOrder;
     id: string;
 }
 
@@ -33,12 +31,12 @@ export type IError = any;
 /**
  * 会員プログラムオファー承認アクションインターフェース
  */
-export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: actionType.AuthorizeAction;
+export interface IAttributes extends cinerino.action.authorize.IAttributes<IObject, IResult> {
+    typeOf: cinerino.actionType.AuthorizeAction;
     agent: IAgent;
     recipient: IRecipient;
     object: IObject;
     purpose: IPurpose;
 }
 
-export type IAction = ActionFactory.IAction<IAttributes>;
+export type IAction = cinerino.action.IAction<IAttributes>;

@@ -1,13 +1,10 @@
 /**
  * @deprecated ムビチケは決済方法として解釈するように設計変更したので、こちらはもう拡張すべきでない
  */
-import { actionType, transactionType } from '@cinerino/factory';
+import * as cinerino from '@cinerino/factory';
 
-import * as ActionFactory from '../../../action';
-import * as AuthorizeActionFactory from '../../authorize';
-
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = cinerino.action.IParticipant;
+export type IRecipient = cinerino.action.IParticipant;
 
 export enum ObjectType {
     Mvtk = 'Mvtk'
@@ -103,19 +100,19 @@ export interface IZskInfo {
 }
 
 export interface IPurpose {
-    typeOf: transactionType.PlaceOrder;
+    typeOf: cinerino.transactionType.PlaceOrder;
     id: string;
 }
 
 /**
  * ムビチケ着券情報
  */
-export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    typeOf: actionType.AuthorizeAction;
+export interface IAttributes extends cinerino.action.authorize.IAttributes<IObject, IResult> {
+    typeOf: cinerino.actionType.AuthorizeAction;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
     purpose: IPurpose;
 }
 
-export type IAction = ActionFactory.IAction<IAttributes>;
+export type IAction = cinerino.action.IAction<IAttributes>;

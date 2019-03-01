@@ -1,13 +1,10 @@
 import * as cinerino from '@cinerino/factory';
 import * as COA from '@motionpicture/coa-service';
 
-import * as ActionFactory from '../../../action';
-import { IEvent as IScreeningEvent } from '../../../event/screeningEvent';
 import * as SeatReservationOfferFactory from '../../../offer/seatReservation';
-import * as AuthorizeActionFactory from '../../authorize';
 
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = cinerino.action.IParticipant;
+export type IRecipient = cinerino.action.IParticipant;
 export enum ObjectType {
     SeatReservation = 'SeatReservation'
 }
@@ -71,7 +68,7 @@ export interface IObjectWithoutDetail {
  */
 export interface IObject {
     typeOf: ObjectType;
-    event?: IScreeningEvent;
+    event?: cinerino.chevre.event.screeningEvent.IEvent;
     acceptedOffer: IAcceptedOffer[];
 }
 
@@ -88,7 +85,8 @@ export type IError = any;
 /**
  * 座席予約認可アクションインターフェース
  */
-export interface IAttributes<T extends cinerino.service.webAPI.Identifier> extends AuthorizeActionFactory.IAttributes<IObject, IResult<T>> {
+export interface IAttributes<T extends cinerino.service.webAPI.Identifier>
+    extends cinerino.action.authorize.IAttributes<IObject, IResult<T>> {
     typeOf: cinerino.actionType.AuthorizeAction;
     agent: IAgent;
     recipient: IRecipient;
@@ -97,4 +95,4 @@ export interface IAttributes<T extends cinerino.service.webAPI.Identifier> exten
     instrument?: IInstrument<T>;
 }
 
-export type IAction<T extends cinerino.service.webAPI.Identifier> = ActionFactory.IAction<IAttributes<T>>;
+export type IAction<T extends cinerino.service.webAPI.Identifier> = cinerino.action.IAction<IAttributes<T>>;
