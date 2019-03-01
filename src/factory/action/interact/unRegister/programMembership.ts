@@ -1,11 +1,12 @@
-import { IGood, IOwnershipInfo } from '../../../ownershipInfo';
+import * as cinerino from '@cinerino/factory';
+
 import { ProgramMembershipType } from '../../../programMembership';
 import * as UnRegisterActionFactory from '../unRegister';
 
 /**
  * 会員プログラム登録解除アクションの対象は、会員プログラムに対する所有権
  */
-export type IObject = IOwnershipInfo<IGood<ProgramMembershipType>>;
+export type IObject = cinerino.ownershipInfo.IOwnershipInfo<cinerino.ownershipInfo.IGood<ProgramMembershipType>>;
 export type IResult = any;
 // tslint:disable-next-line:no-empty-interface
 export interface IPotentialActions {

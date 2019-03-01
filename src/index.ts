@@ -3,68 +3,26 @@
  */
 import * as cinerino from '@cinerino/factory';
 
-import * as ActionFactory from './factory/action';
-import * as AuthorizeActionFactory from './factory/action/authorize';
-import * as AuthorizePointAwardActionFactory from './factory/action/authorize/award/point';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/discount/mvtk';
 import * as ProgramMembershipOfferAuthorizeActionFactory from './factory/action/authorize/offer/programMembership';
 import * as SeatReservationOfferAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
-import * as AuthorizeAccountPaymentActionFactory from './factory/action/authorize/paymentMethod/account';
-import * as AuthorizeAnyPaymentActionFactory from './factory/action/authorize/paymentMethod/any';
-import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
-import * as ConfirmReservationActionFactory from './factory/action/interact/confirm/reservation';
 import * as RegisterActionFactory from './factory/action/interact/register';
 import * as RegisterProgramMembershipActionFactory from './factory/action/interact/register/programMembership';
 import * as UnRegisterActionFactory from './factory/action/interact/unRegister';
 import * as UnRegisterProgramMembershipActionFactory from './factory/action/interact/unRegister/programMembership';
 import * as OrderActionFactory from './factory/action/trade/order';
-import * as PayActionFactory from './factory/action/trade/pay';
-import * as RefundActionFactory from './factory/action/trade/refund';
-import * as GiveActionFactory from './factory/action/transfer/give';
-import * as GivePointAwardActionFactory from './factory/action/transfer/give/pointAward';
-import * as PrintActionFactory from './factory/action/transfer/print';
-import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
-import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
-import * as ReturnPointAwardActionFactory from './factory/action/transfer/return/pointAward';
-import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 
-import * as EmailMessageFactory from './factory/creativeWork/message/email';
-import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
-import * as ScreeningEventFactory from './factory/event/screeningEvent';
-import * as ScreeningEventSeriesFactory from './factory/event/screeningEventSeries';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
-import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as PersonFactory from './factory/person';
 import * as ProgramMembershipFactory from './factory/programMembership';
 
-import * as CancelAccountTaskFactory from './factory/task/cancelAccount';
-import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
-import * as CancelPointAwardTaskFactory from './factory/task/cancelPointAward';
-import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
-import * as ConfirmReservationTaskFactory from './factory/task/confirmReservation';
-import * as GivePointAwardTaskFactory from './factory/task/givePointAward';
-import * as ImportScreeningEventsTaskFactory from './factory/task/importScreeningEvents';
-import * as PayAccountTaskFactory from './factory/task/payAccount';
-import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
-import * as PayMovieTicketTaskFactory from './factory/task/payMovieTicket';
-import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
-import * as RefundAccountTaskFactory from './factory/task/refundAccount';
-import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
-import * as RefundMovieTicketTaskFactory from './factory/task/refundMovieTicket';
 import * as RegisterProgramMembershipTaskFactory from './factory/task/registerProgramMembership';
-import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
-import * as ReturnPointAwardTaskFactory from './factory/task/returnPointAward';
-import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
-import * as TriggerWebhookTaskFactory from './factory/task/triggerWebhook';
 import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegisterProgramMembership';
 
 import * as TaskFactory from './factory/task';
-import * as TransactionFactory from './factory/transaction';
-import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
-import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
 
 export import chevre = cinerino.chevre;
 export import cognito = cinerino.cognito;
@@ -76,33 +34,20 @@ export import errorCode = cinerino.errorCode;
 export import actionStatusType = cinerino.actionStatusType;
 export import actionType = cinerino.actionType;
 export namespace action {
-    export import ISortOrder = ActionFactory.ISortOrder;
-    export import IAction = ActionFactory.IAction;
-    export import IAttributes = ActionFactory.IAttributes;
-    export import IParticipant = ActionFactory.IParticipant;
-    export import IPurpose = ActionFactory.IPurpose;
+    export import IAction = cinerino.action.IAction;
+    export import IAttributes = cinerino.action.IAttributes;
+    export import IParticipant = cinerino.action.IParticipant;
+    export import IPurpose = cinerino.action.IPurpose;
+    export import ISortOrder = cinerino.action.ISortOrder;
 
     export namespace authorize {
         // tslint:disable-next-line:no-shadowed-variable
-        export import IAction = AuthorizeActionFactory.IAction;
+        export import IAction = cinerino.action.authorize.IAction;
         // tslint:disable-next-line:no-shadowed-variable
-        export import IAttributes = AuthorizeActionFactory.IAttributes;
-        export namespace award {
-            // tslint:disable-next-line:no-shadowed-variable
-            export import point = AuthorizePointAwardActionFactory;
-        }
+        export import IAttributes = cinerino.action.authorize.IAttributes;
+        export import award = cinerino.action.authorize.award;
         // tslint:disable-next-line:no-shadowed-variable
-        export namespace paymentMethod {
-            export import account = AuthorizeAccountPaymentActionFactory;
-            export import any = AuthorizeAnyPaymentActionFactory;
-            export import creditCard = CreditCardAuthorizeActionFactory;
-            /**
-             * @alias account
-             * @deprecated Use account
-             */
-            // tslint:disable-next-line:no-shadowed-variable
-            export import pecorino = account;
-        }
+        export import paymentMethod = cinerino.action.authorize.paymentMethod;
         export namespace discount {
             export import mvtk = MvtkAuthorizeActionFactory;
         }
@@ -115,10 +60,7 @@ export namespace action {
     }
 
     export namespace interact {
-        export namespace confirm {
-            // tslint:disable-next-line:no-shadowed-variable
-            export import reservation = ConfirmReservationActionFactory;
-        }
+        export import confirm = cinerino.action.interact.confirm;
         export namespace register {
             // tslint:disable-next-line:no-shadowed-variable
             export import IAction = RegisterActionFactory.IAction;
@@ -140,43 +82,16 @@ export namespace action {
     export namespace trade {
         // tslint:disable-next-line:no-shadowed-variable
         export import order = OrderActionFactory;
-        export import pay = PayActionFactory;
-        export import refund = RefundActionFactory;
+        export import pay = cinerino.action.trade.pay;
+        export import refund = cinerino.action.trade.refund;
     }
 
     export namespace transfer {
-        export namespace give {
-            // tslint:disable-next-line:no-shadowed-variable
-            export import IAction = GiveActionFactory.IAction;
-            // tslint:disable-next-line:no-shadowed-variable
-            export import IAttributes = GiveActionFactory.IAttributes;
-            // tslint:disable-next-line:no-shadowed-variable
-            export import pointAward = GivePointAwardActionFactory;
-        }
-
-        export namespace print {
-            // tslint:disable-next-line:no-shadowed-variable
-            export import IAction = PrintActionFactory.IAction;
-            // tslint:disable-next-line:no-shadowed-variable
-            export import IAttributes = PrintActionFactory.IAttributes;
-            export import IRecipient = PrintActionFactory.IRecipient;
-            export import ticket = PrintTicketActionFactory;
-        }
-
-        /**
-         * 返却アクション
-         * returnはネームスペース名に使えないのでreturnAction
-         */
-        export namespace returnAction {
-            // tslint:disable-next-line:no-shadowed-variable
-            export import order = ReturnOrderActionFactory;
-            export import pointAward = ReturnPointAwardActionFactory;
-        }
-
+        export import give = cinerino.action.transfer.give;
+        export import print = cinerino.action.transfer.print;
+        export import returnAction = cinerino.action.transfer.returnAction;
         export namespace send {
-            export namespace message {
-                export import email = SendEmailMessageActionFactory;
-            }
+            export import message = cinerino.action.transfer.send.message;
             // tslint:disable-next-line:no-shadowed-variable
             export import order = SendOrderActionFactory;
         }
@@ -194,21 +109,16 @@ export import encodingFormat = cinerino.encodingFormat;
 export import paymentMethod = cinerino.paymentMethod;
 export import clientUser = cinerino.clientUser;
 export namespace creativeWork {
-    export namespace message {
-        export import email = EmailMessageFactory;
-    }
-    export import movie = MovieCreativeWorkFactory;
+    export import message = cinerino.creativeWork.message;
+    export import movie = cinerino.chevre.creativeWork.movie;
 }
 export import creativeWorkType = cinerino.creativeWorkType;
-export namespace event {
-    export import screeningEvent = ScreeningEventFactory;
-    export import screeningEventSeries = ScreeningEventSeriesFactory;
-}
+export import event = cinerino.chevre.event;
 export import eventStatusType = chevre.eventStatusType;
 export import eventType = chevre.eventType;
 export import invoice = cinerino.invoice;
 export import monetaryAmount = cinerino.monetaryAmount;
-export type multilingualString = cinerino.multilingualString;
+export import multilingualString = cinerino.multilingualString;
 export namespace offer {
     export import OfferType = cinerino.offer.OfferType;
     export import IOffer = cinerino.offer.IOffer;
@@ -217,11 +127,9 @@ export namespace offer {
 export import order = cinerino.order;
 export import orderStatus = cinerino.orderStatus;
 export import organizationType = cinerino.organizationType;
-export import ownershipInfo = OwnershipInfoFactory;
+export import ownershipInfo = cinerino.ownershipInfo;
 export import priceCurrency = cinerino.priceCurrency;
-export namespace place {
-    export import movieTheater = chevre.place.movieTheater;
-}
+export import place = cinerino.chevre.place;
 export import paymentMethodType = cinerino.paymentMethodType;
 export import paymentStatusType = cinerino.paymentStatusType;
 export import person = PersonFactory;
@@ -230,87 +138,79 @@ export import placeType = chevre.placeType;
 export import programMembership = ProgramMembershipFactory;
 export import propertyValue = cinerino.propertyValue;
 export import quantitativeValue = cinerino.quantitativeValue;
-export namespace reservation {
-    export import IReservation = chevre.reservation.IReservation;
-    export import ISeat = chevre.reservation.ISeat;
-    export import ITicket = chevre.reservation.ITicket;
-    export import IUnderName = chevre.reservation.IUnderName;
-    export import TicketType = chevre.reservation.TicketType;
-    // tslint:disable-next-line:no-shadowed-variable
-    export import event = cinerino.chevre.reservation.event;
-}
+export import reservation = cinerino.chevre.reservation;
 export import reservationStatusType = chevre.reservationStatusType;
 export import reservationType = chevre.reservationType;
 export import service = cinerino.service;
 export import seller = cinerino.seller;
 export namespace task {
     export type IData<T extends taskName | string> =
-        T extends taskName.CancelAccount ? CancelAccountTaskFactory.IData :
-        T extends taskName.CancelCreditCard ? CancelCreditCardTaskFactory.IData :
-        T extends taskName.CancelPointAward ? CancelPointAwardTaskFactory.IData :
-        T extends taskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IData :
-        T extends taskName.ConfirmReservation ? ConfirmReservationTaskFactory.IData :
-        T extends taskName.GivePointAward ? GivePointAwardTaskFactory.IData :
-        T extends taskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IData :
-        T extends taskName.PlaceOrder ? PlaceOrderTaskFactory.IData :
-        T extends taskName.RefundAccount ? RefundAccountTaskFactory.IData :
-        T extends taskName.RefundCreditCard ? RefundCreditCardTaskFactory.IData :
-        T extends taskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IData :
+        T extends taskName.CancelAccount ? cinerino.task.IData<taskName.CancelAccount> :
+        T extends taskName.CancelCreditCard ? cinerino.task.IData<taskName.CancelCreditCard> :
+        T extends taskName.CancelPointAward ? cinerino.task.IData<taskName.CancelPointAward> :
+        T extends taskName.CancelSeatReservation ? cinerino.task.IData<taskName.CancelSeatReservation> :
+        T extends taskName.ConfirmReservation ? cinerino.task.IData<taskName.ConfirmReservation> :
+        T extends taskName.GivePointAward ? cinerino.task.IData<taskName.GivePointAward> :
+        T extends taskName.ImportScreeningEvents ? cinerino.task.IData<taskName.ImportScreeningEvents> :
+        T extends taskName.PlaceOrder ? cinerino.task.IData<taskName.PlaceOrder> :
+        T extends taskName.RefundAccount ? cinerino.task.IData<taskName.RefundAccount> :
+        T extends taskName.RefundCreditCard ? cinerino.task.IData<taskName.RefundCreditCard> :
+        T extends taskName.RefundMovieTicket ? cinerino.task.IData<taskName.RefundMovieTicket> :
         T extends taskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IData :
-        T extends taskName.ReturnOrder ? ReturnOrderTaskFactory.IData :
-        T extends taskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IData :
-        T extends taskName.SendEmailMessage ? SendEmailMessageTaskFactory.IData :
+        T extends taskName.ReturnOrder ? cinerino.task.IData<taskName.ReturnOrder> :
+        T extends taskName.ReturnPointAward ? cinerino.task.IData<taskName.ReturnPointAward> :
+        T extends taskName.SendEmailMessage ? cinerino.task.IData<taskName.SendEmailMessage> :
         T extends taskName.SendOrder ? SendOrderTaskFactory.IData :
-        T extends taskName.PayAccount ? PayAccountTaskFactory.IData :
-        T extends taskName.PayCreditCard ? PayCreditCardTaskFactory.IData :
-        T extends taskName.PayMovieTicket ? PayMovieTicketTaskFactory.IData :
-        T extends taskName.TriggerWebhook ? TriggerWebhookTaskFactory.IData :
+        T extends taskName.PayAccount ? cinerino.task.IData<taskName.PayAccount> :
+        T extends taskName.PayCreditCard ? cinerino.task.IData<taskName.PayCreditCard> :
+        T extends taskName.PayMovieTicket ? cinerino.task.IData<taskName.PayMovieTicket> :
+        T extends taskName.TriggerWebhook ? cinerino.task.IData<taskName.TriggerWebhook> :
         T extends taskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IData :
         TaskFactory.IData;
     export type IAttributes<T extends taskName | string> =
-        T extends taskName.CancelAccount ? CancelAccountTaskFactory.IAttributes :
-        T extends taskName.CancelCreditCard ? CancelCreditCardTaskFactory.IAttributes :
-        T extends taskName.CancelPointAward ? CancelPointAwardTaskFactory.IAttributes :
-        T extends taskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IAttributes :
-        T extends taskName.ConfirmReservation ? ConfirmReservationTaskFactory.IAttributes :
-        T extends taskName.GivePointAward ? GivePointAwardTaskFactory.IAttributes :
-        T extends taskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IAttributes :
-        T extends taskName.PlaceOrder ? PlaceOrderTaskFactory.IAttributes :
-        T extends taskName.RefundAccount ? RefundAccountTaskFactory.IAttributes :
-        T extends taskName.RefundCreditCard ? RefundCreditCardTaskFactory.IAttributes :
-        T extends taskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.IAttributes :
+        T extends taskName.CancelAccount ? cinerino.task.IAttributes<taskName.CancelAccount> :
+        T extends taskName.CancelCreditCard ? cinerino.task.IAttributes<taskName.CancelCreditCard> :
+        T extends taskName.CancelPointAward ? cinerino.task.IAttributes<taskName.CancelPointAward> :
+        T extends taskName.CancelSeatReservation ? cinerino.task.IAttributes<taskName.CancelSeatReservation> :
+        T extends taskName.ConfirmReservation ? cinerino.task.IAttributes<taskName.ConfirmReservation> :
+        T extends taskName.GivePointAward ? cinerino.task.IAttributes<taskName.GivePointAward> :
+        T extends taskName.ImportScreeningEvents ? cinerino.task.IAttributes<taskName.ImportScreeningEvents> :
+        T extends taskName.PlaceOrder ? cinerino.task.IAttributes<taskName.PlaceOrder> :
+        T extends taskName.RefundAccount ? cinerino.task.IAttributes<taskName.RefundAccount> :
+        T extends taskName.RefundCreditCard ? cinerino.task.IAttributes<taskName.RefundCreditCard> :
+        T extends taskName.RefundMovieTicket ? cinerino.task.IAttributes<taskName.RefundMovieTicket> :
         T extends taskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IAttributes :
-        T extends taskName.ReturnOrder ? ReturnOrderTaskFactory.IAttributes :
-        T extends taskName.ReturnPointAward ? ReturnPointAwardTaskFactory.IAttributes :
-        T extends taskName.SendEmailMessage ? SendEmailMessageTaskFactory.IAttributes :
+        T extends taskName.ReturnOrder ? cinerino.task.IAttributes<taskName.ReturnOrder> :
+        T extends taskName.ReturnPointAward ? cinerino.task.IAttributes<taskName.ReturnPointAward> :
+        T extends taskName.SendEmailMessage ? cinerino.task.IAttributes<taskName.SendEmailMessage> :
         T extends taskName.SendOrder ? SendOrderTaskFactory.IAttributes :
-        T extends taskName.PayAccount ? PayAccountTaskFactory.IAttributes :
-        T extends taskName.PayCreditCard ? PayCreditCardTaskFactory.IAttributes :
-        T extends taskName.PayMovieTicket ? PayMovieTicketTaskFactory.IAttributes :
-        T extends taskName.TriggerWebhook ? TriggerWebhookTaskFactory.IAttributes :
+        T extends taskName.PayAccount ? cinerino.task.IAttributes<taskName.PayAccount> :
+        T extends taskName.PayCreditCard ? cinerino.task.IAttributes<taskName.PayCreditCard> :
+        T extends taskName.PayMovieTicket ? cinerino.task.IAttributes<taskName.PayMovieTicket> :
+        T extends taskName.TriggerWebhook ? cinerino.task.IAttributes<taskName.TriggerWebhook> :
         T extends taskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IAttributes :
         TaskFactory.IAttributes;
     export type ITask<T extends taskName | string> =
-        T extends taskName.CancelAccount ? CancelAccountTaskFactory.ITask :
-        T extends taskName.CancelCreditCard ? CancelCreditCardTaskFactory.ITask :
-        T extends taskName.CancelPointAward ? CancelPointAwardTaskFactory.ITask :
-        T extends taskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.ITask :
-        T extends taskName.ConfirmReservation ? ConfirmReservationTaskFactory.ITask :
-        T extends taskName.GivePointAward ? GivePointAwardTaskFactory.ITask :
-        T extends taskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.ITask :
-        T extends taskName.PlaceOrder ? PlaceOrderTaskFactory.ITask :
-        T extends taskName.RefundAccount ? RefundAccountTaskFactory.ITask :
-        T extends taskName.RefundCreditCard ? RefundCreditCardTaskFactory.ITask :
-        T extends taskName.RefundMovieTicket ? RefundMovieTicketTaskFactory.ITask :
+        T extends taskName.CancelAccount ? cinerino.task.ITask<taskName.CancelAccount> :
+        T extends taskName.CancelCreditCard ? cinerino.task.ITask<taskName.CancelCreditCard> :
+        T extends taskName.CancelPointAward ? cinerino.task.ITask<taskName.CancelPointAward> :
+        T extends taskName.CancelSeatReservation ? cinerino.task.ITask<taskName.CancelSeatReservation> :
+        T extends taskName.ConfirmReservation ? cinerino.task.ITask<taskName.ConfirmReservation> :
+        T extends taskName.GivePointAward ? cinerino.task.ITask<taskName.GivePointAward> :
+        T extends taskName.ImportScreeningEvents ? cinerino.task.ITask<taskName.ImportScreeningEvents> :
+        T extends taskName.PlaceOrder ? cinerino.task.ITask<taskName.PlaceOrder> :
+        T extends taskName.RefundAccount ? cinerino.task.ITask<taskName.RefundAccount> :
+        T extends taskName.RefundCreditCard ? cinerino.task.ITask<taskName.RefundCreditCard> :
+        T extends taskName.RefundMovieTicket ? cinerino.task.ITask<taskName.RefundMovieTicket> :
         T extends taskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.ITask :
-        T extends taskName.ReturnOrder ? ReturnOrderTaskFactory.ITask :
-        T extends taskName.ReturnPointAward ? ReturnPointAwardTaskFactory.ITask :
-        T extends taskName.SendEmailMessage ? SendEmailMessageTaskFactory.ITask :
+        T extends taskName.ReturnOrder ? cinerino.task.ITask<taskName.ReturnOrder> :
+        T extends taskName.ReturnPointAward ? cinerino.task.ITask<taskName.ReturnPointAward> :
+        T extends taskName.SendEmailMessage ? cinerino.task.ITask<taskName.SendEmailMessage> :
         T extends taskName.SendOrder ? SendOrderTaskFactory.ITask :
-        T extends taskName.PayAccount ? PayAccountTaskFactory.ITask :
-        T extends taskName.PayCreditCard ? PayCreditCardTaskFactory.ITask :
-        T extends taskName.PayMovieTicket ? PayMovieTicketTaskFactory.ITask :
-        T extends taskName.TriggerWebhook ? TriggerWebhookTaskFactory.ITask :
+        T extends taskName.PayAccount ? cinerino.task.ITask<taskName.PayAccount> :
+        T extends taskName.PayCreditCard ? cinerino.task.ITask<taskName.PayCreditCard> :
+        T extends taskName.PayMovieTicket ? cinerino.task.ITask<taskName.PayMovieTicket> :
+        T extends taskName.TriggerWebhook ? cinerino.task.ITask<taskName.TriggerWebhook> :
         T extends taskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.ITask :
         TaskFactory.ITask;
     export type ISearchConditions<T extends taskName | string> = TaskFactory.ISearchConditions<T>;
@@ -319,35 +219,7 @@ export namespace task {
 export import sortType = cinerino.sortType;
 export import taskName = cinerino.taskName;
 export import taskStatus = cinerino.taskStatus;
-export namespace transaction {
-    export type ISortOrder = TransactionFactory.ISortOrder;
-    export type ISearchConditions<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.ISearchConditions :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.ISearchConditions :
-        never;
-    export type IStartParams<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IStartParams :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IStartParams :
-        never;
-    export type IResult<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IResult :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IResult :
-        never;
-    export type IPotentialActions<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IPotentialActions :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IPotentialActions :
-        never;
-    export type IAttributes<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.IAttributes :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.IAttributes :
-        never;
-    export type ITransaction<T extends transactionType> =
-        T extends transactionType.PlaceOrder ? PlaceOrderTransactionFactory.ITransaction :
-        T extends transactionType.ReturnOrder ? ReturnOrderTransactionFactory.ITransaction :
-        never;
-    export import placeOrder = PlaceOrderTransactionFactory;
-    export import returnOrder = ReturnOrderTransactionFactory;
-}
+export import transaction = cinerino.transaction;
 export import transactionStatusType = cinerino.transactionStatusType;
 export import transactionTasksExportationStatus = cinerino.transactionTasksExportationStatus;
 export import transactionType = cinerino.transactionType;

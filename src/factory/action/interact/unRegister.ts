@@ -1,18 +1,16 @@
-import { actionType } from '@cinerino/factory';
+import { action, actionType } from '@cinerino/factory';
 
-import * as ActionFactory from '../../action';
-
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = action.IParticipant;
+export type IRecipient = action.IParticipant;
 export type IObject = any;
 export type IResult = any;
 // tslint:disable-next-line:no-empty-interface
 export interface IPotentialActions {
 }
-export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<actionType.UnRegisterAction, TObject, TResult> {
+export interface IAttributes<TObject, TResult> extends action.IAttributes<actionType.UnRegisterAction, TObject, TResult> {
     potentialActions?: IPotentialActions;
 }
 /**
  * 登録解除アクションインターフェース
  */
-export type IAction<TAttributes extends IAttributes<IObject, IResult>> = ActionFactory.IAction<TAttributes>;
+export type IAction<TAttributes extends IAttributes<IObject, IResult>> = action.IAction<TAttributes>;

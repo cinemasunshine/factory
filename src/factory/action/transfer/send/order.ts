@@ -1,19 +1,17 @@
-import { order } from '@cinerino/factory';
+import * as cinerino from '@cinerino/factory';
 
-import * as ActionFactory from '../../../action';
 import { IAttributes as IRegisterProgramMembershipTaskAttributes } from '../../../task/registerProgramMembership';
 import * as SendActionFactory from '../send';
-import { IAttributes as ISendEmailMessageActionAttributes } from './message/email';
 
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
-export type IObject = order.IOrder;
+export type IAgent = cinerino.action.IParticipant;
+export type IRecipient = cinerino.action.IParticipant;
+export type IObject = cinerino.order.IOrder;
 export type IResult = any;
 export interface IPotentialActions {
     /**
      * 注文配送を通知するEメール送信アクション
      */
-    sendEmailMessage?: ISendEmailMessageActionAttributes;
+    sendEmailMessage?: cinerino.action.transfer.send.message.email.IAttributes;
     /**
      * 会員プログラムの注文の場合、次回のプログラム更新タスク作成アクションがここに追加されます。
      */

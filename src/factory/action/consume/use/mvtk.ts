@@ -1,11 +1,10 @@
-import { order } from '@cinerino/factory';
+import { action, order } from '@cinerino/factory';
 
-import * as ActionFactory from '../../../action';
 import { ISeatInfoSyncIn } from '../../authorize/discount/mvtk';
 import * as UseActionFactory from '../use';
 
-export type IAgent = ActionFactory.IParticipant;
-export type IRecipient = ActionFactory.IParticipant;
+export type IAgent = action.IParticipant;
+export type IRecipient = action.IParticipant;
 export enum ObjectType {
     Mvtk = 'Mvtk'
 }
