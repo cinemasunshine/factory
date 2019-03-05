@@ -18,6 +18,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v11.0.0 - 2019-03-05
+
+### Changed
+
+- すべてのインターフェースをCinerino化
+
 ## v10.0.0 - 2019-03-01
 
 ### Changed
